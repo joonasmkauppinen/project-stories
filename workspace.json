@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "editor-canvas": "packages/editor-canvas",
     "editor-demo-app": "apps/editor-demo-app",
     "editor-demo-app-e2e": "apps/editor-demo-app-e2e"
   }

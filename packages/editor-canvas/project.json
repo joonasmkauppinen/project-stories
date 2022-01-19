@@ -1,0 +1,43 @@
+{
+  "root": "packages/editor-canvas",
+  "sourceRoot": "packages/editor-canvas/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/editor-canvas",
+        "tsConfig": "packages/editor-canvas/tsconfig.lib.json",
+        "project": "packages/editor-canvas/package.json",
+        "entryFile": "packages/editor-canvas/src/index.ts",
+        "external": ["react/jsx-runtime", "@emotion/styled/base"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "packages/editor-canvas/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/editor-canvas/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/editor-canvas"],
+      "options": {
+        "jestConfig": "packages/editor-canvas/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
