@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import EditorCanvas from './EditorCanvas';
+import { CardSection } from './CardSection';
 
-describe('EditorCanvas', () => {
+describe('CardItem', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<EditorCanvas />);
+    const { baseElement } = render(<CardSection />);
     expect(baseElement).toBeTruthy();
   });
 });
