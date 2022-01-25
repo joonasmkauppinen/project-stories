@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@joonasmkauppinen/project-stories/editor-canvas": [
-        "packages/editor-canvas/src/index.ts"
+      "@joonasmkauppinen/storyboard-renderer": [
+        "packages/storyboard-renderer/src/index.ts"
       ]
     }
   },

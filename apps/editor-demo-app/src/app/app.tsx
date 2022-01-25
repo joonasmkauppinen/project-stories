@@ -1,9 +1,6 @@
 import styled from '@emotion/styled';
 
-import {
-  Card,
-  EditorCanvas,
-} from '@joonasmkauppinen/project-stories/editor-canvas';
+import { Card, EditorCanvas } from '@joonasmkauppinen/storyboard-renderer';
 
 const StyledApp = styled.div`
   // Your style here

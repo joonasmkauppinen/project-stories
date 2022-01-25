@@ -1,6 +1,6 @@
 {
-  "root": "packages/editor-canvas",
-  "sourceRoot": "packages/editor-canvas/src",
+  "root": "packages/storyboard-renderer",
+  "sourceRoot": "packages/storyboard-renderer/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,16 +8,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/editor-canvas",
-        "tsConfig": "packages/editor-canvas/tsconfig.lib.json",
-        "project": "packages/editor-canvas/package.json",
-        "entryFile": "packages/editor-canvas/src/index.ts",
+        "outputPath": "dist/packages/storyboard-renderer",
+        "tsConfig": "packages/storyboard-renderer/tsconfig.lib.json",
+        "project": "packages/storyboard-renderer/package.json",
+        "entryFile": "packages/storyboard-renderer/src/index.ts",
         "external": ["react/jsx-runtime", "@emotion/styled/base"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/editor-canvas/README.md",
+            "glob": "packages/storyboard-renderer/README.md",
             "input": ".",
             "output": "."
           }
@@ -28,14 +28,16 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/editor-canvas/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "packages/storyboard-renderer/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/editor-canvas"],
+      "outputs": ["coverage/packages/storyboard-renderer"],
       "options": {
-        "jestConfig": "packages/editor-canvas/jest.config.js",
+        "jestConfig": "packages/storyboard-renderer/jest.config.js",
         "passWithNoTests": true
       }
     }
