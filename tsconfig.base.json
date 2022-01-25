@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@joonasmkauppinen/store-zustand": [
+        "packages/store-zustand/src/index.ts"
+      ],
       "@joonasmkauppinen/storyboard-renderer": [
         "packages/storyboard-renderer/src/index.ts"
       ]
