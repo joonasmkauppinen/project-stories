@@ -17,6 +17,7 @@
         "tsConfig": "apps/editor-demo-app/tsconfig.app.json",
         "assets": [
           "apps/editor-demo-app/src/favicon.ico",
+          "apps/editor-demo-app/src/manifest.json",
           "apps/editor-demo-app/src/assets"
         ],
         "styles": [],
@@ -44,7 +45,9 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "editor-demo-app:build",
-        "hmr": true
+        "hmr": true,
+        "port": 3000,
+        "host": "0.0.0.0"
       },
       "configurations": {
         "production": {

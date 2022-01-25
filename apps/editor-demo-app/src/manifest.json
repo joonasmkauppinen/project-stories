@@ -1,0 +1,16 @@
+{
+  "name": "Project Stories",
+  "start_url": "/",
+  "display": "standalone",
+  "scope": "/",
+  "background_color": "#2F3331",
+  "theme_color": "#2F3331",
+  "description": "Web Stories editor.",
+  "icons": [
+    {
+      "src": "/assets/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

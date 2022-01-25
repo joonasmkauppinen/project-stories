@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@joonasmkauppinen/project-stories/editor-canvas": [
+        "packages/editor-canvas/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
