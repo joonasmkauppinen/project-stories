@@ -1,1 +1,1 @@
-export * from './lib/StoreZustand';
+export * from './store/zustandStore';
