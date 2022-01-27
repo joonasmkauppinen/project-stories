@@ -1,1 +1,2 @@
-export * from './lib/StoreUtils';
+export * from './sample-data';
+export * from './types';
