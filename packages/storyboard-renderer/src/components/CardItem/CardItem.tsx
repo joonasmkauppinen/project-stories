@@ -1,57 +1,95 @@
+import { ReactElement, useRef } from 'react';
 import styled from '@emotion/styled';
-import React, { MouseEvent, MouseEventHandler } from 'react';
-import { CardLayer, OnHoverCallback } from '../../types';
-import { hoverStyles } from '../../styles/hoverStyle';
+import {
+  LayerActionsProp,
+  CardActionPayload,
+  LayerActionPayload,
+  CardLayer,
+  CardLayers,
+  Coordinate,
+  ElementState,
+} from '@joonasmkauppinen/store-utils';
 
-/* eslint-disable-next-line */
-export interface CardItemProps {
-  layers: CardLayer[];
-  id: string;
-  onHover: OnHoverCallback;
+export interface CardItemProps
+  extends LayerActionsProp,
+    CardActionPayload,
+    React.HTMLAttributes<HTMLDivElement> {
+  layers: CardLayers;
+  state: ElementState;
 }
 
-const StyledCardItem = styled.div({
+const setBoxShadowByState = (state: ElementState) => {
+  if (state === 'active') {
+    return 'fuchsia 0px 0px 0px 2px';
+  }
+
+  if (state === 'hovered') {
+    return '#424342 0px 0px 0px 10px';
+  }
+
+  return '#424342 0px 0px 0px 0px';
+};
+
+const StyledCardItem = styled.div<{ state: ElementState }>(({ state }) => ({
   backgroundColor: 'white',
   width: 360,
   height: 640,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  margin: 50,
-  borderRadius: 4,
-});
+  display: 'block',
+  position: 'relative',
+  borderRadius: 2,
+  boxShadow: setBoxShadowByState(state),
+  transition: 'box-shadow 150ms cubic-bezier(0.18, 0.89, 0.32, 1.28)',
+}));
 
-const StyledH1 = styled.h1(hoverStyles);
+interface StyledH1Props {
+  hover: boolean;
+  position: Coordinate;
+}
+const StyledH1 = styled.h1<StyledH1Props>(({ hover, position }) => ({
+  position: 'absolute',
+  top: position.y,
+  left: position.x,
+  boxShadow: hover ? 'lightblue 0px 0px 0px 2px' : 'none',
+  cursor: 'default',
+  userSelect: 'none',
+}));
 
-export const CardItem = ({ layers, id, onHover }: CardItemProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-  // const handleOnHover = (
-  //   event: React.MouseEvent<
-  //     HTMLHeadingElement | HTMLDivElement,
-  //     globalThis.MouseEvent
-  //   >,
-  //   id: string,
-  //   parentId?: string
-  // ) => {
-  //   event.stopPropagation();
-  // };
+interface TextLayerProps extends LayerActionsProp, LayerActionPayload {
+  layer: CardLayer;
+}
+const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
+  return (
+    <StyledH1
+      hover={layer.state === 'hovered'}
+      onMouseEnter={() => actions.onMouseEnterLayer({ cardId, layerId })}
+      onMouseLeave={() => actions.onMouseLeaveLayer({ cardId, layerId })}
+      onClick={() => actions.onAddSelection({ cardId, layerId })}
+      position={layer.position}
+    >
+      {layer.type}
+    </StyledH1>
+  );
+};
 
-  const handler: MouseEventHandler = (event) => {
-    console.log('Handler called...');
-  };
+export const CardItem = ({
+  layers,
+  cardId,
+  actions,
+  state,
+  ...divElementAttrs
+}: CardItemProps) => {
+  const cardItemRef = useRef<HTMLDivElement>(null);
 
   return (
-    <StyledCardItem id={id}>
-      {layers.map((layer) => (
-        <StyledH1
-          onMouseEnter={() => console.log('onMouseEnter')}
-          onMouseLeave={() => console.log('onMouseLeave')}
-          id={layer.id}
-          key={`card-layer-${layer.id}`}
-        >
-          {layer.type}
-        </StyledH1>
+    <StyledCardItem state={state} ref={cardItemRef} {...divElementAttrs}>
+      {Object.entries(layers).map(([layerId, layer]) => (
+        <TextLayer
+          cardId={cardId}
+          actions={actions}
+          key={`layer-${layerId}`}
+          layer={layer}
+          layerId={layerId}
+        />
       ))}
     </StyledCardItem>
   );

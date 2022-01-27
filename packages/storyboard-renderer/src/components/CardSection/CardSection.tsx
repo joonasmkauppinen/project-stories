@@ -1,15 +1,43 @@
 import styled from '@emotion/styled';
-import { Card, OnHoverCallback } from '../../types/EditorCanvas';
+import {
+  CardActionPayload,
+  LayerActionsProp,
+  Card,
+} from '@joonasmkauppinen/store-utils';
+
 import { CardItem } from '../CardItem/CardItem';
 
-/* eslint-disable-next-line */
-export interface CardItemProps {
-  state: Card;
-  onHover: OnHoverCallback;
+export interface CardItemProps extends LayerActionsProp, CardActionPayload {
+  card: Card;
 }
 
-export const CardSection = ({ state, onHover }: CardItemProps) => {
-  const { layers, id } = state;
+const Container = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  marginLeft: 100,
+  marginRight: 100,
+});
 
-  return <CardItem onHover={onHover} id={id} layers={layers} />;
+const CardName = styled.p({
+  color: 'white',
+  size: 16,
+});
+
+export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
+  const { layers, name, state } = card;
+
+  return (
+    <Container key={`card-${cardId}`}>
+      <CardName>{name}</CardName>
+      <CardItem
+        onMouseEnter={() => actions.onMouseEnterCard({ cardId })}
+        onMouseLeave={() => actions.onMouseLeaveCard({ cardId })}
+        onClick={() => actions.setCardStateToActive({ cardId })}
+        state={state}
+        actions={actions}
+        cardId={cardId}
+        layers={layers}
+      />
+    </Container>
+  );
 };

@@ -1,5 +1,5 @@
 // COMPONENTS
-export * from './components/EditorCanvas/EditorCanvas';
+export * from './components/Storyboard/Storyboard';
 
 // TYPES
-export * from './types';
+// export * from './types';
