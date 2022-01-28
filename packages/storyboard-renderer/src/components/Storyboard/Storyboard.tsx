@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
-import { LayerActionsProp, Cards } from '@joonasmkauppinen/store-utils';
+import {
+  LayerActionsProp,
+  Cards,
+  SelectionItem,
+} from '@joonasmkauppinen/store-utils';
 
 import { CardSection } from '../CardSection/CardSection';
+import { Selection } from '../Selection/Selection';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
+  selection: SelectionItem[];
 }
 
 const StyledStoryboard = styled.div({
@@ -17,7 +23,7 @@ const StyledStoryboard = styled.div({
   overflow: 'scroll',
 });
 
-export const Storyboard = ({ cards, actions }: StoryboardProps) => {
+export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
   return (
     <StyledStoryboard>
       {Object.entries(cards).map(([cardId, card]) => (
@@ -28,6 +34,7 @@ export const Storyboard = ({ cards, actions }: StoryboardProps) => {
           actions={actions}
         />
       ))}
+      <Selection actions={actions} selection={selection} />
     </StyledStoryboard>
   );
 };

@@ -8,6 +8,7 @@ import {
   CardLayers,
   Coordinate,
   ElementState,
+  Size,
 } from '@joonasmkauppinen/store-utils';
 
 export interface CardItemProps
@@ -44,12 +45,15 @@ const StyledCardItem = styled.div<{ state: ElementState }>(({ state }) => ({
 interface StyledH1Props {
   hover: boolean;
   position: Coordinate;
+  size: Size;
 }
-const StyledH1 = styled.h1<StyledH1Props>(({ hover, position }) => ({
+const StyledH1 = styled.h1<StyledH1Props>(({ hover, position, size }) => ({
   position: 'absolute',
   top: position.y,
   left: position.x,
-  boxShadow: hover ? 'lightblue 0px 0px 0px 2px' : 'none',
+  height: size.height,
+  width: size.width,
+  boxShadow: hover ? '#00aeff 0px 0px 0px 1px' : 'none',
   cursor: 'default',
   userSelect: 'none',
 }));
@@ -60,10 +64,22 @@ interface TextLayerProps extends LayerActionsProp, LayerActionPayload {
 const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
   return (
     <StyledH1
+      size={layer.size}
       hover={layer.state === 'hovered'}
       onMouseEnter={() => actions.onMouseEnterLayer({ cardId, layerId })}
       onMouseLeave={() => actions.onMouseLeaveLayer({ cardId, layerId })}
-      onClick={() => actions.onAddSelection({ cardId, layerId })}
+      onMouseDown={(event) => {
+        const { x, y } = event.currentTarget.getBoundingClientRect();
+        actions.onAddSelection({
+          selectionItem: {
+            id: layerId,
+            parentId: cardId,
+            position: { x, y },
+            size: layer.size,
+          },
+          shiftKey: event.shiftKey,
+        });
+      }}
       position={layer.position}
     >
       {layer.type}
