@@ -12,6 +12,10 @@ export const SAMPLE_CARDS: Cards = {
           x: 0,
           y: 100,
         },
+        size: {
+          height: 40,
+          width: 150,
+        },
       },
       fhds343hgfs: {
         type: 'text',
@@ -20,6 +24,10 @@ export const SAMPLE_CARDS: Cards = {
           x: 50,
           y: 200,
         },
+        size: {
+          height: 40,
+          width: 200,
+        },
       },
       '2343rfjr3w': {
         type: 'video',
@@ -27,6 +35,10 @@ export const SAMPLE_CARDS: Cards = {
         position: {
           x: 100,
           y: 300,
+        },
+        size: {
+          height: 40,
+          width: 130,
         },
       },
     },
@@ -44,6 +56,10 @@ export const SAMPLE_CARDS: Cards = {
           x: 0,
           y: 0,
         },
+        size: {
+          height: 30,
+          width: 100,
+        },
       },
       'abc-2-layer-2': {
         type: 'text',
@@ -51,6 +67,10 @@ export const SAMPLE_CARDS: Cards = {
         position: {
           x: 0,
           y: 0,
+        },
+        size: {
+          height: 30,
+          width: 100,
         },
       },
     },
