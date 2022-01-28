@@ -14,6 +14,7 @@ import {
   SetCardStateToIdle,
   OnMouseEnterCard,
   OnMouseLeaveCard,
+  OnDragSelection,
 } from '@joonasmkauppinen/store-utils';
 
 export const useStore = create<AppState>(
@@ -29,28 +30,31 @@ export const selectCurrentActiveCard = (state: AppState) =>
 export const selectCards = (state: AppState) => state.cards;
 export const selectSelection = (state: AppState) => state.selection;
 
-const onAddSelection: OnAddSelection = ({ cardId, layerId }) =>
+const onAddSelection: OnAddSelection = ({ selectionItem, shiftKey }) =>
   useStore.setState(
     produce((draft: AppState) => {
-      const state = useStore.getState();
-
-      if (
-        state.currentActiveCard !== cardId &&
-        state.currentActiveCard !== null
-      ) {
-        draft.cards[state.currentActiveCard].state = 'idle';
-        draft.currentActiveCard = cardId;
-        draft.cards[cardId].state = 'active';
-        draft.selection = [layerId];
+      if (shiftKey) {
+        draft.selection.push(selectionItem);
         return;
       }
 
-      if (state.currentActiveCard === null) {
-        draft.currentActiveCard = cardId;
-        draft.cards[cardId].state = 'active';
-      }
+      draft.selection = [selectionItem];
+    })
+  );
 
-      draft.selection.push(layerId);
+const onDragSelection: OnDragSelection = ({ movementX, movementY }) =>
+  useStore.setState(
+    produce((draft: AppState) => {
+      draft.selection.forEach(({ parentId, id, position }) => {
+        //TODO: Remove this hack and derive selection position from cards state.
+        position.x += movementX;
+        position.y += movementY;
+
+        if (parentId) {
+          draft.cards[parentId].layers[id].position.x += movementX;
+          draft.cards[parentId].layers[id].position.y += movementY;
+        }
+      });
     })
   );
 
@@ -129,6 +133,7 @@ const onMouseLeaveCard: OnMouseLeaveCard = ({ cardId }) =>
 
 export const actions: LayerActions = {
   onAddSelection,
+  onDragSelection,
   onMouseEnterLayer,
   onMouseLeaveLayer,
   onMouseEnterCard,

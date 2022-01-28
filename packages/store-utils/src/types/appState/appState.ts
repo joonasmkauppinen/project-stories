@@ -36,6 +36,11 @@ export interface Coordinate {
   y: number;
 }
 
+export interface Size {
+  width: number;
+  height: number;
+}
+
 export interface LayerResource {
   alt: string;
   height: number;
@@ -62,8 +67,9 @@ export interface CardLayer {
     delay?: number;
     duration?: number;
   };
-  position: Coordinate;
   // resource: LayerResource;
+  position: Coordinate;
+  size: Size;
   state: ElementState;
   type: LayerType;
 }
@@ -85,8 +91,15 @@ export interface Cards {
   [key: string]: Card;
 }
 
+export interface SelectionItem {
+  position: Coordinate;
+  size: Size;
+  id: string;
+  parentId?: string;
+}
+
 export interface AppState {
   currentActiveCard: string | null;
   cards: Cards;
-  selection: string[];
+  selection: SelectionItem[];
 }

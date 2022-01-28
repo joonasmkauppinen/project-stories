@@ -5,6 +5,7 @@ import {
   selectCards,
   useStore,
   actions,
+  selectSelection,
 } from '@joonasmkauppinen/store-zustand';
 
 const StyledApp = styled.div`
@@ -22,11 +23,12 @@ const SamplePanel = styled.div({
 
 export const App = () => {
   const cards = useStore(selectCards);
+  const selection = useStore(selectSelection);
 
   return (
     <StyledApp>
       <SamplePanel />
-      <Storyboard actions={actions} cards={cards} />
+      <Storyboard actions={actions} cards={cards} selection={selection} />
       <SamplePanel />
     </StyledApp>
   );
