@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { LayerActionsProp, Card, ID } from '@joonasmkauppinen/store-utils';
+import { Card, ID, LayerActionsProp } from '@joonasmkauppinen/store-zustand';
 
 import { CardItem } from '../CardItem/CardItem';
 

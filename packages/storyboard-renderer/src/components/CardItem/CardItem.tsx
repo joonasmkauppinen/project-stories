@@ -1,14 +1,14 @@
-import { ReactElement, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import {
-  LayerActionsProp,
-  Layer,
-  Layers,
   Coordinate,
   ElementState,
-  Size,
   ID,
-} from '@joonasmkauppinen/store-utils';
+  Layer,
+  LayerActionsProp,
+  Layers,
+  Size,
+} from '@joonasmkauppinen/store-zustand';
 
 export interface CardItemProps
   extends LayerActionsProp,

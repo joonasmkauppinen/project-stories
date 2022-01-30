@@ -3,7 +3,6 @@
   "projects": {
     "editor-demo-app": "apps/editor-demo-app",
     "editor-demo-app-e2e": "apps/editor-demo-app-e2e",
-    "store-utils": "packages/store-utils",
     "store-zustand": "packages/store-zustand",
     "storyboard-renderer": "packages/storyboard-renderer"
   }

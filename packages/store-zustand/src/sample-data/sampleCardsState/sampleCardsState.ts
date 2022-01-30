@@ -1,4 +1,4 @@
-import { Cards } from '../types/appState/appState';
+import { Cards } from '@joonasmkauppinen/store-zustand';
 
 export const SAMPLE_CARDS: Cards = {
   qwerty: {
