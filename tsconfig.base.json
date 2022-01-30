@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@joonasmkauppinen/store-utils": ["packages/store-utils/src/index.ts"],
       "@joonasmkauppinen/store-zustand": [
         "packages/store-zustand/src/index.ts"
       ],

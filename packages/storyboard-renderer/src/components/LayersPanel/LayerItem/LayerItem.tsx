@@ -1,6 +1,6 @@
 import { css, CSSObject } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ElementState } from '@joonasmkauppinen/store-utils';
+import { ElementState } from '@joonasmkauppinen/store-zustand';
 
 interface StyledLayerItemLiProps {
   indentLevel: number;

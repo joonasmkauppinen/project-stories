@@ -5,7 +5,7 @@ import {
   LayerActionsProp,
   SelectionItem,
   Size,
-} from '@joonasmkauppinen/store-utils';
+} from '@joonasmkauppinen/store-zustand';
 import { useCallback, useRef } from 'react';
 
 interface SelectionProps extends LayerActionsProp {

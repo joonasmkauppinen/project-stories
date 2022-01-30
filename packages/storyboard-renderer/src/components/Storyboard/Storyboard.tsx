@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import {
-  LayerActionsProp,
   Cards,
+  LayerActionsProp,
   SelectionItem,
-} from '@joonasmkauppinen/store-utils';
+} from '@joonasmkauppinen/store-zustand';
 
 import { CardSection } from '../CardSection/CardSection';
 import { Selection } from '../Selection/Selection';

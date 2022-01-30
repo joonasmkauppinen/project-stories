@@ -1,5 +1,7 @@
 export type ElementState = 'idle' | 'hovered' | 'active';
 
+export type ID = string;
+
 export type LayerAnimationType =
   | 'drop'
   | 'fade-in'
@@ -44,7 +46,7 @@ export interface Size {
 export interface LayerResource {
   alt: string;
   height: number;
-  id: string;
+  id: ID;
   mimeType: MimeType;
   src: string;
   type: LayerType;
@@ -96,8 +98,8 @@ export interface Cards {
 }
 
 export interface SelectionItem {
-  id: string;
-  parentId?: string;
+  id: ID;
+  parentId?: ID;
 }
 
 export interface AppState {
