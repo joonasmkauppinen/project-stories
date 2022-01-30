@@ -61,7 +61,8 @@ export interface LayerResource {
 //   id:
 // }
 
-export interface CardLayer {
+export interface Layer {
+  sortOrderIndex: number;
   animation?: {
     type: LayerAnimationType;
     delay?: number;
@@ -69,20 +70,23 @@ export interface CardLayer {
   };
   // resource: LayerResource;
   position: Coordinate;
+  screenPosition?: Coordinate;
   size: Size;
   state: ElementState;
   type: LayerType;
+  name: string;
 }
 
-export interface CardLayers {
-  [key: string]: CardLayer;
+export interface Layers {
+  [key: string]: Layer;
 }
 
 export interface Card {
-  position?: Coordinate;
+  sortOrderIndex: number;
+  screenPosition?: Coordinate;
   autoAdvance: boolean;
   duration: number;
-  layers: CardLayers;
+  layers: Layers;
   name: string;
   state: ElementState;
 }
@@ -92,14 +96,13 @@ export interface Cards {
 }
 
 export interface SelectionItem {
-  position: Coordinate;
-  size: Size;
   id: string;
   parentId?: string;
 }
 
 export interface AppState {
-  currentActiveCard: string | null;
+  activeCards: string[];
+  hoveredCard: string;
   cards: Cards;
   selection: SelectionItem[];
 }
