@@ -1,22 +1,21 @@
-import { ReactElement, useRef } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import {
   LayerActionsProp,
-  CardActionPayload,
-  LayerActionPayload,
-  CardLayer,
-  CardLayers,
+  Layer,
+  Layers,
   Coordinate,
   ElementState,
   Size,
+  ID,
 } from '@joonasmkauppinen/store-utils';
 
 export interface CardItemProps
   extends LayerActionsProp,
-    CardActionPayload,
     React.HTMLAttributes<HTMLDivElement> {
-  layers: CardLayers;
+  layers: Layers;
   state: ElementState;
+  cardId: ID;
 }
 
 const setBoxShadowByState = (state: ElementState) => {
@@ -48,6 +47,8 @@ interface StyledH1Props {
   size: Size;
 }
 const StyledH1 = styled.h1<StyledH1Props>(({ hover, position, size }) => ({
+  margin: 0,
+  padding: 0,
   position: 'absolute',
   top: position.y,
   left: position.x,
@@ -58,26 +59,40 @@ const StyledH1 = styled.h1<StyledH1Props>(({ hover, position, size }) => ({
   userSelect: 'none',
 }));
 
-interface TextLayerProps extends LayerActionsProp, LayerActionPayload {
-  layer: CardLayer;
+interface TextLayerProps extends LayerActionsProp {
+  layer: Layer;
+  cardId: ID;
+  layerId: ID;
 }
 const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
+  const elementRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (elementRef.current) {
+      const { x, y } = elementRef.current.getBoundingClientRect();
+      actions.updateElementScreenPosition({
+        parentId: cardId,
+        id: layerId,
+        position: { x, y },
+      });
+    }
+  }, []);
+
   return (
     <StyledH1
+      ref={elementRef}
       size={layer.size}
       hover={layer.state === 'hovered'}
-      onMouseEnter={() => actions.onMouseEnterLayer({ cardId, layerId })}
-      onMouseLeave={() => actions.onMouseLeaveLayer({ cardId, layerId })}
+      onMouseEnter={() =>
+        actions.setElementStateToHovered({ parentId: cardId, id: layerId })
+      }
+      onMouseLeave={() =>
+        actions.setElementStateToIdle({ parentId: cardId, id: layerId })
+      }
       onMouseDown={(event) => {
-        const { x, y } = event.currentTarget.getBoundingClientRect();
-        actions.onAddSelection({
-          selectionItem: {
-            id: layerId,
-            parentId: cardId,
-            position: { x, y },
-            size: layer.size,
-          },
-          shiftKey: event.shiftKey,
+        actions.setElementStateToActive({
+          id: layerId,
+          parentId: cardId,
+          isShiftKey: event.shiftKey,
         });
       }}
       position={layer.position}
@@ -95,6 +110,16 @@ export const CardItem = ({
   ...divElementAttrs
 }: CardItemProps) => {
   const cardItemRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardItemRef.current) {
+      const { x, y } = cardItemRef.current.getBoundingClientRect();
+      actions.updateElementScreenPosition({
+        id: cardId,
+        position: { x, y },
+      });
+    }
+  }, []);
 
   return (
     <StyledCardItem state={state} ref={cardItemRef} {...divElementAttrs}>

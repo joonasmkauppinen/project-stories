@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { Storyboard } from '@joonasmkauppinen/storyboard-renderer';
+import { Storyboard, LayersPanel } from '@joonasmkauppinen/storyboard-renderer';
 import {
-  selectCurrentActiveCard,
   selectCards,
   useStore,
   actions,
@@ -27,7 +26,7 @@ export const App = () => {
 
   return (
     <StyledApp>
-      <SamplePanel />
+      <LayersPanel actions={actions} cards={cards} selection={selection} />
       <Storyboard actions={actions} cards={cards} selection={selection} />
       <SamplePanel />
     </StyledApp>

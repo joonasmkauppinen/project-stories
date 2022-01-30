@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
-import {
-  CardActionPayload,
-  LayerActionsProp,
-  Card,
-} from '@joonasmkauppinen/store-utils';
+import { LayerActionsProp, Card, ID } from '@joonasmkauppinen/store-utils';
 
 import { CardItem } from '../CardItem/CardItem';
 
-export interface CardItemProps extends LayerActionsProp, CardActionPayload {
+export interface CardItemProps extends LayerActionsProp {
+  cardId: ID;
   card: Card;
 }
 
@@ -30,9 +27,9 @@ export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
     <Container key={`card-${cardId}`}>
       <CardName>{name}</CardName>
       <CardItem
-        onMouseEnter={() => actions.onMouseEnterCard({ cardId })}
-        onMouseLeave={() => actions.onMouseLeaveCard({ cardId })}
-        onClick={() => actions.setCardStateToActive({ cardId })}
+        onMouseEnter={() => actions.setElementStateToHovered({ id: cardId })}
+        onMouseLeave={() => actions.setElementStateToIdle({ id: cardId })}
+        onMouseDown={() => actions.setElementStateToActive({ id: cardId })}
         state={state}
         actions={actions}
         cardId={cardId}
