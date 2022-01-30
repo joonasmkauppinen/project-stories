@@ -1,0 +1,93 @@
+import styled from '@emotion/styled';
+
+import { StoryboardProps } from '../Storyboard/Storyboard';
+
+import { StyledLayerItemLi } from './LayerItem/LayerItem';
+import { PanelHeader } from './PanelHeader/PanelHeader';
+
+const StyledPanelSection = styled.section({
+  backgroundColor: '#2F3331',
+  width: 300,
+  minWidth: 300,
+  borderRight: 'solid 1px #3e413e',
+});
+
+const StyledUnorderedList = styled.ul({
+  all: 'unset',
+});
+
+const Spacer = styled.div({
+  height: 8,
+  backgroundColor: '#1c1d1c',
+});
+
+const ListItemsContainer = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'scroll',
+});
+
+export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
+  return (
+    <StyledPanelSection>
+      <PanelHeader />
+      <ListItemsContainer>
+        <StyledUnorderedList>
+          {Object.entries(cards).map(([cardId, card]) => (
+            <>
+              <Spacer />
+              <StyledLayerItemLi
+                state={card.state}
+                key={`layers-panel-card-item-${cardId}`}
+                onMouseEnter={() =>
+                  actions.setElementStateToHovered({ id: cardId })
+                }
+                onMouseLeave={() =>
+                  actions.setElementStateToIdle({ id: cardId })
+                }
+                onMouseDown={() =>
+                  actions.setElementStateToActive({ id: cardId })
+                }
+                indentLevel={0}
+              >
+                {card.name}
+              </StyledLayerItemLi>
+              <StyledUnorderedList
+                key={`layers-panel-card-item-${cardId}-layers`}
+              >
+                {Object.entries(card.layers).map(([layerId, layer]) => (
+                  <StyledLayerItemLi
+                    state={layer.state}
+                    key={`layers-panel-item-${layerId}`}
+                    onMouseEnter={() =>
+                      actions.setElementStateToHovered({
+                        id: layerId,
+                        parentId: cardId,
+                      })
+                    }
+                    onMouseLeave={() =>
+                      actions.setElementStateToIdle({
+                        id: layerId,
+                        parentId: cardId,
+                      })
+                    }
+                    onMouseDown={({ shiftKey }) => {
+                      actions.setElementStateToActive({
+                        id: layerId,
+                        parentId: cardId,
+                        isShiftKey: shiftKey,
+                      });
+                    }}
+                    indentLevel={1}
+                  >
+                    {layer.name}
+                  </StyledLayerItemLi>
+                ))}
+              </StyledUnorderedList>
+            </>
+          ))}
+        </StyledUnorderedList>
+      </ListItemsContainer>
+    </StyledPanelSection>
+  );
+};

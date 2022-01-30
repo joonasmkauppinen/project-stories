@@ -34,7 +34,7 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
           actions={actions}
         />
       ))}
-      <Selection actions={actions} selection={selection} />
+      <Selection cards={cards} actions={actions} selection={selection} />
     </StyledStoryboard>
   );
 };

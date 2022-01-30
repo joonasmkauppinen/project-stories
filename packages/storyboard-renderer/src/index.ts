@@ -1,5 +1,5 @@
 // COMPONENTS
-export * from './components/Storyboard/Storyboard';
+export * from './components';
 
 // TYPES
 // export * from './types';
