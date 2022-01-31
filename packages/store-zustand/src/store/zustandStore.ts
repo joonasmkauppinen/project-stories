@@ -1,6 +1,5 @@
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { SAMPLE_CARDS } from '../sample-data/sampleCardsState/sampleCardsState';
 
 import { AppState, LayerActions } from '../types';
 import {
@@ -10,11 +9,19 @@ import {
   setElementStateToIdle,
   updateElementScreenPosition,
 } from '../actions';
+import { generateCard, generateLayer } from '../generators';
 
 export const useStore = create<AppState>(
   devtools((_) => ({
     activeCards: [],
-    cards: { ...SAMPLE_CARDS },
+    cards: {
+      ...generateCard({
+        sortOrderIndex: 0,
+        layers: {
+          ...generateLayer({ type: 'text', sortOrderIndex: 0 }),
+        },
+      }),
+    },
     hoveredCard: '',
     selection: [],
   }))

@@ -63,21 +63,27 @@ export interface LayerResource {
 //   id:
 // }
 
-export interface Layer {
-  sortOrderIndex: number;
+export interface BaseLayer {
   animation?: {
     type: LayerAnimationType;
     delay?: number;
     duration?: number;
   };
-  // resource: LayerResource;
+  sortOrderIndex: number;
   position: Coordinate;
-  screenPosition?: Coordinate;
+  screenPosition: Coordinate;
   size: Size;
   state: ElementState;
-  type: LayerType;
   name: string;
+  type?: LayerType;
 }
+
+export interface TextLayer extends BaseLayer {
+  type: 'text';
+  value: string;
+}
+
+export type Layer = TextLayer;
 
 export interface Layers {
   [key: string]: Layer;
@@ -85,7 +91,7 @@ export interface Layers {
 
 export interface Card {
   sortOrderIndex: number;
-  screenPosition?: Coordinate;
+  screenPosition: Coordinate;
   autoAdvance: boolean;
   duration: number;
   layers: Layers;
