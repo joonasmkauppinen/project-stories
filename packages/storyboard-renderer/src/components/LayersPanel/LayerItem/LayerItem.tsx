@@ -7,7 +7,7 @@ interface StyledLayerItemLiProps {
   state: ElementState;
 }
 
-const INSET_AMOUNT = 30;
+const INSET_AMOUNT = 40;
 
 const hoverStyle: CSSObject = {
   borderColor: 'grey',
@@ -31,12 +31,16 @@ const getBgStyleByState = (state: ElementState) => {
   }
 };
 
+// TODO: Get style values from theme
 export const StyledLayerItemLi = styled.li<StyledLayerItemLiProps>(
   ({ indentLevel, state }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     boxSizing: 'border-box',
     border: '1px solid transparent',
     userSelect: 'none',
-    padding: '15px 10px',
+    padding: '12px 16px',
     color: 'white',
     fontSize: 13,
     fontWeight: indentLevel === 0 ? 'bold' : 'normal',
