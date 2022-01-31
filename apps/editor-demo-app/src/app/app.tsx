@@ -18,6 +18,14 @@ const SamplePanel = styled.div({
   backgroundColor: '#2F3331',
   width: 250,
   minWidth: 250,
+  borderLeft: '1px solid#4B5350',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  fontSize: 15,
+  fontWeight: 200,
+  color: '#9d9b9b',
+  paddingTop: 60,
 });
 
 export const App = () => {
@@ -28,7 +36,7 @@ export const App = () => {
     <StyledApp>
       <LayersPanel actions={actions} cards={cards} selection={selection} />
       <Storyboard actions={actions} cards={cards} selection={selection} />
-      <SamplePanel />
+      <SamplePanel>Options panel coming soon.</SamplePanel>
     </StyledApp>
   );
 };
