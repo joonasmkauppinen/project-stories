@@ -97,7 +97,7 @@ const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
       }}
       position={layer.position}
     >
-      {layer.type}
+      {layer.value}
     </StyledH1>
   );
 };
