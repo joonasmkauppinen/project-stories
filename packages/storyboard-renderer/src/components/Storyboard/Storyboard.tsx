@@ -5,8 +5,9 @@ import {
   SelectionItem,
 } from '@joonasmkauppinen/store-zustand';
 
-import { CardSection } from '../CardSection/CardSection';
+import { CardSection } from './CardSection/CardSection';
 import { Selection } from '../Selection/Selection';
+import { AddCardButton } from './AddCardButton/AddCardButton';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
@@ -34,6 +35,7 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
           actions={actions}
         />
       ))}
+      <AddCardButton onClick={() => actions.addNewCard()} />
       <Selection cards={cards} actions={actions} selection={selection} />
     </StyledStoryboard>
   );
