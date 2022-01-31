@@ -3,8 +3,6 @@ import produce from 'immer';
 import { AppState, useStore } from '..';
 import { generateCard } from '../generators';
 
-// export interface
-
 export type AddNewCard = () => void;
 
 export const addNewCard = () =>
