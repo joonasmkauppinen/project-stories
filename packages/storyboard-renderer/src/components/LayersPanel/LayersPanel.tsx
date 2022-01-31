@@ -1,15 +1,17 @@
 import styled from '@emotion/styled';
 
 import { StoryboardProps } from '../Storyboard/Storyboard';
+import { LayerIcon } from './LayerIcon/LayerIcon';
 
 import { StyledLayerItemLi } from './LayerItem/LayerItem';
 import { PanelHeader } from './PanelHeader/PanelHeader';
 
+// TODO: Get style values from theme
 const StyledPanelSection = styled.section({
   backgroundColor: '#2F3331',
   width: 300,
   minWidth: 300,
-  borderRight: 'solid 1px #3e413e',
+  borderRight: 'solid 1px #4B5350',
 });
 
 const StyledUnorderedList = styled.ul({
@@ -50,6 +52,7 @@ export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
                 }
                 indentLevel={0}
               >
+                <LayerIcon name="card" />
                 {card.name}
               </StyledLayerItemLi>
               <StyledUnorderedList
@@ -80,6 +83,7 @@ export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
                     }}
                     indentLevel={1}
                   >
+                    <LayerIcon name={layer.type} />
                     {layer.name}
                   </StyledLayerItemLi>
                 ))}
