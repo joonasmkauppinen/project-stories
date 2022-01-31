@@ -8,6 +8,7 @@ import {
   setElementStateToHovered,
   setElementStateToIdle,
   updateElementScreenPosition,
+  addNewCard,
 } from '../actions';
 import { generateCard, generateLayer } from '../generators';
 
@@ -33,6 +34,7 @@ export const selectCards = (state: AppState) => state.cards;
 export const selectSelection = (state: AppState) => state.selection;
 
 export const actions: LayerActions = {
+  addNewCard,
   onDragSelection,
   setElementStateToActive,
   setElementStateToHovered,

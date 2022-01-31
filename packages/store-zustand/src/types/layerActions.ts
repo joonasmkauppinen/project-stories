@@ -4,9 +4,11 @@ import {
   SetElementStateToHovered,
   SetElementStateToIdle,
   UpdateElementScreenPosition,
+  AddNewCard,
 } from '../actions';
 
 export interface LayerActions {
+  addNewCard: AddNewCard;
   onDragSelection: OnDragSelection;
   setElementStateToActive: SetElementStateToActive;
   setElementStateToHovered: SetElementStateToHovered;
