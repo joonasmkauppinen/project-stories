@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Card, ID, LayerActionsProp } from '@joonasmkauppinen/store-zustand';
 
-import { CardItem } from '../CardItem/CardItem';
+import { CardItem } from './CardItem/CardItem';
 
 export interface CardItemProps extends LayerActionsProp {
   cardId: ID;

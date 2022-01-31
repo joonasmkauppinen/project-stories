@@ -5,6 +5,7 @@
 
 const TRANSLATIONS = {
   layers: 'Layers',
+  buttonLabelAddCard: 'Add card',
 };
 
 type TranslationKey = keyof typeof TRANSLATIONS;
