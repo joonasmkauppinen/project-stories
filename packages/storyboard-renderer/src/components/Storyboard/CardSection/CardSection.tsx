@@ -18,6 +18,7 @@ const Container = styled.div({
 const CardName = styled.p({
   color: 'white',
   size: 16,
+  userSelect: 'none',
 });
 
 export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
