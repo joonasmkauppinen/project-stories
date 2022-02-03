@@ -4,7 +4,7 @@ import {
   LayersPanel,
   LAYERS_PANEL_INITIAL_WIDTH,
   DESIGN_PANEL_WIDTH,
-} from '@joonasmkauppinen/storyboard-renderer';
+} from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 import {
   selectCards,
   useStore,

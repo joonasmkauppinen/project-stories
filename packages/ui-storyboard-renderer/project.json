@@ -1,6 +1,6 @@
 {
-  "root": "packages/storyboard-renderer",
-  "sourceRoot": "packages/storyboard-renderer/src",
+  "root": "packages/ui-storyboard-renderer",
+  "sourceRoot": "packages/ui-storyboard-renderer/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,16 +8,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/storyboard-renderer",
-        "tsConfig": "packages/storyboard-renderer/tsconfig.lib.json",
-        "project": "packages/storyboard-renderer/package.json",
-        "entryFile": "packages/storyboard-renderer/src/index.ts",
+        "outputPath": "dist/packages/ui-storyboard-renderer",
+        "tsConfig": "packages/ui-storyboard-renderer/tsconfig.lib.json",
+        "project": "packages/ui-storyboard-renderer/package.json",
+        "entryFile": "packages/ui-storyboard-renderer/src/index.ts",
         "external": ["react/jsx-runtime", "@emotion/styled/base"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/storyboard-renderer/README.md",
+            "glob": "packages/ui-storyboard-renderer/README.md",
             "input": ".",
             "output": "."
           }
@@ -29,15 +29,15 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "packages/storyboard-renderer/**/*.{ts,tsx,js,jsx}"
+          "packages/ui-storyboard-renderer/**/*.{ts,tsx,js,jsx}"
         ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/storyboard-renderer"],
+      "outputs": ["coverage/packages/ui-storyboard-renderer"],
       "options": {
-        "jestConfig": "packages/storyboard-renderer/jest.config.js",
+        "jestConfig": "packages/ui-storyboard-renderer/jest.config.js",
         "passWithNoTests": true
       }
     }

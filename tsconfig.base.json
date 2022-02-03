@@ -15,12 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@joonasmkauppinen/store-zustand": [
-        "packages/store-zustand/src/index.ts"
+      "@joonasmkauppinen/project-stories/ui-storyboard-renderer": [
+        "packages/ui-storyboard-renderer/src/index.ts"
       ],
-      "@joonasmkauppinen/storyboard-renderer": [
-        "packages/storyboard-renderer/src/index.ts"
-      ]
+      "@joonasmkauppinen/store-zustand": ["packages/store-zustand/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

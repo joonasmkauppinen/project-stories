@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'storyboard-renderer',
+  displayName: 'ui-storyboard-renderer',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/packages/storyboard-renderer',
+  coverageDirectory: '../../coverage/packages/ui-storyboard-renderer',
 };
