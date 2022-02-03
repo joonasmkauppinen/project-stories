@@ -39,6 +39,7 @@ const StyledButtonLabel = styled.p({
   textTransform: 'uppercase',
   color: 'white',
   marginTop: 12,
+  userSelect: 'none',
 });
 
 interface AddCardButtonProps {
