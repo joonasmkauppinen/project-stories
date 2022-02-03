@@ -10,6 +10,11 @@ import {
   Size,
 } from '@joonasmkauppinen/store-zustand';
 
+import {
+  CARD_ITEM_HEIGHT,
+  CARD_ITEM_WIDTH,
+} from '../../../../constants/dimensions';
+
 export interface CardItemProps
   extends LayerActionsProp,
     React.HTMLAttributes<HTMLDivElement> {
@@ -32,8 +37,8 @@ const setBoxShadowByState = (state: ElementState) => {
 
 const StyledCardItem = styled.div<{ state: ElementState }>(({ state }) => ({
   backgroundColor: 'white',
-  width: 360,
-  height: 640,
+  width: CARD_ITEM_WIDTH,
+  height: CARD_ITEM_HEIGHT,
   display: 'block',
   position: 'relative',
   borderRadius: 2,

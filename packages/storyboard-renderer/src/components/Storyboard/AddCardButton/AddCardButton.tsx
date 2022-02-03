@@ -6,6 +6,7 @@ import { PlusIcon } from './PlusIcon';
 
 const StyledButton = styled.button({
   all: 'unset',
+  alignSelf: 'center',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -19,7 +20,6 @@ const StyledButton = styled.button({
   borderRadius: 3,
   cursor: 'pointer',
   minWidth: 75,
-  marginRight: 300,
   ':hover': {
     backgroundColor: '#4A4D4A',
     transition: 'background-color 100ms',
