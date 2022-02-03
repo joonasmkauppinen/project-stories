@@ -8,6 +8,11 @@ import { PanelHeader } from './PanelHeader/PanelHeader';
 
 // TODO: Get style values from theme
 const StyledPanelSection = styled.section({
+  zIndex: 100,
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  bottom: 0,
   backgroundColor: '#2F3331',
   width: 300,
   minWidth: 300,

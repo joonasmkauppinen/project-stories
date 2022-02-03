@@ -11,14 +11,19 @@ export interface CardItemProps extends LayerActionsProp {
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  marginLeft: 100,
   marginRight: 100,
+  position: 'relative',
 });
 
+// TODO: Don't use magical number for the positioning.
 const CardName = styled.p({
   color: 'white',
   size: 16,
+  margin: 0,
   userSelect: 'none',
+  position: 'absolute',
+  left: 0,
+  top: -30,
 });
 
 export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
