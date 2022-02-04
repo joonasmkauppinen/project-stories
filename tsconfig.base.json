@@ -15,12 +15,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@joonasmkauppinen/store-zustand": [
+      "@joonasmkauppinen/project-stories/store-zustand": [
         "packages/store-zustand/src/index.ts"
       ],
-      "@joonasmkauppinen/storyboard-renderer": [
-        "packages/storyboard-renderer/src/index.ts"
-      ]
+      "@joonasmkauppinen/project-stories/ui-storyboard-panels": [
+        "packages/ui-storyboard-panels/src/index.ts"
+      ],
+      "@joonasmkauppinen/project-stories/ui-storyboard-renderer": [
+        "packages/ui-storyboard-renderer/src/index.ts"
+      ],
+      "@internal/i18n": ["packages/i18n/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
