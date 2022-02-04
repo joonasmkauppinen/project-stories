@@ -6,6 +6,10 @@
 const TRANSLATIONS = {
   layers: 'Layers',
   buttonLabelAddCard: 'Add card',
+  buttonLabelPublish: 'Publish',
+  buttonLabelPreview: 'Preview',
+  popoverMenuPreviewTogglePreview: 'Toggle preview',
+  popoverMenuPreviewOpenToNewWindow: 'Open to new window',
 };
 
 type TranslationKey = keyof typeof TRANSLATIONS;
