@@ -4,7 +4,6 @@ import {
   LayerActionsProp,
   SelectionItem,
 } from '@joonasmkauppinen/project-stories/store-zustand';
-import { Toolbar } from '@joonasmkauppinen/project-stories/ui-storyboard-panels';
 
 import {
   CARD_ITEM_WIDTH,
@@ -22,12 +21,12 @@ export interface StoryboardProps extends LayerActionsProp {
 }
 
 const StyledStoryboard = styled.div({
+  alignItems: 'center',
   backgroundColor: '#1B1D1C',
-  overflow: 'auto',
+  display: 'flex',
   gridColumnEnd: 'storyboard',
   gridColumnStart: 'storyboard',
-  display: 'flex',
-  alignItems: 'center',
+  overflow: 'auto',
   position: 'relative',
 });
 
@@ -46,7 +45,6 @@ const PADDING_HORIZONTAL =
 export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
   return (
     <StyledStoryboard>
-      <Toolbar />
       <StyledStoryboardItemsContainerSection
         style={{
           paddingLeft: PADDING_HORIZONTAL,

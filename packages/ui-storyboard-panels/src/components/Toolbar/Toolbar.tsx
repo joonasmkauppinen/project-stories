@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 
 const StyledToolbar = styled.div({
-  height: 50,
   backgroundColor: 'red',
-  position: 'absolute',
-  top: 0,
+  gridColumn: 'storyboard',
+  height: 50,
   left: 0,
+  position: 'absolute',
   right: 0,
+  top: 0,
+  zIndex: 100,
 });
 
 export const Toolbar = () => {

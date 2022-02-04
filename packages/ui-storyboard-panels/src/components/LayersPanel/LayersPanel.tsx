@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
+import { LAYERS_PANEL_INITIAL_WIDTH } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
+import { StoryboardProps } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 
-import { StoryboardProps } from '../../../../ui-storyboard-renderer/src/components/Storyboard/Storyboard';
 import { LayerIcon } from './LayerIcon/LayerIcon';
-
 import { StyledLayerItemLi } from './LayerItem/LayerItem';
 import { PanelHeader } from './PanelHeader/PanelHeader';
 
 // TODO: Get style values from theme
 const StyledPanelSection = styled.section({
-  gridColumnStart: 'layers-panel',
-  gridColumnEnd: 'layers-panel',
   backgroundColor: '#2F3331',
   borderRight: 'solid 1px #4B5350',
+  gridColumnEnd: 'layers-panel',
+  gridColumnStart: 'layers-panel',
+  width: LAYERS_PANEL_INITIAL_WIDTH,
 });
 
 const StyledUnorderedList = styled.ul({

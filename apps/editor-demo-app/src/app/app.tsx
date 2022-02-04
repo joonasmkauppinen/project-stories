@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import {
   Storyboard,
-  LAYERS_PANEL_INITIAL_WIDTH,
   DESIGN_PANEL_WIDTH,
 } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
-import { LayersPanel } from '@joonasmkauppinen/project-stories/ui-storyboard-panels';
+import {
+  LayersPanel,
+  Toolbar,
+} from '@joonasmkauppinen/project-stories/ui-storyboard-panels';
 import {
   selectCards,
   useStore,
@@ -13,27 +15,28 @@ import {
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 const SamplePanel = styled.div({
-  gridColumnStart: 'design-panel',
-  gridColumnEnd: 'design-panel',
+  alignItems: 'flex-start',
   backgroundColor: '#2F3331',
   borderLeft: '1px solid#4B5350',
+  color: '#9d9b9b',
   display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'center',
   fontSize: 15,
   fontWeight: 200,
-  color: '#9d9b9b',
+  gridColumnEnd: 'design-panel',
+  gridColumnStart: 'design-panel',
+  justifyContent: 'center',
   paddingTop: 60,
+  width: DESIGN_PANEL_WIDTH,
 });
 
 const AppContainer = styled.div({
-  display: 'grid',
-  gridTemplateColumns: `[layers-panel] ${LAYERS_PANEL_INITIAL_WIDTH}px [storyboard] 1fr [design-panel] ${DESIGN_PANEL_WIDTH}px`,
-  position: 'fixed',
-  top: 0,
   bottom: 0,
+  display: 'grid',
+  gridTemplateColumns: `[layers-panel] auto [storyboard] 1fr [design-panel] auto`,
   left: 0,
+  position: 'fixed',
   right: 0,
+  top: 0,
 });
 
 export const App = () => {
@@ -44,6 +47,7 @@ export const App = () => {
     <AppContainer>
       <LayersPanel actions={actions} cards={cards} selection={selection} />
       <Storyboard actions={actions} cards={cards} selection={selection} />
+      <Toolbar />
       <SamplePanel>Options panel coming soon.</SamplePanel>
     </AppContainer>
   );
