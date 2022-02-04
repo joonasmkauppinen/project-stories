@@ -8,7 +8,7 @@ import {
   LayerActionsProp,
   Layers,
   Size,
-} from '@joonasmkauppinen/store-zustand';
+} from '@joonasmkauppinen/project-stories/store-zustand';
 
 import {
   CARD_ITEM_HEIGHT,

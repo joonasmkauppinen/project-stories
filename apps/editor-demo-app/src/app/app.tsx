@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
 import {
   Storyboard,
-  LayersPanel,
   LAYERS_PANEL_INITIAL_WIDTH,
   DESIGN_PANEL_WIDTH,
 } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
+import { LayersPanel } from '@joonasmkauppinen/project-stories/ui-storyboard-panels';
 import {
   selectCards,
   useStore,
   actions,
   selectSelection,
-} from '@joonasmkauppinen/store-zustand';
+} from '@joonasmkauppinen/project-stories/store-zustand';
 
 const SamplePanel = styled.div({
   gridColumnStart: 'design-panel',

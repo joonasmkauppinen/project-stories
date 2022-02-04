@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { t } from '../../../utils/translations';
+import { t } from '@internal/i18n';
 
 // TODO: Get style values from theme
 const StyledDiv = styled.div({

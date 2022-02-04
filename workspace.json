@@ -3,7 +3,9 @@
   "projects": {
     "editor-demo-app": "apps/editor-demo-app",
     "editor-demo-app-e2e": "apps/editor-demo-app-e2e",
+    "i18n": "packages/i18n",
     "store-zustand": "packages/store-zustand",
+    "ui-storyboard-panels": "packages/ui-storyboard-panels",
     "ui-storyboard-renderer": "packages/ui-storyboard-renderer"
   }
 }

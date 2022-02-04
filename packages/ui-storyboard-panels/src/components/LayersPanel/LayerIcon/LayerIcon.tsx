@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { LayerType } from '@joonasmkauppinen/store-zustand';
+import { LayerType } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { CardIcon } from './Icons/CardIcon';
 import { ImageIcon } from './Icons/ImageIcon';

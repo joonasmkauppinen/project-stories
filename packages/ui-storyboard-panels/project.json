@@ -1,0 +1,45 @@
+{
+  "root": "packages/ui-storyboard-panels",
+  "sourceRoot": "packages/ui-storyboard-panels/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/ui-storyboard-panels",
+        "tsConfig": "packages/ui-storyboard-panels/tsconfig.lib.json",
+        "project": "packages/ui-storyboard-panels/package.json",
+        "entryFile": "packages/ui-storyboard-panels/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "packages/ui-storyboard-panels/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/ui-storyboard-panels/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/ui-storyboard-panels"],
+      "options": {
+        "jestConfig": "packages/ui-storyboard-panels/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { StoryboardProps } from '../Storyboard/Storyboard';
+import { StoryboardProps } from '../../../../ui-storyboard-renderer/src/components/Storyboard/Storyboard';
 import { LayerIcon } from './LayerIcon/LayerIcon';
 
 import { StyledLayerItemLi } from './LayerItem/LayerItem';

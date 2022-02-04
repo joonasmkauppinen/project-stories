@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { t } from '../../../utils/translations';
+import { t } from '../../../../../i18n/src/utils/translations';
 
 import { PlusIcon } from './PlusIcon';
 
