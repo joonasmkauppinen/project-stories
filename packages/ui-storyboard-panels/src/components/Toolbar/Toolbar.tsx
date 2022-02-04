@@ -1,9 +1,16 @@
 import styled from '@emotion/styled';
+import { ActionsAndSettingsSection } from './ActionsAndSettingsSection/ActionsAndSettingsSection';
+import { ProjectStateAndName } from './ProjectStateAndName/ProjectStateAndName';
+
+import { ToolsSection } from './ToolsSection/ToolsSection';
 
 const StyledToolbar = styled.div({
-  backgroundColor: 'red',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: '#1A1B1AB2',
   gridColumn: 'storyboard',
-  height: 50,
+  height: 52,
   left: 0,
   position: 'absolute',
   right: 0,
@@ -12,5 +19,11 @@ const StyledToolbar = styled.div({
 });
 
 export const Toolbar = () => {
-  return <StyledToolbar />;
+  return (
+    <StyledToolbar>
+      <ToolsSection />
+      <ProjectStateAndName />
+      <ActionsAndSettingsSection />
+    </StyledToolbar>
+  );
 };
