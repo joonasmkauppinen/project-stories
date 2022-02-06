@@ -44,9 +44,15 @@
         "style": "@emotion/styled",
         "linter": "eslint"
       }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
     }
   },
-  "defaultProject": "editor-demo-app",
+  "defaultProject": "project-stories-demo-nextjs",
   "workspaceLayout": {
     "libsDir": "packages"
   }
