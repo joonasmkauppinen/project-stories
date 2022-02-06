@@ -1,0 +1,56 @@
+{
+  "root": "apps/project-stories-demo-nextjs",
+  "sourceRoot": "apps/project-stories-demo-nextjs",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/project-stories-demo-nextjs",
+        "outputPath": "dist/apps/project-stories-demo-nextjs"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "project-stories-demo-nextjs:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "project-stories-demo-nextjs:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "project-stories-demo-nextjs:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/project-stories-demo-nextjs"],
+      "options": {
+        "jestConfig": "apps/project-stories-demo-nextjs/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/project-stories-demo-nextjs/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

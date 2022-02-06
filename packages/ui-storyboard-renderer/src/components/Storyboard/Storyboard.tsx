@@ -14,6 +14,7 @@ import { Selection } from '../Selection/Selection';
 
 import { CardSection } from './CardSection/CardSection';
 import { AddCardButton } from './AddCardButton/AddCardButton';
+import { useMemo } from 'react';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
@@ -35,14 +36,16 @@ const StyledStoryboardItemsContainerSection = styled.section({
   flexDirection: 'row',
 });
 
-const INITIAL_CLIENT_WIDTH = window.innerWidth;
-
-// Padding needed to bring the first card to the middle of the screen.
-const PADDING_HORIZONTAL =
-  (INITIAL_CLIENT_WIDTH - LAYERS_PANEL_INITIAL_WIDTH - DESIGN_PANEL_WIDTH) / 2 -
-  CARD_ITEM_WIDTH / 2;
-
 export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
+  // Padding needed to bring the first card to the middle of the screen.
+  const PADDING_HORIZONTAL = useMemo(() => {
+    const INITIAL_CLIENT_WIDTH = window.innerWidth;
+    return (
+      (INITIAL_CLIENT_WIDTH - LAYERS_PANEL_INITIAL_WIDTH - DESIGN_PANEL_WIDTH) /
+        2 -
+      CARD_ITEM_WIDTH / 2
+    );
+  }, []);
   return (
     <StyledStoryboard>
       <StyledStoryboardItemsContainerSection

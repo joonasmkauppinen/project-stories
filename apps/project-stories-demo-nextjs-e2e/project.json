@@ -1,0 +1,30 @@
+{
+  "root": "apps/project-stories-demo-nextjs-e2e",
+  "sourceRoot": "apps/project-stories-demo-nextjs-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/project-stories-demo-nextjs-e2e/cypress.json",
+        "devServerTarget": "project-stories-demo-nextjs:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "project-stories-demo-nextjs:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/project-stories-demo-nextjs-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["project-stories-demo-nextjs"]
+}
