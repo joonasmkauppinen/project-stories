@@ -6,7 +6,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to project-stories-demo-nextjs!</title>
+        <title>Project Stories Demo - ALPHA</title>
       </Head>
       <main className="app">
         <Component {...pageProps} />
