@@ -1,0 +1,22 @@
+{
+  "name": "Project Stories Demo",
+  "short_name": "Project Stories Demo",
+  "description": "Visual editor for Google Web Stories.",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#292D2B",
+  "background_color": "#292D2B",
+  "display": "standalone"
+}
