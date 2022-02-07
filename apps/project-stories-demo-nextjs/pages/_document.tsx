@@ -17,6 +17,7 @@ export default function Document() {
         />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#292D2B" />
+        <meta name="robots" content="noindex" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <body>
