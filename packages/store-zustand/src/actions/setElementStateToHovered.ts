@@ -18,12 +18,12 @@ export const setElementStateToHovered: SetElementStateToHovered = ({
 }) =>
   useStore.setState(
     produce((draft: AppState) => {
-      const state = useStore.getState();
+      // const state = useStore.getState();
 
       if (parentId) {
-        if (state.cards[parentId].state === 'idle') {
-          draft.cards[parentId].state = 'hovered';
-        }
+        // if (state.cards[parentId].state === 'idle') {
+        //   draft.cards[parentId].state = 'hovered';
+        // }
         draft.cards[parentId].layers[id].state = 'hovered';
       } else {
         draft.cards[id].state = 'hovered';

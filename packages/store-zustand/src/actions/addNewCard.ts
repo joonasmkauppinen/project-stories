@@ -5,7 +5,7 @@ import { generateCard } from '../generators';
 
 export type AddNewCard = () => void;
 
-export const addNewCard = () =>
+export const addNewCard: AddNewCard = () =>
   useStore.setState(
     produce<AppState>((draft) => {
       const state = useStore.getState();

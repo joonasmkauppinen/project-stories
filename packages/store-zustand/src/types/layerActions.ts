@@ -1,15 +1,19 @@
 import {
+  AddNewCard,
+  DeselectAll,
   OnDragSelection,
   SetElementStateToActive,
   SetElementStateToHovered,
   SetElementStateToIdle,
   UpdateElementScreenPosition,
-  AddNewCard,
+  SelectCard,
 } from '../actions';
 
 export interface LayerActions {
   addNewCard: AddNewCard;
+  deselectAll: DeselectAll;
   onDragSelection: OnDragSelection;
+  selectCard: SelectCard;
   setElementStateToActive: SetElementStateToActive;
   setElementStateToHovered: SetElementStateToHovered;
   setElementStateToIdle: SetElementStateToIdle;
