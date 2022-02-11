@@ -13,6 +13,8 @@ import {
   selectSelection,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
+import { UserInputManagerService } from '@joonasmkauppinen/project-stories/services';
+import { useEffect } from 'react';
 
 const StyledPage = styled.div({
   bottom: 0,
@@ -50,6 +52,10 @@ const SafeHydrate = ({ children }) => {
 export function Index() {
   const cards = useStore(selectCards);
   const selection = useStore(selectSelection);
+
+  useEffect(() => {
+    new UserInputManagerService(actions);
+  }, []);
 
   return (
     <SafeHydrate>
