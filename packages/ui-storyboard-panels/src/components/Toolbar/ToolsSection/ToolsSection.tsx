@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { t } from '@internal/i18n';
 
 import { IconButton } from '../IconButton/IconButton';
 
@@ -19,11 +20,11 @@ const Divider = styled.div({
 export const ToolsSection = () => {
   return (
     <Container>
-      <IconButton icon="move" state="active" />
-      <IconButton icon="text" />
-      <IconButton icon="hand" />
+      <IconButton title={t('iconButtonTitleMove')} icon="move" state="active" />
+      <IconButton title={t('iconButtonTitleText')} icon="text" />
+      <IconButton title={t('iconButtonTitleHand')} icon="hand" />
       <Divider />
-      <IconButton icon="add-image" />
+      <IconButton title={t('iconButtonTitleAddImage')} icon="add-image" />
     </Container>
   );
 };

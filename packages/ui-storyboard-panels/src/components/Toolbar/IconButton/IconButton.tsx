@@ -13,6 +13,7 @@ interface IconButtonProps {
   size?: 'small' | 'normal';
   icon: 'move' | 'text' | 'hand' | 'add-image' | 'history' | 'settings';
   onClick?: () => void;
+  title?: string;
 }
 
 interface StyledButtonProps {
@@ -53,11 +54,12 @@ export const IconButton = ({
   state = 'idle',
   onClick,
   size = 'normal',
+  title,
 }: IconButtonProps) => {
   const iconFill = state === 'idle' ? 'white' : 'black';
 
   return (
-    <StyledButton state={state} onClick={onClick} size={size}>
+    <StyledButton title={title} state={state} onClick={onClick} size={size}>
       {(() => {
         switch (icon) {
           case 'add-image':

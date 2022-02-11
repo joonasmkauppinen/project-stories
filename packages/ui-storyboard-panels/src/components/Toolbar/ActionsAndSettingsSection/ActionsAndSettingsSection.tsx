@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { t } from '@internal/i18n';
 import { IconButton } from '../IconButton/IconButton';
 import { PreviewButton } from './PreviewButton/PreviewButton';
 import { PublishButton } from './PublishButton/PublishButton';
@@ -24,9 +25,17 @@ export const ActionsAndSettingsSection = () => {
       <PreviewButton />
       <PublishButton />
       <Divider />
-      <IconButton icon="history" size="small" />
+      <IconButton
+        title={t('iconButtonTitlePublishHistory')}
+        icon="history"
+        size="small"
+      />
       <Divider />
-      <IconButton icon="settings" size="small" />
+      <IconButton
+        title={t('iconButtonTitleSettings')}
+        icon="settings"
+        size="small"
+      />
     </Container>
   );
 };
