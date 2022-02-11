@@ -14,7 +14,7 @@ import { Selection } from '../Selection/Selection';
 
 import { CardSection } from './CardSection/CardSection';
 import { AddCardButton } from './AddCardButton/AddCardButton';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
@@ -46,8 +46,13 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
       CARD_ITEM_WIDTH / 2
     );
   }, []);
+
+  const handleClick = useCallback(() => {
+    actions.addNewCard();
+  }, [actions]);
+
   return (
-    <StyledStoryboard>
+    <StyledStoryboard id="storyboard">
       <StyledStoryboardItemsContainerSection
         style={{
           paddingLeft: PADDING_HORIZONTAL,
@@ -62,7 +67,7 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
             actions={actions}
           />
         ))}
-        <AddCardButton onClick={() => actions.addNewCard()} />
+        <AddCardButton onClick={handleClick} />
       </StyledStoryboardItemsContainerSection>
       <Selection cards={cards} actions={actions} selection={selection} />
     </StyledStoryboard>

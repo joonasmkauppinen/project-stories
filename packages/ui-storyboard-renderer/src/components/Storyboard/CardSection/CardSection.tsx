@@ -4,6 +4,7 @@ import {
   ID,
   LayerActionsProp,
 } from '@joonasmkauppinen/project-stories/store-zustand';
+import { useCallback } from 'react';
 
 import { CardItem } from './CardItem/CardItem';
 
@@ -33,13 +34,18 @@ const CardName = styled.p({
 export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
   const { layers, name, state } = card;
 
+  const handleClick = useCallback(() => {
+    if (card.state !== 'active') {
+      actions.selectCard({ cardId });
+    }
+  }, [actions, card.state, cardId]);
+
   return (
     <Container key={`card-${cardId}`}>
-      <CardName>{name}</CardName>
+      <CardName id={`card-name-${cardId}`} onClick={handleClick}>
+        {name}
+      </CardName>
       <CardItem
-        onMouseEnter={() => actions.setElementStateToHovered({ id: cardId })}
-        onMouseLeave={() => actions.setElementStateToIdle({ id: cardId })}
-        onMouseDown={() => actions.setElementStateToActive({ id: cardId })}
         state={state}
         actions={actions}
         cardId={cardId}

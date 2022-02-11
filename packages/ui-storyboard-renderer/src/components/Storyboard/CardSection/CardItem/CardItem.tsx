@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import {
-  Coordinate,
   ElementState,
   ID,
   Layer,
@@ -48,15 +47,12 @@ const StyledCardItem = styled.div<{ state: ElementState }>(({ state }) => ({
 
 interface StyledH1Props {
   hover: boolean;
-  position: Coordinate;
   size: Size;
 }
-const StyledH1 = styled.h1<StyledH1Props>(({ hover, position, size }) => ({
+const StyledH1 = styled.h1<StyledH1Props>(({ hover, size }) => ({
   margin: 0,
   padding: 0,
   position: 'absolute',
-  top: position.y,
-  left: position.x,
   height: size.height,
   width: size.width,
   boxShadow: hover ? '#00aeff 0px 0px 0px 1px' : 'none',
@@ -71,36 +67,54 @@ interface TextLayerProps extends LayerActionsProp {
 }
 const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
   const elementRef = useRef<HTMLHeadingElement>(null);
+
+  const handleMouseEnter: MouseEventHandler = useCallback(() => {
+    if (layer.state === 'idle') {
+      actions.setElementStateToHovered({ parentId: cardId, id: layerId });
+    }
+  }, [actions, cardId, layer.state, layerId]);
+
+  const handleMouseLeave: MouseEventHandler = useCallback(() => {
+    if (layer.state !== 'active') {
+      actions.setElementStateToIdle({ parentId: cardId, id: layerId });
+    }
+  }, [actions, cardId, layer.state, layerId]);
+
+  const handleMouseDown: MouseEventHandler = useCallback(
+    (event) => {
+      if (layer.state === 'hovered') {
+        actions.setElementStateToActive({
+          id: layerId,
+          parentId: cardId,
+          isShiftKey: event.shiftKey,
+        });
+      }
+    },
+    [actions, cardId, layer.state, layerId]
+  );
+
   useEffect(() => {
     if (elementRef.current) {
-      const { x, y } = elementRef.current.getBoundingClientRect();
+      const x = elementRef.current.offsetLeft;
+      const y = elementRef.current.offsetTop;
       actions.updateElementScreenPosition({
         parentId: cardId,
         id: layerId,
         position: { x, y },
       });
     }
-  }, []);
+  }, [actions, cardId, layerId]);
 
   return (
     <StyledH1
+      id={`layer-${layerId}`}
+      style={{ top: layer.position.y, left: layer.position.x }}
       ref={elementRef}
       size={layer.size}
       hover={layer.state === 'hovered'}
-      onMouseEnter={() =>
-        actions.setElementStateToHovered({ parentId: cardId, id: layerId })
-      }
-      onMouseLeave={() =>
-        actions.setElementStateToIdle({ parentId: cardId, id: layerId })
-      }
-      onMouseDown={(event) => {
-        actions.setElementStateToActive({
-          id: layerId,
-          parentId: cardId,
-          isShiftKey: event.shiftKey,
-        });
-      }}
-      position={layer.position}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseDown={handleMouseDown}
     >
       {layer.value}
     </StyledH1>
@@ -118,16 +132,24 @@ export const CardItem = ({
 
   useEffect(() => {
     if (cardItemRef.current) {
-      const { x, y } = cardItemRef.current.getBoundingClientRect();
+      const containerX = cardItemRef.current.parentElement?.offsetLeft;
+      const containerY = cardItemRef.current.parentElement?.offsetTop;
+      const x = (containerX as number) + cardItemRef.current.offsetLeft;
+      const y = (containerY as number) + cardItemRef.current.offsetTop;
       actions.updateElementScreenPosition({
         id: cardId,
         position: { x, y },
       });
     }
-  }, []);
+  }, [actions, cardId]);
 
   return (
-    <StyledCardItem state={state} ref={cardItemRef} {...divElementAttrs}>
+    <StyledCardItem
+      id={`card-${cardId}`}
+      state={state}
+      ref={cardItemRef}
+      {...divElementAttrs}
+    >
       {Object.entries(layers).map(([layerId, layer]) => (
         <TextLayer
           cardId={cardId}
