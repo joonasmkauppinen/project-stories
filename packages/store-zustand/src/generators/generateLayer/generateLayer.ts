@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { Layer, LayerType } from '../../types';
+import { Coordinate, Layer, LayerType } from '../../types';
 
 interface GenerateLayerProps {
   name?: string;
   sortOrderIndex: number;
   type: LayerType;
+  position?: Coordinate;
 }
 
 type GenerateLayerReturnType = { [key: string]: Layer };
@@ -17,6 +18,7 @@ export const generateLayer: GenerateLayer = ({
   name,
   sortOrderIndex,
   type,
+  position,
 }) => {
   const id = uuidv4();
   const defaultName = `${type} ${sortOrderIndex + 1}`;
@@ -24,7 +26,7 @@ export const generateLayer: GenerateLayer = ({
   return {
     [id]: {
       name: name ? name : defaultName,
-      position: {
+      position: position || {
         x: 0,
         y: 0,
       },

@@ -20,14 +20,14 @@ export const onDragSelection: OnDragSelection = ({ movementX, movementY }) =>
           draft.cards[parentId].layers[id].position.x += movementX;
           draft.cards[parentId].layers[id].position.y += movementY;
 
-          Object.entries(draft.cards[parentId].layers).forEach(
-            ([layerId, layer]) => {
-              if (layerId === id && layer.screenPosition) {
-                layer.screenPosition.x += movementX;
-                layer.screenPosition.y += movementY;
-              }
-            }
-          );
+          // Object.entries(draft.cards[parentId].layers).forEach(
+          //   ([layerId, layer]) => {
+          //     if (layerId === id && layer.screenPosition) {
+          //       layer.screenPosition.x += movementX;
+          //       layer.screenPosition.y += movementY;
+          //     }
+          //   }
+          // );
         }
       });
     })

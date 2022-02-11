@@ -7,6 +7,7 @@
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "import/no-default-export": "error",
+        "react-hooks/exhaustive-deps": "error",
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {

@@ -3,12 +3,14 @@ import { devtools } from 'zustand/middleware';
 
 import { AppState, LayerActions } from '../types';
 import {
+  addNewCard,
+  deselectAll,
   onDragSelection,
+  selectCard,
   setElementStateToActive,
   setElementStateToHovered,
   setElementStateToIdle,
   updateElementScreenPosition,
-  addNewCard,
 } from '../actions';
 import { generateCard, generateLayer } from '../generators';
 
@@ -19,7 +21,16 @@ export const useStore = create<AppState>(
       ...generateCard({
         sortOrderIndex: 0,
         layers: {
-          ...generateLayer({ type: 'text', sortOrderIndex: 0 }),
+          ...generateLayer({
+            type: 'text',
+            sortOrderIndex: 0,
+            position: { x: 50, y: 100 },
+          }),
+          ...generateLayer({
+            type: 'text',
+            sortOrderIndex: 1,
+            position: { x: 50, y: 150 },
+          }),
         },
       }),
     },
@@ -35,7 +46,9 @@ export const selectSelection = (state: AppState) => state.selection;
 
 export const actions: LayerActions = {
   addNewCard,
+  deselectAll,
   onDragSelection,
+  selectCard,
   setElementStateToActive,
   setElementStateToHovered,
   setElementStateToIdle,

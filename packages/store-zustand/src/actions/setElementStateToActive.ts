@@ -46,12 +46,16 @@ export const setElementStateToActive: SetElementStateToActive = ({
         draft.selection = [{ id, parentId }];
       }
 
-      if (parentId) {
-        if (state.cards[parentId].state !== 'active') {
-          draft.cards[parentId].state = 'active';
-        }
+      //If shift key is pressed add the element to the selection array.
+      if (parentId && isShiftKey) {
         draft.cards[parentId].layers[id].state = 'active';
         draft.selection.push({ id, parentId });
+      }
+
+      // If no shift key is pressed just set a new single selection.
+      if (parentId && !isShiftKey) {
+        draft.cards[parentId].layers[id].state = 'active';
+        draft.selection = [{ id, parentId }];
       }
     })
   );
