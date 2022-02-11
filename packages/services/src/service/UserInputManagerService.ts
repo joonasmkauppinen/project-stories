@@ -38,7 +38,7 @@ export class UserInputManagerService {
   }
 
   private handleMouseMove(event: MouseEvent) {
-    if (!this.isMouseDown && !this.isDragging) {
+    if (this.isDragging === false) {
       return;
     }
 
@@ -59,6 +59,10 @@ export class UserInputManagerService {
     document.addEventListener('mouseup', this.handleMouseUp);
 
     this.isMouseDown = true;
+
+    if ((event.target as HTMLElement).id.includes('panel')) {
+      return;
+    }
 
     if (
       (event.target as HTMLElement).id.includes('layer') ||
