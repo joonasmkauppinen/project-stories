@@ -23,18 +23,18 @@ const StyledSelectionDiv = styled.div<StyledSelectionDivProps>(({ size }) => ({
 }));
 
 export const Selection = ({ selection, cards }: SelectionProps) => {
-  if (!selection.some(({ parentId }) => typeof parentId === 'string')) {
-    return null;
-  }
-
-  const activeCardId = selection.find(
+  const selectionWithParentId = selection.find(
     (item) => typeof item.parentId === 'string'
   );
 
-  const activeCard = cards[activeCardId?.parentId as string].screenPosition || {
-    x: 0,
-    y: 0,
-  };
+  if (
+    selectionWithParentId === undefined ||
+    selectionWithParentId.parentId === undefined
+  ) {
+    return null;
+  }
+
+  const activeCard = cards[selectionWithParentId.parentId].screenPosition;
 
   const activeLayers = selection
     .filter(({ parentId }) => typeof parentId === 'string')
