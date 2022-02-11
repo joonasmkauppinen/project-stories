@@ -40,17 +40,23 @@ export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
             <>
               <Spacer />
               <StyledLayerItemLi
+                id={`panel-card-item-${cardId}`}
                 state={card.state}
-                key={`layers-panel-card-item-${cardId}`}
-                onMouseEnter={() =>
-                  actions.setElementStateToHovered({ id: cardId })
-                }
-                onMouseLeave={() =>
-                  actions.setElementStateToIdle({ id: cardId })
-                }
-                onMouseDown={() =>
-                  actions.setElementStateToActive({ id: cardId })
-                }
+                key={`panel-card-item-${cardId}`}
+                onMouseEnter={() => {
+                  if (card.state === 'idle')
+                    actions.setElementStateToHovered({ id: cardId });
+                }}
+                onMouseLeave={() => {
+                  if (card.state !== 'active') {
+                    actions.setElementStateToIdle({ id: cardId });
+                  }
+                }}
+                onMouseDown={() => {
+                  if (card.state === 'hovered') {
+                    actions.selectCard({ cardId });
+                  }
+                }}
                 indentLevel={0}
               >
                 <LayerIcon name="card" />
@@ -61,31 +67,38 @@ export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
               >
                 {Object.entries(card.layers).map(([layerId, layer]) => (
                   <StyledLayerItemLi
+                    id={`panel-item-${layerId}`}
                     state={layer.state}
-                    key={`layers-panel-item-${layerId}`}
-                    onMouseEnter={() =>
-                      actions.setElementStateToHovered({
-                        id: layerId,
-                        parentId: cardId,
-                      })
-                    }
-                    onMouseLeave={() =>
-                      actions.setElementStateToIdle({
-                        id: layerId,
-                        parentId: cardId,
-                      })
-                    }
+                    key={`panel-item-${layerId}`}
+                    onMouseEnter={() => {
+                      if (layer.state === 'idle') {
+                        actions.setElementStateToHovered({
+                          id: layerId,
+                          parentId: cardId,
+                        });
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (layer.state !== 'active') {
+                        actions.setElementStateToIdle({
+                          id: layerId,
+                          parentId: cardId,
+                        });
+                      }
+                    }}
                     onMouseDown={({ shiftKey }) => {
-                      actions.setElementStateToActive({
-                        id: layerId,
-                        parentId: cardId,
-                        isShiftKey: shiftKey,
-                      });
+                      if (layer.state === 'hovered') {
+                        actions.setElementStateToActive({
+                          id: layerId,
+                          parentId: cardId,
+                          isShiftKey: shiftKey,
+                        });
+                      }
                     }}
                     indentLevel={1}
                   >
                     <LayerIcon name={layer.type} />
-                    {layer.name}
+                    {layer.value}
                   </StyledLayerItemLi>
                 ))}
               </StyledUnorderedList>
