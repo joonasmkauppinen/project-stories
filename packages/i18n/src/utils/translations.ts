@@ -10,6 +10,12 @@ const TRANSLATIONS = {
   buttonLabelPreview: 'Preview',
   popoverMenuPreviewTogglePreview: 'Toggle preview',
   popoverMenuPreviewOpenToNewWindow: 'Open to new window',
+  iconButtonTitleMove: 'Move',
+  iconButtonTitleText: 'Text',
+  iconButtonTitleHand: 'Hand',
+  iconButtonTitleAddImage: 'AddImage',
+  iconButtonTitlePublishHistory: 'Publish history',
+  iconButtonTitleSettings: 'Settings',
 };
 
 type TranslationKey = keyof typeof TRANSLATIONS;
