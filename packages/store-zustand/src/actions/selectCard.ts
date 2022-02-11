@@ -12,6 +12,7 @@ export const selectCard: SelectCard = ({ cardId }) =>
   useStore.setState(
     produce<AppState>((draft) => {
       draft.cards[cardId].state = 'active';
+      draft.selection = [];
       draft.selection.push({ id: cardId });
       Object.keys(draft.cards[cardId].layers).forEach((layerId) => {
         draft.cards[cardId].layers[layerId].state = 'active';
