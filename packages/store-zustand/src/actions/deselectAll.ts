@@ -9,13 +9,18 @@ export const deselectAll: DeselectAll = () =>
     produce<AppState>((draft) => {
       const state = useStore.getState();
 
-      state.selection.forEach(({ id, parentId }) => {
-        if (parentId) {
-          draft.cards[parentId].layers[id].state = 'idle';
-        } else {
-          draft.cards[id].state = 'idle';
-        }
+      state.selectedLayers.forEach(({ cardId, layerId }) => {
+        draft.cards[cardId].layers[layerId].state = 'idle';
       });
-      draft.selection = [];
+      draft.selectedLayers = [];
+
+      state.selectedCards.forEach(({ cardId }) => {
+        Object.keys(state.cards[cardId].layers).forEach((layerId) => {
+          draft.cards[cardId].layers[layerId].metaState.parentCardActive =
+            false;
+        });
+
+        draft.cards[cardId].state = 'idle';
+      });
     })
   );

@@ -8,12 +8,14 @@ import {
   deleteSelectedLayers,
   deselectAll,
   onDragSelection,
-  selectCard,
-  setElementStateToActive,
-  setElementStateToHovered,
-  setElementStateToIdle,
+  setCardStateToActive,
+  setCardStateToHovered,
+  setCardStateToIdle,
   setIsDraggingToFalse,
   setIsDraggingToTrue,
+  setLayerStateToActive,
+  setLayerStateToHovered,
+  setLayerStateToIdle,
   setToolToMove,
   setToolToText,
   updateElementScreenPosition,
@@ -45,15 +47,17 @@ export const useStore = create<AppState>(
       }),
     },
     currentTool: 'move',
-    selection: [],
+    selectedCards: [],
+    selectedLayers: [],
     isDragging: false,
   }))
 );
 
 export const selectCards = (state: AppState) => state.cards;
-export const selectSelection = (state: AppState) => state.selection;
 export const selectCurrentTool = (state: AppState) => state.currentTool;
 export const selectIsDragging = (state: AppState) => state.isDragging;
+export const selectSelectedCards = (state: AppState) => state.selectedCards;
+export const selectSelectedLayers = (state: AppState) => state.selectedLayers;
 
 export const actions: LayerActions = {
   addNewCard,
@@ -61,10 +65,12 @@ export const actions: LayerActions = {
   deleteSelectedLayers,
   deselectAll,
   onDragSelection,
-  selectCard,
-  setElementStateToActive,
-  setElementStateToHovered,
-  setElementStateToIdle,
+  setLayerStateToActive,
+  setLayerStateToHovered,
+  setLayerStateToIdle,
+  setCardStateToIdle,
+  setCardStateToActive,
+  setCardStateToHovered,
   setIsDraggingToFalse,
   setIsDraggingToTrue,
   setToolToMove,

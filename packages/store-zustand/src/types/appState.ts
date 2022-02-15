@@ -1,4 +1,10 @@
-export type ElementState = 'idle' | 'hovered' | 'active';
+export type CardState = 'idle' | 'hovered' | 'active';
+
+export type LayerState = 'idle' | 'hovered' | 'active';
+
+export interface LayerMetaState {
+  parentCardActive: boolean;
+}
 
 export type ID = string;
 
@@ -53,16 +59,6 @@ export interface LayerResource {
   width: number;
 }
 
-// export interface TextResource {
-//   id: string;
-//   value: string;
-//   mimeType: 'text/plain';
-// }
-
-// export interface VideoResource {
-//   id:
-// }
-
 export interface BaseLayer {
   animation?: {
     type: LayerAnimationType;
@@ -73,7 +69,8 @@ export interface BaseLayer {
   position: Coordinate;
   screenPosition: Coordinate;
   size: Size;
-  state: ElementState;
+  state: LayerState;
+  metaState: LayerMetaState;
   name: string;
   type?: LayerType;
 }
@@ -96,16 +93,26 @@ export interface Card {
   duration: number;
   layers: Layers;
   name: string;
-  state: ElementState;
+  state: CardState;
 }
 
 export interface Cards {
   [key: string]: Card;
 }
 
+// TODO: refactor to SelectedLayers and SelectedCards
 export interface SelectionItem {
   id: ID;
   parentId?: ID;
+}
+
+export interface SelectedLayer {
+  cardId: ID;
+  layerId: ID;
+}
+
+export interface SelectedCard {
+  cardId: ID;
 }
 
 export type StoryboardTool = 'move' | 'text' | 'hand';
@@ -113,6 +120,7 @@ export type StoryboardTool = 'move' | 'text' | 'hand';
 export interface AppState {
   cards: Cards;
   currentTool: StoryboardTool;
-  selection: SelectionItem[];
+  selectedLayers: SelectedLayer[];
+  selectedCards: SelectedCard[];
   isDragging: boolean;
 }
