@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+import {
+  LayerActions,
+  StoryboardTool,
+} from '@joonasmkauppinen/project-stories/store-zustand';
 import { ActionsAndSettingsSection } from './ActionsAndSettingsSection/ActionsAndSettingsSection';
 import { ProjectStateAndName } from './ProjectStateAndName/ProjectStateAndName';
 
@@ -18,10 +22,15 @@ const StyledToolbar = styled.div({
   zIndex: 100,
 });
 
-export const Toolbar = () => {
+interface ToolbarProps {
+  actions: LayerActions;
+  currentTool: StoryboardTool;
+}
+
+export const Toolbar = ({ actions, currentTool }: ToolbarProps) => {
   return (
     <StyledToolbar>
-      <ToolsSection />
+      <ToolsSection actions={actions} currentTool={currentTool} />
       <ProjectStateAndName />
       <ActionsAndSettingsSection />
     </StyledToolbar>

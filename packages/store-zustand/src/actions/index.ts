@@ -6,3 +6,8 @@ export * from './setElementStateToActive';
 export * from './setElementStateToHovered';
 export * from './setElementStateToIdle';
 export * from './updateElementScreenPosition';
+export * from './setToolToText';
+export * from './setToolToMove';
+export * from './addTextLayerToCard';
+export * from './setIsDraggingToFalse';
+export * from './setIsDraggingToTrue';

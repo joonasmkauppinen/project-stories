@@ -107,7 +107,10 @@ const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
 
   return (
     <StyledH1
-      id={`layer-${layerId}`}
+      id={layerId}
+      data-layer-id={layerId}
+      data-element-type="layer"
+      data-context-area="storyboard"
       style={{ top: layer.position.y, left: layer.position.x }}
       ref={elementRef}
       size={layer.size}
@@ -145,7 +148,10 @@ export const CardItem = ({
 
   return (
     <StyledCardItem
-      id={`card-${cardId}`}
+      id={cardId}
+      data-card-id={cardId}
+      data-element-type="card"
+      data-context-area="storyboard"
       state={state}
       ref={cardItemRef}
       {...divElementAttrs}

@@ -9,6 +9,7 @@ import {
 interface SelectionProps extends LayerActionsProp {
   selection: SelectionItem[];
   cards: Cards;
+  isDragging: boolean;
 }
 
 interface StyledSelectionDivProps {
@@ -22,12 +23,13 @@ const StyledSelectionDiv = styled.div<StyledSelectionDivProps>(({ size }) => ({
   // pointerEvents: 'none',
 }));
 
-export const Selection = ({ selection, cards }: SelectionProps) => {
+export const Selection = ({ selection, cards, isDragging }: SelectionProps) => {
   const selectionWithParentId = selection.find(
     (item) => typeof item.parentId === 'string'
   );
 
   if (
+    isDragging ||
     selectionWithParentId === undefined ||
     selectionWithParentId.parentId === undefined
   ) {
@@ -61,7 +63,8 @@ export const Selection = ({ selection, cards }: SelectionProps) => {
 
   return (
     <StyledSelectionDiv
-      id="current-selection"
+      data-context-area="storyboard"
+      data-element-type="selection"
       style={{ top: position.y, left: position.x }}
       size={size}
     />

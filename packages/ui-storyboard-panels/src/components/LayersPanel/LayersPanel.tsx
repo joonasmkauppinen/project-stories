@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
+import {
+  Cards,
+  LayerActionsProp,
+  SelectionItem,
+} from '@joonasmkauppinen/project-stories/store-zustand';
 import { LAYERS_PANEL_INITIAL_WIDTH } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
-import { StoryboardProps } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 
 import { LayerIcon } from './LayerIcon/LayerIcon';
 import { StyledLayerItemLi } from './LayerItem/LayerItem';
@@ -30,7 +34,12 @@ const ListItemsContainer = styled.div({
   overflow: 'scroll',
 });
 
-export const LayersPanel = ({ actions, cards }: StoryboardProps) => {
+interface LayersPanelProps extends LayerActionsProp {
+  cards: Cards;
+  selection: SelectionItem[];
+}
+
+export const LayersPanel = ({ actions, cards }: LayersPanelProps) => {
   return (
     <StyledPanelSection>
       <PanelHeader />

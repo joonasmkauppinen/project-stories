@@ -1,15 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { Coordinate, Layer, LayerType } from '../../types';
+import { ID, Layer, LayerType } from '../../types';
 
 interface GenerateLayerProps {
   name?: string;
   sortOrderIndex: number;
   type: LayerType;
-  position?: Coordinate;
+  top: number;
+  left?: number;
+  width?: number;
+  height?: number;
+  value?: string;
 }
 
-type GenerateLayerReturnType = { [key: string]: Layer };
+type GenerateLayerReturnType = { layerId: ID; layerData: Layer };
 
 type GenerateLayer = (props: GenerateLayerProps) => GenerateLayerReturnType;
 
@@ -18,30 +22,38 @@ export const generateLayer: GenerateLayer = ({
   name,
   sortOrderIndex,
   type,
-  position,
+  top,
+  left,
+  width,
+  height,
+  value,
 }) => {
-  const id = uuidv4();
+  const layerId = uuidv4();
   const defaultName = `${type} ${sortOrderIndex + 1}`;
 
-  return {
-    [id]: {
-      name: name ? name : defaultName,
-      position: position || {
-        x: 0,
-        y: 0,
-      },
-      screenPosition: {
-        x: NaN,
-        y: NaN,
-      },
-      size: {
-        width: 200,
-        height: 40,
-      },
-      sortOrderIndex,
-      state: 'idle',
-      type: 'text',
-      value: 'Hello World',
+  // TODO: This value should equal safe zone value in the future.
+  const marginHorizontal = 20;
+
+  const layerData: Layer = {
+    name: name ? name : defaultName,
+    position: {
+      x: left || marginHorizontal,
+      y: top,
     },
+    screenPosition: {
+      x: NaN,
+      y: NaN,
+    },
+    size: {
+      // TODO: Get card width from constants.
+      width: width || 360 - marginHorizontal * 2,
+      height: height || 40,
+    },
+    sortOrderIndex,
+    state: 'idle',
+    type: 'text',
+    value: value || 'Hello World',
   };
+
+  return { layerId, layerData };
 };

@@ -42,7 +42,11 @@ export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
 
   return (
     <Container key={`card-${cardId}`}>
-      <CardName id={`card-name-${cardId}`} onClick={handleClick}>
+      <CardName
+        data-context-area="storyboard"
+        data-element-type="card-name"
+        onClick={handleClick}
+      >
         {name}
       </CardName>
       <CardItem

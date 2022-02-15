@@ -4,53 +4,68 @@ import { devtools } from 'zustand/middleware';
 import { AppState, LayerActions } from '../types';
 import {
   addNewCard,
+  addTextLayerToCard,
   deselectAll,
   onDragSelection,
   selectCard,
   setElementStateToActive,
   setElementStateToHovered,
   setElementStateToIdle,
+  setIsDraggingToFalse,
+  setIsDraggingToTrue,
+  setToolToMove,
+  setToolToText,
   updateElementScreenPosition,
 } from '../actions';
 import { generateCard, generateLayer } from '../generators';
 
+const { layerId, layerData } = generateLayer({
+  type: 'text',
+  sortOrderIndex: 0,
+  top: 100,
+});
+const { layerId: layerId2, layerData: layerData2 } = generateLayer({
+  type: 'text',
+  sortOrderIndex: 1,
+  top: 150,
+});
+
+const sampleLayers = {
+  [layerId]: layerData,
+  [layerId2]: layerData2,
+};
+
 export const useStore = create<AppState>(
   devtools((_) => ({
-    activeCards: [],
     cards: {
       ...generateCard({
         sortOrderIndex: 0,
-        layers: {
-          ...generateLayer({
-            type: 'text',
-            sortOrderIndex: 0,
-            position: { x: 50, y: 100 },
-          }),
-          ...generateLayer({
-            type: 'text',
-            sortOrderIndex: 1,
-            position: { x: 50, y: 150 },
-          }),
-        },
+        layers: sampleLayers,
       }),
     },
-    hoveredCard: '',
+    currentTool: 'move',
     selection: [],
+    isDragging: false,
   }))
 );
 
-export const selectActiveCards = (state: AppState) => state.activeCards;
-export const selectHoveredCard = (state: AppState) => state.hoveredCard;
 export const selectCards = (state: AppState) => state.cards;
 export const selectSelection = (state: AppState) => state.selection;
+export const selectCurrentTool = (state: AppState) => state.currentTool;
+export const selectIsDragging = (state: AppState) => state.isDragging;
 
 export const actions: LayerActions = {
   addNewCard,
+  addTextLayerToCard,
   deselectAll,
   onDragSelection,
   selectCard,
   setElementStateToActive,
   setElementStateToHovered,
   setElementStateToIdle,
+  setIsDraggingToFalse,
+  setIsDraggingToTrue,
+  setToolToMove,
+  setToolToText,
   updateElementScreenPosition,
 };

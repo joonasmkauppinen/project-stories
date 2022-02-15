@@ -9,20 +9,22 @@ import { IconSettings } from './icons/IconSettings';
 import { IconText } from './icons/IconText';
 
 interface IconButtonProps {
-  state?: 'idle' | 'active';
-  size?: 'small' | 'normal';
+  active?: boolean;
+  disabled?: boolean;
   icon: 'move' | 'text' | 'hand' | 'add-image' | 'history' | 'settings';
   onClick?: () => void;
+  size?: 'small' | 'normal';
   title?: string;
 }
 
 interface StyledButtonProps {
+  active: boolean;
+  disabled?: boolean;
   size: 'small' | 'normal';
-  state: 'idle' | 'active';
 }
 
-const getBackgroundColorByState = (state: 'idle' | 'active'): CSSObject => {
-  if (state === 'active') {
+const getBackgroundColorByState = (active: boolean): CSSObject => {
+  if (active) {
     return {
       backgroundColor: '#ffffff !important',
     };
@@ -33,33 +35,41 @@ const getBackgroundColorByState = (state: 'idle' | 'active'): CSSObject => {
   };
 };
 
-const StyledButton = styled.button<StyledButtonProps>(({ state, size }) => ({
-  all: 'unset',
-  alignItems: 'center',
-  backgroundColor: '#000000',
-  ...getBackgroundColorByState(state),
-  borderColor: '#798681',
-  borderRadius: 3,
-  borderStyle: 'solid',
-  borderWidth: 1,
-  display: 'flex',
-  height: size === 'small' ? 26 : 36,
-  justifyContent: 'center',
-  width: size === 'small' ? 26 : 36,
-  cursor: 'not-allowed',
-}));
+const StyledButton = styled.button<StyledButtonProps>(
+  ({ active, disabled, size }) => ({
+    all: 'unset',
+    alignItems: 'center',
+    ...getBackgroundColorByState(active),
+    borderColor: '#798681',
+    borderRadius: 3,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    display: 'flex',
+    height: size === 'small' ? 26 : 36,
+    justifyContent: 'center',
+    width: size === 'small' ? 26 : 36,
+    cursor: disabled ? 'not-allowed' : 'default',
+  })
+);
 
 export const IconButton = ({
+  active = false,
+  disabled = false,
   icon,
-  state = 'idle',
   onClick,
   size = 'normal',
   title,
 }: IconButtonProps) => {
-  const iconFill = state === 'idle' ? 'white' : 'black';
+  const iconFill = active ? 'black' : 'white';
 
   return (
-    <StyledButton title={title} state={state} onClick={onClick} size={size}>
+    <StyledButton
+      title={title}
+      active={active}
+      onClick={onClick}
+      size={size}
+      disabled={disabled}
+    >
       {(() => {
         switch (icon) {
           case 'add-image':
