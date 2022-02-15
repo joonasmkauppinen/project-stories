@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 import { t } from '@internal/i18n';
+import {
+  LayerActions,
+  StoryboardTool,
+} from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { IconButton } from '../IconButton/IconButton';
 
@@ -17,14 +21,38 @@ const Divider = styled.div({
   width: 1,
 });
 
-export const ToolsSection = () => {
+interface ToolsSectionProps {
+  actions: LayerActions;
+  currentTool: StoryboardTool;
+}
+
+export const ToolsSection = ({ actions, currentTool }: ToolsSectionProps) => {
   return (
     <Container>
-      <IconButton title={t('iconButtonTitleMove')} icon="move" state="active" />
-      <IconButton title={t('iconButtonTitleText')} icon="text" />
-      <IconButton title={t('iconButtonTitleHand')} icon="hand" />
+      <IconButton
+        title={t('iconButtonTitleMove')}
+        icon="move"
+        active={currentTool === 'move'}
+        onClick={() => actions.setToolToMove()}
+      />
+      <IconButton
+        title={t('iconButtonTitleText')}
+        icon="text"
+        active={currentTool === 'text'}
+        onClick={() => actions.setToolToText()}
+      />
+      <IconButton
+        title={t('iconButtonTitleHand')}
+        icon="hand"
+        active={currentTool === 'hand'}
+        disabled
+      />
       <Divider />
-      <IconButton title={t('iconButtonTitleAddImage')} icon="add-image" />
+      <IconButton
+        title={t('iconButtonTitleAddImage')}
+        icon="add-image"
+        disabled
+      />
     </Container>
   );
 };
