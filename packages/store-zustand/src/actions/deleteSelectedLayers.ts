@@ -14,12 +14,10 @@ export const deleteSelectedLayers: DeleteSelectedLayers = () =>
     produce<AppState>((draft) => {
       const state = useStore.getState();
 
-      state.selection.forEach(({ id, parentId }) => {
-        if (parentId) {
-          delete draft.cards[parentId].layers[id];
-        }
+      state.selectedLayers.forEach(({ cardId, layerId }) => {
+        delete draft.cards[cardId].layers[layerId];
       });
 
-      draft.selection = [];
+      draft.selectedLayers = [];
     })
   );

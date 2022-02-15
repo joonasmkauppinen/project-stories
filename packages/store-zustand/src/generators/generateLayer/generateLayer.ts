@@ -53,6 +53,9 @@ export const generateLayer: GenerateLayer = ({
     state: 'idle',
     type: 'text',
     value: value || 'Hello World',
+    metaState: {
+      parentCardActive: false,
+    },
   };
 
   return { layerId, layerData };

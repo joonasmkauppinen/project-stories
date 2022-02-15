@@ -1,7 +1,7 @@
 import { MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import {
-  ElementState,
+  CardState,
   ID,
   Layer,
   LayerActionsProp,
@@ -18,11 +18,11 @@ export interface CardItemProps
   extends LayerActionsProp,
     React.HTMLAttributes<HTMLDivElement> {
   layers: Layers;
-  state: ElementState;
+  state: CardState;
   cardId: ID;
 }
 
-const setBoxShadowByState = (state: ElementState) => {
+const setBoxShadowByState = (state: CardState) => {
   if (state === 'active') {
     return 'fuchsia 0px 0px 0px 2px';
   }
@@ -34,7 +34,7 @@ const setBoxShadowByState = (state: ElementState) => {
   return '#424342 0px 0px 0px 0px';
 };
 
-const StyledCardItem = styled.div<{ state: ElementState }>(({ state }) => ({
+const StyledCardItem = styled.div<{ state: CardState }>(({ state }) => ({
   backgroundColor: 'white',
   width: CARD_ITEM_WIDTH,
   height: CARD_ITEM_HEIGHT,
@@ -70,22 +70,22 @@ const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
 
   const handleMouseEnter: MouseEventHandler = useCallback(() => {
     if (layer.state === 'idle') {
-      actions.setElementStateToHovered({ parentId: cardId, id: layerId });
+      actions.setLayerStateToHovered({ cardId, layerId });
     }
   }, [actions, cardId, layer.state, layerId]);
 
   const handleMouseLeave: MouseEventHandler = useCallback(() => {
     if (layer.state !== 'active') {
-      actions.setElementStateToIdle({ parentId: cardId, id: layerId });
+      actions.setLayerStateToIdle({ cardId, layerId });
     }
   }, [actions, cardId, layer.state, layerId]);
 
   const handleMouseDown: MouseEventHandler = useCallback(
     (event) => {
       if (layer.state === 'hovered') {
-        actions.setElementStateToActive({
-          id: layerId,
-          parentId: cardId,
+        actions.setLayerStateToActive({
+          layerId,
+          cardId,
           isShiftKey: event.shiftKey,
         });
       }

@@ -15,20 +15,9 @@ export const onDragSelection: OnDragSelection = ({ movementX, movementY }) =>
     produce((draft: AppState) => {
       const state = useStore.getState();
 
-      state.selection.forEach(({ parentId, id }) => {
-        if (parentId) {
-          draft.cards[parentId].layers[id].position.x += movementX;
-          draft.cards[parentId].layers[id].position.y += movementY;
-
-          // Object.entries(draft.cards[parentId].layers).forEach(
-          //   ([layerId, layer]) => {
-          //     if (layerId === id && layer.screenPosition) {
-          //       layer.screenPosition.x += movementX;
-          //       layer.screenPosition.y += movementY;
-          //     }
-          //   }
-          // );
-        }
+      state.selectedLayers.forEach(({ cardId, layerId }) => {
+        draft.cards[cardId].layers[layerId].position.x += movementX;
+        draft.cards[cardId].layers[layerId].position.y += movementY;
       });
     })
   );

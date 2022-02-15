@@ -39,7 +39,7 @@ export class UserInputManagerService {
 
     switch (event.code) {
       case 'Backspace': {
-        if (this.getState().selection.length > 0) {
+        if (this.getState().selectedLayers.length > 0) {
           console.log('Deleting selected layers...');
           this.actions.deleteSelectedLayers();
         }

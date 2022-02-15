@@ -4,12 +4,14 @@ import {
   DeleteSelectedLayers,
   DeselectAll,
   OnDragSelection,
-  SelectCard,
-  SetElementStateToActive,
-  SetElementStateToHovered,
-  SetElementStateToIdle,
+  SetCardStateToActive,
+  SetCardStateToHovered,
+  SetCardStateToIdle,
   SetIsDraggingToFalse,
   SetIsDraggingToTrue,
+  SetLayerStateToActive,
+  SetLayerStateToHovered,
+  SetLayerStateToIdle,
   SetToolToMove,
   SetToolToText,
   UpdateElementScreenPosition,
@@ -21,12 +23,14 @@ export interface LayerActions {
   deleteSelectedLayers: DeleteSelectedLayers;
   deselectAll: DeselectAll;
   onDragSelection: OnDragSelection;
-  selectCard: SelectCard;
-  setElementStateToActive: SetElementStateToActive;
-  setElementStateToHovered: SetElementStateToHovered;
-  setElementStateToIdle: SetElementStateToIdle;
+  setCardStateToActive: SetCardStateToActive;
+  setCardStateToHovered: SetCardStateToHovered;
+  setCardStateToIdle: SetCardStateToIdle;
   setIsDraggingToFalse: SetIsDraggingToFalse;
   setIsDraggingToTrue: SetIsDraggingToTrue;
+  setLayerStateToActive: SetLayerStateToActive;
+  setLayerStateToHovered: SetLayerStateToHovered;
+  setLayerStateToIdle: SetLayerStateToIdle;
   setToolToMove: SetToolToMove;
   setToolToText: SetToolToText;
   updateElementScreenPosition: UpdateElementScreenPosition;
