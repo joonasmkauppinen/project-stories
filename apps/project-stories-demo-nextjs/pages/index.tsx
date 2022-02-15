@@ -12,7 +12,7 @@ import {
   selectCards,
   selectCurrentTool,
   selectIsDragging,
-  selectSelection,
+  selectSelectedLayers,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { UserInputManagerService } from '@joonasmkauppinen/project-stories/services';
@@ -53,7 +53,7 @@ const SafeHydrate = ({ children }) => {
 
 export function Index() {
   const cards = useStore(selectCards);
-  const selection = useStore(selectSelection);
+  const selectedLayers = useStore(selectSelectedLayers);
   const currentTool = useStore(selectCurrentTool);
   const isDragging = useStore(selectIsDragging);
 
@@ -82,11 +82,11 @@ export function Index() {
   return (
     <SafeHydrate>
       <StyledPage>
-        <LayersPanel actions={actions} cards={cards} selection={selection} />
+        <LayersPanel actions={actions} cards={cards} />
         <Storyboard
           actions={actions}
           cards={cards}
-          selection={selection}
+          selectedLayers={selectedLayers}
           isDragging={isDragging}
         />
         <Toolbar actions={actions} currentTool={currentTool} />
