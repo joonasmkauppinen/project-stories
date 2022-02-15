@@ -2,6 +2,7 @@ import {
   AddNewCard,
   AddTextLayerToCard,
   DeleteSelectedLayers,
+  DeleteSelectedCards,
   DeselectAll,
   OnDragSelection,
   SetCardStateToActive,
@@ -21,6 +22,7 @@ export interface LayerActions {
   addNewCard: AddNewCard;
   addTextLayerToCard: AddTextLayerToCard;
   deleteSelectedLayers: DeleteSelectedLayers;
+  deleteSelectedCards: DeleteSelectedCards;
   deselectAll: DeselectAll;
   onDragSelection: OnDragSelection;
   setCardStateToActive: SetCardStateToActive;

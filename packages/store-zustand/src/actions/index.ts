@@ -1,6 +1,7 @@
 export * from './addNewCard';
 export * from './addTextLayerToCard';
 export * from './deleteSelectedLayers';
+export * from './deleteSelectedCards';
 export * from './deselectAll';
 export * from './onDragSelection';
 export * from './setCardStateToActive';
