@@ -10,6 +10,8 @@ import {
 import {
   actions,
   selectCards,
+  selectCurrentTool,
+  selectIsDragging,
   selectSelection,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
@@ -52,17 +54,42 @@ const SafeHydrate = ({ children }) => {
 export function Index() {
   const cards = useStore(selectCards);
   const selection = useStore(selectSelection);
+  const currentTool = useStore(selectCurrentTool);
+  const isDragging = useStore(selectIsDragging);
 
   useEffect(() => {
-    new UserInputManagerService(actions);
+    new UserInputManagerService(actions, useStore.getState);
   }, []);
+
+  // TODO: Refactor hook into library.
+  useEffect(() => {
+    switch (currentTool) {
+      case 'hand':
+        document.body.style.cursor = 'grab';
+        break;
+
+      case 'text':
+        document.body.style.cursor = 'crosshair';
+        break;
+
+      case 'move':
+      default:
+        document.body.style.cursor = 'default';
+        break;
+    }
+  }, [currentTool]);
 
   return (
     <SafeHydrate>
       <StyledPage>
         <LayersPanel actions={actions} cards={cards} selection={selection} />
-        <Storyboard actions={actions} cards={cards} selection={selection} />
-        <Toolbar />
+        <Storyboard
+          actions={actions}
+          cards={cards}
+          selection={selection}
+          isDragging={isDragging}
+        />
+        <Toolbar actions={actions} currentTool={currentTool} />
         <SamplePanel>Options panel coming soon.</SamplePanel>
       </StyledPage>
     </SafeHydrate>
