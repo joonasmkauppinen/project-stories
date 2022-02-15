@@ -26,6 +26,18 @@ export const addTextLayerToCard: AddTextLayerToCard = ({
   useStore.setState(
     produce<AppState>((draft) => {
       const state = useStore.getState();
+
+      // TODO: add clear selections helper function.
+      state.selectedLayers.forEach(({ cardId, layerId }) => {
+        draft.cards[cardId].layers[layerId].state = 'idle';
+      });
+      draft.selectedLayers = [];
+
+      state.selectedCards.forEach(({ cardId }) => {
+        draft.cards[cardId].state = 'idle';
+      });
+      draft.selectedCards = [];
+
       const sortOrderIndex = Object.keys(state.cards[cardId].layers).length;
       const { layerId, layerData } = generateLayer({
         sortOrderIndex,
@@ -36,9 +48,6 @@ export const addTextLayerToCard: AddTextLayerToCard = ({
         height,
         value,
       });
-
-      // TODO: add clear selections helper function.
-      draft.selection = [];
 
       draft.cards[cardId].layers[layerId] = layerData;
       draft.currentTool = 'move';
