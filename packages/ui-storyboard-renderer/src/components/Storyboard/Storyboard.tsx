@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import {
   Cards,
   LayerActionsProp,
-  SelectionItem,
+  SelectedLayer,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import {
@@ -18,7 +18,7 @@ import { useCallback, useMemo } from 'react';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
-  selection: SelectionItem[];
+  selectedLayers: SelectedLayer[];
   isDragging: boolean;
 }
 
@@ -40,7 +40,7 @@ const StyledStoryboardItemsContainerSection = styled.section({
 export const Storyboard = ({
   cards,
   actions,
-  selection,
+  selectedLayers,
   isDragging,
 }: StoryboardProps) => {
   // Padding needed to bring the first card to the middle of the screen.
@@ -79,7 +79,7 @@ export const Storyboard = ({
       <Selection
         cards={cards}
         actions={actions}
-        selection={selection}
+        selectedLayers={selectedLayers}
         isDragging={isDragging}
       />
     </StyledStoryboard>

@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import {
   Cards,
   LayerActionsProp,
-  SelectionItem,
+  SelectedLayer,
   Size,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 interface SelectionProps extends LayerActionsProp {
-  selection: SelectionItem[];
+  selectedLayers: SelectedLayer[];
   cards: Cards;
   isDragging: boolean;
 }
@@ -23,24 +23,20 @@ const StyledSelectionDiv = styled.div<StyledSelectionDivProps>(({ size }) => ({
   // pointerEvents: 'none',
 }));
 
-export const Selection = ({ selection, cards, isDragging }: SelectionProps) => {
-  const selectionWithParentId = selection.find(
-    (item) => typeof item.parentId === 'string'
-  );
-
-  if (
-    isDragging ||
-    selectionWithParentId === undefined ||
-    selectionWithParentId.parentId === undefined
-  ) {
+export const Selection = ({
+  selectedLayers,
+  cards,
+  isDragging,
+}: SelectionProps) => {
+  if (isDragging || selectedLayers.length === 0) {
     return null;
   }
 
-  const activeCard = cards[selectionWithParentId.parentId].screenPosition;
+  const activeCard = cards[selectedLayers[0].cardId].screenPosition;
 
-  const activeLayers = selection
-    .filter(({ parentId }) => typeof parentId === 'string')
-    .map(({ parentId, id }) => cards[parentId as string].layers[id]);
+  const activeLayers = selectedLayers.map(
+    ({ cardId, layerId }) => cards[cardId].layers[layerId]
+  );
 
   const xMin = Math.min(...activeLayers.map(({ position }) => position.x));
   const yMin = Math.min(...activeLayers.map(({ position }) => position.y));
