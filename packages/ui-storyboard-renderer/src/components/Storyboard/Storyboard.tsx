@@ -19,6 +19,7 @@ import { useCallback, useMemo } from 'react';
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
   selection: SelectionItem[];
+  isDragging: boolean;
 }
 
 const StyledStoryboard = styled.div({
@@ -36,7 +37,12 @@ const StyledStoryboardItemsContainerSection = styled.section({
   flexDirection: 'row',
 });
 
-export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
+export const Storyboard = ({
+  cards,
+  actions,
+  selection,
+  isDragging,
+}: StoryboardProps) => {
   // Padding needed to bring the first card to the middle of the screen.
   const PADDING_HORIZONTAL = useMemo(() => {
     const INITIAL_CLIENT_WIDTH = window.innerWidth;
@@ -52,8 +58,9 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
   }, [actions]);
 
   return (
-    <StyledStoryboard id="storyboard">
+    <StyledStoryboard data-context-area="storyboard">
       <StyledStoryboardItemsContainerSection
+        data-context-area="storyboard"
         style={{
           paddingLeft: PADDING_HORIZONTAL,
           paddingRight: PADDING_HORIZONTAL - 175, // TODO: Calculate padding right based on last element size.
@@ -69,7 +76,12 @@ export const Storyboard = ({ cards, actions, selection }: StoryboardProps) => {
         ))}
         <AddCardButton onClick={handleClick} />
       </StyledStoryboardItemsContainerSection>
-      <Selection cards={cards} actions={actions} selection={selection} />
+      <Selection
+        cards={cards}
+        actions={actions}
+        selection={selection}
+        isDragging={isDragging}
+      />
     </StyledStoryboard>
   );
 };
