@@ -108,9 +108,11 @@ export interface SelectionItem {
   parentId?: ID;
 }
 
+export type StoryboardTool = 'move' | 'text' | 'hand';
+
 export interface AppState {
-  activeCards: string[];
-  hoveredCard: string;
   cards: Cards;
+  currentTool: StoryboardTool;
   selection: SelectionItem[];
+  isDragging: boolean;
 }
