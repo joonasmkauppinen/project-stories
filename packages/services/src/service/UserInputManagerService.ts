@@ -35,7 +35,17 @@ export class UserInputManagerService {
       return;
     }
 
+    console.log('Keydown: ', event.code);
+
     switch (event.code) {
+      case 'Backspace': {
+        if (this.getState().selection.length > 0) {
+          console.log('Deleting selected layers...');
+          this.actions.deleteSelectedLayers();
+        }
+        break;
+      }
+
       // Move tool shortcut
       case 'KeyV':
         this.actions.setToolToMove();
