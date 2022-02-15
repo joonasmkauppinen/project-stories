@@ -11,3 +11,4 @@ export * from './setToolToMove';
 export * from './addTextLayerToCard';
 export * from './setIsDraggingToFalse';
 export * from './setIsDraggingToTrue';
+export * from './deleteSelectedLayers';
