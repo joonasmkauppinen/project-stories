@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import {
   Cards,
   LayerActionsProp,
-  SelectionItem,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { LAYERS_PANEL_INITIAL_WIDTH } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 
@@ -36,7 +35,6 @@ const ListItemsContainer = styled.div({
 
 interface LayersPanelProps extends LayerActionsProp {
   cards: Cards;
-  selection: SelectionItem[];
 }
 
 export const LayersPanel = ({ actions, cards }: LayersPanelProps) => {
@@ -54,16 +52,19 @@ export const LayersPanel = ({ actions, cards }: LayersPanelProps) => {
                 key={`panel-card-item-${cardId}`}
                 onMouseEnter={() => {
                   if (card.state === 'idle')
-                    actions.setElementStateToHovered({ id: cardId });
+                    actions.setCardStateToHovered({ cardId });
                 }}
                 onMouseLeave={() => {
                   if (card.state !== 'active') {
-                    actions.setElementStateToIdle({ id: cardId });
+                    actions.setCardStateToIdle({ cardId });
                   }
                 }}
-                onMouseDown={() => {
+                onMouseDown={(event) => {
                   if (card.state === 'hovered') {
-                    actions.selectCard({ cardId });
+                    actions.setCardStateToActive({
+                      cardId,
+                      isShiftKey: event.shiftKey,
+                    });
                   }
                 }}
                 indentLevel={0}
@@ -81,26 +82,26 @@ export const LayersPanel = ({ actions, cards }: LayersPanelProps) => {
                     key={`panel-item-${layerId}`}
                     onMouseEnter={() => {
                       if (layer.state === 'idle') {
-                        actions.setElementStateToHovered({
-                          id: layerId,
-                          parentId: cardId,
+                        actions.setLayerStateToHovered({
+                          layerId,
+                          cardId,
                         });
                       }
                     }}
                     onMouseLeave={() => {
                       if (layer.state !== 'active') {
-                        actions.setElementStateToIdle({
-                          id: layerId,
-                          parentId: cardId,
+                        actions.setLayerStateToIdle({
+                          layerId,
+                          cardId,
                         });
                       }
                     }}
-                    onMouseDown={({ shiftKey }) => {
+                    onMouseDown={(event) => {
                       if (layer.state === 'hovered') {
-                        actions.setElementStateToActive({
-                          id: layerId,
-                          parentId: cardId,
-                          isShiftKey: shiftKey,
+                        actions.setLayerStateToActive({
+                          layerId,
+                          cardId,
+                          isShiftKey: event.shiftKey,
                         });
                       }
                     }}
