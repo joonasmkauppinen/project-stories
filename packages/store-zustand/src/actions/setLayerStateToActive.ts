@@ -22,7 +22,18 @@ export const setLayerStateToActive: SetLayerStateToActive = ({
     produce<AppState>((draft) => {
       const state = useStore.getState();
       if (isShiftKey) {
-        draft.selectedLayers.push({ cardId, layerId });
+        const selectedLayerInsideSameCard = state.selectedLayers.every(
+          ({ cardId: selectedCardId }) => selectedCardId === cardId
+        );
+
+        if (selectedLayerInsideSameCard) {
+          draft.selectedLayers.push({ cardId, layerId });
+        } else {
+          state.selectedLayers.forEach(({ cardId, layerId }) => {
+            draft.cards[cardId].layers[layerId].state = 'idle';
+          });
+          draft.selectedLayers = [{ cardId, layerId }];
+        }
       } else {
         state.selectedLayers.forEach(({ cardId, layerId }) => {
           draft.cards[cardId].layers[layerId].state = 'idle';
