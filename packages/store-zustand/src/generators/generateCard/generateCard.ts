@@ -6,30 +6,44 @@ interface GenerateCardProps {
   name?: string;
   sortOrderIndex: number;
   layers?: Layers;
+  /**
+   * If passed, this will be set to as the card id instead of generating a uuid.
+   *
+   * ⚠️ Use this only for tests!
+   */
+  mockId?: string;
 }
 
-type GenerateCardReturnType = { [key: string]: Card };
+type GenerateCardReturnType = {
+  cardId: string;
+  cardData: Card;
+  idWithData: { [key: string]: Card };
+};
 
 export const generateCard = ({
   name,
   sortOrderIndex,
   layers,
+  mockId,
 }: GenerateCardProps): GenerateCardReturnType => {
-  const id = uuidv4();
+  const id = mockId || uuidv4();
   const defaultName = `Card ${sortOrderIndex + 1}`;
+  const data: Card = {
+    autoAdvance: false,
+    duration: 0,
+    layers: layers ? layers : {},
+    name: name ? name : defaultName,
+    sortOrderIndex,
+    state: 'idle',
+    screenPosition: {
+      x: NaN,
+      y: NaN,
+    },
+  };
 
   return {
-    [id]: {
-      autoAdvance: false,
-      duration: 0,
-      layers: layers ? layers : {},
-      name: name ? name : defaultName,
-      sortOrderIndex,
-      state: 'idle',
-      screenPosition: {
-        x: NaN,
-        y: NaN,
-      },
-    },
+    cardId: id,
+    cardData: data,
+    idWithData: { [id]: data },
   };
 };

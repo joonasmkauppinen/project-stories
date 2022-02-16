@@ -21,38 +21,21 @@ import {
   setToolToText,
   updateElementScreenPosition,
 } from '../actions';
-import { generateCard, generateLayer } from '../generators';
+import { generateCard } from '../generators';
 
-const { layerId, layerData } = generateLayer({
-  type: 'text',
-  sortOrderIndex: 0,
-  top: 100,
-});
-const { layerId: layerId2, layerData: layerData2 } = generateLayer({
-  type: 'text',
-  sortOrderIndex: 1,
-  top: 150,
-});
+const emptyCard = generateCard({ sortOrderIndex: 0 }).idWithData;
 
-const sampleLayers = {
-  [layerId]: layerData,
-  [layerId2]: layerData2,
+const initialState: AppState = {
+  cards: {
+    ...emptyCard,
+  },
+  currentTool: 'move',
+  selectedCards: [],
+  selectedLayers: [],
+  isDragging: false,
 };
 
-export const useStore = create<AppState>(
-  devtools((_) => ({
-    cards: {
-      ...generateCard({
-        sortOrderIndex: 0,
-        layers: sampleLayers,
-      }),
-    },
-    currentTool: 'move',
-    selectedCards: [],
-    selectedLayers: [],
-    isDragging: false,
-  }))
-);
+export const useStore = create<AppState>(devtools((_) => initialState));
 
 export const selectCards = (state: AppState) => state.cards;
 export const selectCurrentTool = (state: AppState) => state.currentTool;
