@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { ID, Layer, LayerType } from '../../types';
+import { ID, Layer, LayerType, TestLayerOverrides } from '../../types';
 
 interface GenerateLayerProps {
   name?: string;
@@ -11,9 +11,17 @@ interface GenerateLayerProps {
   width?: number;
   height?: number;
   value?: string;
+  /**
+   * ⚠️ Use this only for tests!
+   */
+  testOverrides?: TestLayerOverrides;
 }
 
-type GenerateLayerReturnType = { layerId: ID; layerData: Layer };
+interface GenerateLayerReturnType {
+  layerId: ID;
+  layerData: Layer;
+  idWithData: { [key: string]: Layer };
+}
 
 type GenerateLayer = (props: GenerateLayerProps) => GenerateLayerReturnType;
 
@@ -27,14 +35,15 @@ export const generateLayer: GenerateLayer = ({
   width,
   height,
   value,
+  testOverrides,
 }) => {
-  const layerId = uuidv4();
+  const id = testOverrides?.id || uuidv4();
   const defaultName = `${type} ${sortOrderIndex + 1}`;
 
   // TODO: This value should equal safe zone value in the future.
   const marginHorizontal = 20;
 
-  const layerData: Layer = {
+  const data: Layer = {
     name: name ? name : defaultName,
     position: {
       x: left || marginHorizontal,
@@ -56,7 +65,12 @@ export const generateLayer: GenerateLayer = ({
     metaState: {
       parentCardActive: false,
     },
+    ...testOverrides?.properties,
   };
 
-  return { layerId, layerData };
+  return {
+    layerId: id,
+    layerData: data,
+    idWithData: { [id]: data },
+  };
 };
