@@ -25,7 +25,7 @@ import { generateCard } from '../generators';
 
 const emptyCard = generateCard({ sortOrderIndex: 0 }).idWithData;
 
-const initialState: AppState = {
+export const initialState: AppState = {
   cards: {
     ...emptyCard,
   },

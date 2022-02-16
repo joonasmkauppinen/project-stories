@@ -1,8 +1,8 @@
 import produce from 'immer';
-import { generateLayer } from '../generators';
 
-import { useStore } from '../store/zustandStore';
-import { AppState, ID } from '../types/appState';
+import { AppState, ID, TestLayerOverrides } from '../../types';
+import { generateLayer } from '../../generators';
+import { useStore } from '../../store/zustandStore';
 
 export interface AddTextLayerToCardPayload {
   cardId: ID;
@@ -11,6 +11,7 @@ export interface AddTextLayerToCardPayload {
   width?: number;
   height?: number;
   value?: string;
+  testOverrides?: TestLayerOverrides;
 }
 
 export type AddTextLayerToCard = (payload: AddTextLayerToCardPayload) => void;
@@ -22,6 +23,7 @@ export const addTextLayerToCard: AddTextLayerToCard = ({
   left,
   value,
   width,
+  testOverrides,
 }) =>
   useStore.setState(
     produce<AppState>((draft) => {
@@ -47,6 +49,7 @@ export const addTextLayerToCard: AddTextLayerToCard = ({
         width,
         height,
         value,
+        testOverrides,
       });
 
       draft.cards[cardId].layers[layerId] = layerData;

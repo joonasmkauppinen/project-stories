@@ -1,32 +1,31 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import { Card, Layers } from '../../types';
+import { TestCardOverrides } from '../../types/testUtils';
 
 interface GenerateCardProps {
   name?: string;
   sortOrderIndex: number;
   layers?: Layers;
   /**
-   * If passed, this will be set to as the card id instead of generating a uuid.
-   *
    * ⚠️ Use this only for tests!
    */
-  mockId?: string;
+  testOverrides?: TestCardOverrides;
 }
 
-type GenerateCardReturnType = {
+interface GenerateCardReturnType {
   cardId: string;
   cardData: Card;
   idWithData: { [key: string]: Card };
-};
+}
 
 export const generateCard = ({
   name,
   sortOrderIndex,
   layers,
-  mockId,
+  testOverrides,
 }: GenerateCardProps): GenerateCardReturnType => {
-  const id = mockId || uuidv4();
+  const id = testOverrides?.id || uuidv4();
   const defaultName = `Card ${sortOrderIndex + 1}`;
   const data: Card = {
     autoAdvance: false,
@@ -39,6 +38,7 @@ export const generateCard = ({
       x: NaN,
       y: NaN,
     },
+    ...testOverrides?.properties,
   };
 
   return {

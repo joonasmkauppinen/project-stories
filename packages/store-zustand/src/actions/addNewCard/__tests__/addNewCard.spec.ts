@@ -1,48 +1,46 @@
 import { addNewCard } from '../addNewCard';
 
-import { useStore } from '../../../store/zustandStore';
-import { AppState } from '../../../types/appState';
+import { AppState, TestCardId } from '../../../types';
 import { generateCard } from '../../../generators';
+import { testInitialState } from '../../__test-utils__/testInitialState';
+import { useStore } from '../../../store/zustandStore';
 
-const mockCardId1 = 'mock_card_id_0';
-const mockCardId2 = 'mock_card_id_1';
+const testCardId1: TestCardId = 'test_card_id_0';
+const testCardId2: TestCardId = 'test_card_id_1';
 
 const emptyCard = generateCard({
   sortOrderIndex: 0,
-  mockId: mockCardId1,
+  testOverrides: { id: testCardId1 },
 }).idWithData;
 
-const mockInitialState: AppState = {
+const testStateWithEmptyCard: AppState = {
+  ...testInitialState,
   cards: {
     ...emptyCard,
   },
-  currentTool: 'move',
-  selectedCards: [],
-  selectedLayers: [],
-  isDragging: false,
 };
 
 beforeEach(() => {
-  useStore.setState(() => mockInitialState);
+  useStore.setState(() => testStateWithEmptyCard);
 });
 
 describe('Action - addNewCard', () => {
   test('adds new card object correctly', () => {
-    const initialCard = useStore.getState().cards[mockCardId1];
+    const initialCard = useStore.getState().cards[testCardId1];
     expect(initialCard.name).toEqual('Card 1');
     expect(initialCard.sortOrderIndex).toEqual(0);
     expect(initialCard.state).toEqual('idle');
 
-    addNewCard({ mockCardId: mockCardId2 });
+    addNewCard({ testOverrides: { id: testCardId2 } });
 
-    const newCard = useStore.getState().cards[mockCardId2];
+    const newCard = useStore.getState().cards[testCardId2];
     expect(newCard.name).toEqual('Card 2');
     expect(newCard.sortOrderIndex).toEqual(1);
     expect(newCard.state).toEqual('idle');
 
     expect(useStore.getState().cards).toMatchInlineSnapshot(`
       Object {
-        "mock_card_id_0": Object {
+        "test_card_id_0": Object {
           "autoAdvance": false,
           "duration": 0,
           "layers": Object {},
@@ -54,7 +52,7 @@ describe('Action - addNewCard', () => {
           "sortOrderIndex": 0,
           "state": "idle",
         },
-        "mock_card_id_1": Object {
+        "test_card_id_1": Object {
           "autoAdvance": false,
           "duration": 0,
           "layers": Object {},
