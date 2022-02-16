@@ -17,11 +17,11 @@ interface GenerateLayerProps {
   testOverrides?: TestLayerOverrides;
 }
 
-interface GenerateLayerReturnType {
+type GenerateLayerReturnType = {
   layerId: ID;
   layerData: Layer;
-  idWithData: { [key: string]: Layer };
-}
+  idWithData: [string, Layer];
+};
 
 type GenerateLayer = (props: GenerateLayerProps) => GenerateLayerReturnType;
 
@@ -71,6 +71,6 @@ export const generateLayer: GenerateLayer = ({
   return {
     layerId: id,
     layerData: data,
-    idWithData: { [id]: data },
+    idWithData: [id, data],
   };
 };

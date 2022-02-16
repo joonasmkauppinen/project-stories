@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { Card, Layers } from '../../types';
+import { Card, ID, Layers } from '../../types';
 import { TestCardOverrides } from '../../types/testUtils';
 
 interface GenerateCardProps {
@@ -14,9 +14,9 @@ interface GenerateCardProps {
 }
 
 interface GenerateCardReturnType {
-  cardId: string;
+  cardId: ID;
   cardData: Card;
-  idWithData: { [key: string]: Card };
+  idWithData: [string, Card];
 }
 
 export const generateCard = ({
@@ -44,6 +44,6 @@ export const generateCard = ({
   return {
     cardId: id,
     cardData: data,
-    idWithData: { [id]: data },
+    idWithData: [id, data],
   };
 };

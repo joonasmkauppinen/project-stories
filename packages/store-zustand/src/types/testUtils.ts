@@ -8,7 +8,7 @@ export type TestCardId =
 
 export interface TestCardOverrides {
   id?: TestCardId;
-  properties?: Partial<Card>;
+  properties?: Partial<Omit<Card, 'sortOrderIndex'>>;
 }
 
 export type TestLayerId =
@@ -19,5 +19,5 @@ export type TestLayerId =
 
 export interface TestLayerOverrides {
   id?: TestLayerId;
-  properties?: Partial<Layer>;
+  properties?: Partial<Omit<Layer, 'sortOrderIndex'>>;
 }
