@@ -1,16 +1,14 @@
 import produce from 'immer';
 
-import { AppState, useStore } from '../..';
+import { AppState, TestCardOverrides } from '../../types';
 import { generateCard } from '../../generators';
+import { useStore } from '../../store/zustandStore';
 
 export interface AddNewCardPayload {
   /**
-   * If passed, this will be set to as the new card id instead of generating a
-   * uuid.
-   *
    * ⚠️ Use this only for tests!
    */
-  mockCardId?: string;
+  testOverrides?: TestCardOverrides;
 }
 
 export type AddNewCard = (payload?: AddNewCardPayload) => void;
@@ -23,7 +21,7 @@ export const addNewCard: AddNewCard = (payload) =>
 
       const { cardId, cardData } = generateCard({
         sortOrderIndex,
-        mockId: payload?.mockCardId,
+        testOverrides: payload?.testOverrides,
       });
 
       draft.cards[cardId] = cardData;
