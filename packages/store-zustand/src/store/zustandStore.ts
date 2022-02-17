@@ -23,11 +23,11 @@ import {
 } from '../actions';
 import { generateCard } from '../generators';
 
-const emptyCard = generateCard({ sortOrderIndex: 0 }).idWithData;
+const [cardId, emptyCard] = generateCard({ sortOrderIndex: 0 }).idWithData;
 
 export const initialState: AppState = {
   cards: {
-    ...emptyCard,
+    [cardId]: emptyCard,
   },
   currentTool: 'move',
   selectedCards: [],
