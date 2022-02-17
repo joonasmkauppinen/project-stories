@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Action - addTextLayerToCard Adds new layer to the card correctly 1`] = `
+exports[`Action - addTextLayerToCard() Adds new layer to the card correctly 1`] = `
 Object {
   "cards": Object {
     "test_card_id_0": Object {
