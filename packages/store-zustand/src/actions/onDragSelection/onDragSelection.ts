@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { useStore } from '../store/zustandStore';
-import { AppState } from '../types';
+import { useStore } from '../../store/zustandStore';
+import { AppState } from '../../types';
 
 export interface SelectionDragPayload {
   movementX: number;
