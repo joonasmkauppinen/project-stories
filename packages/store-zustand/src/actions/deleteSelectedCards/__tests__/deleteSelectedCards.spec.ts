@@ -43,4 +43,6 @@ describe('Action - deleteSelectedCards()', () => {
     expect(useStore.getState().cards[cardId1]).toBe(undefined);
     expect(useStore.getState().cards[cardId2]).toBe(undefined);
   });
+
+  test.todo('Updates remaining cards "sortOrderIndex" correctly');
 });
