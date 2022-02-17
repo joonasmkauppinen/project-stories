@@ -2,7 +2,7 @@ export * from './addNewCard/addNewCard';
 export * from './addTextLayerToCard/addTextLayerToCard';
 export * from './deleteSelectedLayers/deleteSelectedLayers';
 export * from './deleteSelectedCards/deleteSelectedCards';
-export * from './deselectAll';
+export * from './deselectAll/deselectAll';
 export * from './onDragSelection';
 export * from './setCardStateToActive';
 export * from './setCardStateToActive';

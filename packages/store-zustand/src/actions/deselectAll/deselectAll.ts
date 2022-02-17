@@ -1,6 +1,7 @@
 import produce from 'immer';
 
-import { AppState, useStore } from '..';
+import { AppState } from '../../types';
+import { useStore } from '../../store/zustandStore';
 
 export type DeselectAll = () => void;
 
@@ -22,5 +23,6 @@ export const deselectAll: DeselectAll = () =>
 
         draft.cards[cardId].state = 'idle';
       });
+      draft.selectedCards = [];
     })
   );
