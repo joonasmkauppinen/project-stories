@@ -1,6 +1,7 @@
 import produce from 'immer';
 
-import { AppState, ID, useStore } from '..';
+import { AppState, ID } from '../../types';
+import { useStore } from '../../store/zustandStore';
 
 export interface SetCardStateToActivePayload {
   cardId: ID;
@@ -18,13 +19,22 @@ export const setCardStateToActive: SetCardStateToActive = ({
   useStore.setState(
     produce<AppState>((draft) => {
       const state = useStore.getState();
+
       if (isShiftKey) {
-        draft.selectedCards.push({ cardId });
+        if (
+          !state.selectedCards.some(
+            ({ cardId: selectedCardId }) => cardId === selectedCardId
+          )
+        ) {
+          draft.selectedCards.push({ cardId });
+        }
       } else {
         state.selectedCards.forEach(({ cardId }) => {
           draft.cards[cardId].state = 'idle';
           Object.keys(state.cards[cardId].layers).forEach((layerId) => {
             draft.cards[cardId].layers[layerId].state = 'idle';
+            draft.cards[cardId].layers[layerId].metaState.parentCardActive =
+              false;
           });
         });
         draft.selectedCards = [{ cardId }];
