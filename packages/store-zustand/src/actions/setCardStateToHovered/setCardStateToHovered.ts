@@ -1,6 +1,7 @@
 import produce from 'immer';
 
-import { AppState, ID, useStore } from '..';
+import { AppState, ID } from '../../types';
+import { useStore } from '../../store/zustandStore';
 
 export interface SetCardStateToHoveredPayload {
   cardId: ID;

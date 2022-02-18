@@ -5,7 +5,7 @@ export * from './deleteSelectedCards/deleteSelectedCards';
 export * from './deselectAll/deselectAll';
 export * from './onDragSelection/onDragSelection';
 export * from './setCardStateToActive/setCardStateToActive';
-export * from './setCardStateToHovered';
+export * from './setCardStateToHovered/setCardStateToHovered';
 export * from './setCardStateToIdle';
 export * from './setIsDraggingToFalse';
 export * from './setIsDraggingToTrue';
