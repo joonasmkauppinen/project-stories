@@ -20,4 +20,4 @@ jobs:
         run: yarn install
 
       - name: Run unit tests on affected packages 🔄
-        run: yarn nx affected:test
+        run: yarn nx affected:test --base=$GITHUB_BASE_REF
