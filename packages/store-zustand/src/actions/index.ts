@@ -14,4 +14,4 @@ export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';
 export * from './setToolToMove/setToolToMove';
 export * from './setToolToText/setToolToText';
-export * from './updateElementScreenPosition';
+export * from './updateCardScreenPosition/updateCardScreenPosition';
