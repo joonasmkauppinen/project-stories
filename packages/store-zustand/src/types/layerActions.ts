@@ -15,7 +15,7 @@ import {
   SetLayerStateToIdle,
   SetToolToMove,
   SetToolToText,
-  UpdateElementScreenPosition,
+  UpdateCardScreenPosition,
 } from '../actions';
 
 export interface LayerActions {
@@ -35,7 +35,7 @@ export interface LayerActions {
   setLayerStateToIdle: SetLayerStateToIdle;
   setToolToMove: SetToolToMove;
   setToolToText: SetToolToText;
-  updateElementScreenPosition: UpdateElementScreenPosition;
+  updateCardScreenPosition: UpdateCardScreenPosition;
 }
 
 export interface LayerActionsProp {

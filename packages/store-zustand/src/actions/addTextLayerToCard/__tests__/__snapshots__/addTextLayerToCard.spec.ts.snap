@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Action - addTextLayerToCard() Adds new layer to the card correctly 1`] = `
+Object {
+  "cards": Object {
+    "test_card_id_0": Object {
+      "autoAdvance": false,
+      "duration": 0,
+      "layers": Object {
+        "test_layer_id_0": Object {
+          "metaState": Object {
+            "parentCardActive": false,
+          },
+          "name": "text 1",
+          "position": Object {
+            "x": 20,
+            "y": 0,
+          },
+          "screenPosition": Object {
+            "x": NaN,
+            "y": NaN,
+          },
+          "size": Object {
+            "height": 40,
+            "width": 320,
+          },
+          "sortOrderIndex": 0,
+          "state": "idle",
+          "type": "text",
+          "value": "Hello World",
+        },
+      },
+      "name": "Card 1",
+      "screenPosition": Object {
+        "x": NaN,
+        "y": NaN,
+      },
+      "sortOrderIndex": 0,
+      "state": "idle",
+    },
+  },
+  "currentTool": "move",
+  "isDragging": false,
+  "selectedCards": Array [],
+  "selectedLayers": Array [],
+}
+`;

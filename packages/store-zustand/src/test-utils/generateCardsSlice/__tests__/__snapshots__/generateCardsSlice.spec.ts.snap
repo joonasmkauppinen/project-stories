@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test-util - generateCardsSlice() Generates one card with layers correctly 1`] = `
+Object {
+  "test_card_id_0": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {
+      "test_layer_id_0": Object {
+        "metaState": Object {
+          "parentCardActive": false,
+        },
+        "name": "text 1",
+        "position": Object {
+          "x": 20,
+          "y": 0,
+        },
+        "screenPosition": Object {
+          "x": NaN,
+          "y": NaN,
+        },
+        "size": Object {
+          "height": 40,
+          "width": 320,
+        },
+        "sortOrderIndex": 0,
+        "state": "idle",
+        "type": "text",
+        "value": "Hello World",
+      },
+    },
+    "name": "Card 1",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 0,
+    "state": "idle",
+  },
+}
+`;
+
+exports[`test-util - generateCardsSlice() Generates one card with no layers correctly 1`] = `
+Object {
+  "test_card_id_0": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {},
+    "name": "Card 1",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 0,
+    "state": "idle",
+  },
+}
+`;
+
+exports[`test-util - generateCardsSlice() Generates two cards with layers correctly 1`] = `
+Object {
+  "test_card_id_0": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {
+      "test_layer_id_0": Object {
+        "metaState": Object {
+          "parentCardActive": false,
+        },
+        "name": "text 1",
+        "position": Object {
+          "x": 20,
+          "y": 0,
+        },
+        "screenPosition": Object {
+          "x": NaN,
+          "y": NaN,
+        },
+        "size": Object {
+          "height": 40,
+          "width": 320,
+        },
+        "sortOrderIndex": 0,
+        "state": "idle",
+        "type": "text",
+        "value": "Hello World",
+      },
+    },
+    "name": "Card 1",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 0,
+    "state": "idle",
+  },
+  "test_card_id_1": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {
+      "test_layer_id_0": Object {
+        "metaState": Object {
+          "parentCardActive": false,
+        },
+        "name": "text 1",
+        "position": Object {
+          "x": 20,
+          "y": 0,
+        },
+        "screenPosition": Object {
+          "x": NaN,
+          "y": NaN,
+        },
+        "size": Object {
+          "height": 40,
+          "width": 320,
+        },
+        "sortOrderIndex": 0,
+        "state": "idle",
+        "type": "text",
+        "value": "Hello World",
+      },
+      "test_layer_id_1": Object {
+        "metaState": Object {
+          "parentCardActive": false,
+        },
+        "name": "text 2",
+        "position": Object {
+          "x": 20,
+          "y": 50,
+        },
+        "screenPosition": Object {
+          "x": NaN,
+          "y": NaN,
+        },
+        "size": Object {
+          "height": 40,
+          "width": 320,
+        },
+        "sortOrderIndex": 1,
+        "state": "idle",
+        "type": "text",
+        "value": "Hello World",
+      },
+    },
+    "name": "Card 2",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 1,
+    "state": "idle",
+  },
+}
+`;
+
+exports[`test-util - generateCardsSlice() Generates two cards with no layers correctly 1`] = `
+Object {
+  "test_card_id_0": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {},
+    "name": "Card 1",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 0,
+    "state": "idle",
+  },
+  "test_card_id_1": Object {
+    "autoAdvance": false,
+    "duration": 0,
+    "layers": Object {},
+    "name": "Card 2",
+    "screenPosition": Object {
+      "x": NaN,
+      "y": NaN,
+    },
+    "sortOrderIndex": 1,
+    "state": "idle",
+  },
+}
+`;
