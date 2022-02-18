@@ -7,7 +7,7 @@ export * from './onDragSelection/onDragSelection';
 export * from './setCardStateToActive/setCardStateToActive';
 export * from './setCardStateToHovered/setCardStateToHovered';
 export * from './setCardStateToIdle/setCardStateToIdle';
-export * from './setIsDraggingToFalse';
+export * from './setIsDraggingToFalse/setIsDraggingToFalse';
 export * from './setIsDraggingToTrue';
 export * from './setLayerStateToActive';
 export * from './setLayerStateToHovered';
