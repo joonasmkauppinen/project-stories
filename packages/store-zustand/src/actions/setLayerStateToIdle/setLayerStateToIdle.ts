@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { useStore } from '../store/zustandStore';
-import { AppState, ID } from '../types';
+import { useStore } from '../../store/zustandStore';
+import { AppState, ID } from '../../types';
 
 export interface SetLayerStateToIdlePayload {
   cardId: ID;
