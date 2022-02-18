@@ -21,7 +21,7 @@ jobs:
           node-version: '16'
           cache: yarn
 
-      - run: git fetch --no-tags --prune --depth=5 origin/master
+      - run: git fetch --no-tags --prune --depth=5 origin/main
 
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
