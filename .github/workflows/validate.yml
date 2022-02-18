@@ -1,0 +1,27 @@
+name: Validate
+
+on: pull_request
+
+jobs:
+  unit-test:
+    name: Unit test 🧪
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node 🛠
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+
+      - name: Install dependencies 📦
+        run: yarn install --frozen-lockfile
+
+      - name: Run unit tests on affected packages 🔄
+        run: yarn nx affected:test --base=origin/$GITHUB_BASE_REF --head=origin/$GITHUB_BASE_REF
+        env:
+          CI: true
