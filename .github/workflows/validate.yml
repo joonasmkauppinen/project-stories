@@ -7,6 +7,8 @@ jobs:
     name: Unit test 🧪
     runs-on: ubuntu-latest
     steps:
+      # If 'fetch-depth' is not set to 0 NX can't compare the changes.
+      # Fix source: https://stackoverflow.com/a/67201604/13266248
       - name: Checkout 🛎
         uses: actions/checkout@v2
         with:
