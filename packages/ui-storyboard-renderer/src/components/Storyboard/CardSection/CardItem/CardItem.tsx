@@ -93,18 +93,6 @@ const TextLayer = ({ cardId, layerId, actions, layer }: TextLayerProps) => {
     [actions, cardId, layer.state, layerId]
   );
 
-  // useEffect(() => {
-  //   if (elementRef.current) {
-  //     const x = elementRef.current.offsetLeft;
-  //     const y = elementRef.current.offsetTop;
-  //     actions.updateElementScreenPosition({
-  //       parentId: cardId,
-  //       id: layerId,
-  //       position: { x, y },
-  //     });
-  //   }
-  // }, [actions, cardId, layerId]);
-
   return (
     <StyledH1
       id={layerId}
