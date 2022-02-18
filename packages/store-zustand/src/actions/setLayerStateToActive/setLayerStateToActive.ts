@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { useStore } from '../store/zustandStore';
-import { AppState, ID } from '../types';
+import { useStore } from '../../store/zustandStore';
+import { AppState, ID } from '../../types';
 
 export interface SetLayerStateToActivePayload {
   cardId: ID;
@@ -43,6 +43,10 @@ export const setLayerStateToActive: SetLayerStateToActive = ({
 
       state.selectedCards.forEach(({ cardId }) => {
         draft.cards[cardId].state = 'idle';
+        Object.keys(state.cards[cardId].layers).forEach((layerId) => {
+          draft.cards[cardId].layers[layerId].metaState.parentCardActive =
+            false;
+        });
       });
       draft.selectedCards = [];
 

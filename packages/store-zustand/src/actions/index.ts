@@ -9,7 +9,7 @@ export * from './setCardStateToHovered/setCardStateToHovered';
 export * from './setCardStateToIdle/setCardStateToIdle';
 export * from './setIsDraggingToFalse/setIsDraggingToFalse';
 export * from './setIsDraggingToTrue/setIsDraggingToTrue';
-export * from './setLayerStateToActive';
+export * from './setLayerStateToActive/setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';
 export * from './setToolToMove/setToolToMove';
