@@ -13,5 +13,5 @@ export * from './setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';
 export * from './setToolToMove/setToolToMove';
-export * from './setToolToText';
+export * from './setToolToText/setToolToText';
 export * from './updateElementScreenPosition';
