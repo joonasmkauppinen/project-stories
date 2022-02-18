@@ -12,6 +12,6 @@ export * from './setIsDraggingToTrue/setIsDraggingToTrue';
 export * from './setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';
-export * from './setToolToMove';
+export * from './setToolToMove/setToolToMove';
 export * from './setToolToText';
 export * from './updateElementScreenPosition';
