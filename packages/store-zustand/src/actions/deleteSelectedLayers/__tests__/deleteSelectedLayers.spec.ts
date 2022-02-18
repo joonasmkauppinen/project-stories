@@ -1,7 +1,6 @@
 import { useStore } from '../../../store/zustandStore';
 import { AppState, TestCardId, TestLayerId } from '../../../types';
-
-import { defaultInitialState, generateCardsSlice } from '../../__test-utils__';
+import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 
 import { deleteSelectedLayers } from '../deleteSelectedLayers';
 

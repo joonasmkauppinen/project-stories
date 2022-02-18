@@ -1,7 +1,6 @@
 import { AppState } from '../../../types';
 import { useStore } from '../../../store/zustandStore';
-
-import { defaultInitialState } from '../../__test-utils__';
+import { defaultInitialState } from '../../../test-utils';
 
 import { setIsDraggingToTrue } from '../setIsDraggingToTrue';
 

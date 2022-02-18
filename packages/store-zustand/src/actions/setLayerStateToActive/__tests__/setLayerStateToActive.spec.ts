@@ -7,8 +7,7 @@ import {
   TestLayerId,
 } from '../../../types';
 import { useStore } from '../../../store/zustandStore';
-
-import { defaultInitialState, generateCardsSlice } from '../../__test-utils__';
+import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 
 import { setLayerStateToActive } from '../setLayerStateToActive';
 

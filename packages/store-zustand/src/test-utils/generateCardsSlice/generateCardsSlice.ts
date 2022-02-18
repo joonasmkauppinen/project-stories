@@ -1,5 +1,5 @@
-import { generateCard, generateLayer } from '../../../generators';
-import { Card, Layer, TestCardId, TestLayerId } from '../../../types';
+import { generateCard, generateLayer } from '../../generators';
+import { Card, Layer, TestCardId, TestLayerId } from '../../types';
 
 interface TestLayer extends Partial<Omit<Layer, 'sortOrderIndex'>> {
   id: TestLayerId;

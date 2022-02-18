@@ -1,4 +1,4 @@
-import { AppState } from '../../../types/appState';
+import { AppState } from '../../types/appState';
 
 export const defaultInitialState: AppState = {
   cards: {},

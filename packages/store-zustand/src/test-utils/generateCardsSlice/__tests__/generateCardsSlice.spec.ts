@@ -1,4 +1,4 @@
-import { TestCardId, TestLayerId } from '../../../../types';
+import { TestCardId, TestLayerId } from '../../../types';
 
 import { generateCardsSlice } from '../generateCardsSlice';
 

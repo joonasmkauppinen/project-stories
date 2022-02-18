@@ -1,8 +1,6 @@
 import { AppState, TestCardId } from '../../../types';
-import { defaultInitialState } from '../../__test-utils__/defaultInitialState/defaultInitialState';
 import { useStore } from '../../../store/zustandStore';
-
-import { generateCardsSlice } from '../../__test-utils__';
+import { generateCardsSlice, defaultInitialState } from '../../../test-utils';
 
 import { addNewCard } from '../addNewCard';
 
