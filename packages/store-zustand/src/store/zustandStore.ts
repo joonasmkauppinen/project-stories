@@ -19,7 +19,7 @@ import {
   setLayerStateToIdle,
   setToolToMove,
   setToolToText,
-  updateElementScreenPosition,
+  updateCardScreenPosition,
 } from '../actions';
 import { generateCard } from '../generators';
 
@@ -60,5 +60,5 @@ export const actions: LayerActions = {
   setIsDraggingToTrue,
   setToolToMove,
   setToolToText,
-  updateElementScreenPosition,
+  updateCardScreenPosition,
 };
