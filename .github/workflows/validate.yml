@@ -7,13 +7,8 @@ jobs:
     name: Unit test 🧪
     runs-on: ubuntu-latest
     steps:
-      # Fix for NX error "fatal: No such ref: 'origin/main'"
-      # https://github.com/nrwl/nx/issues/2170#issuecomment-609786474
       - name: Checkout 🛎
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
 
       - name: Setup node 🛠
         uses: actions/setup-node@v2
@@ -21,12 +16,10 @@ jobs:
           node-version: '16'
           cache: yarn
 
-      - run: git fetch --no-tags --prune --depth=5 origin/main
-
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
 
       - name: Run unit tests on affected packages 🔄
-        run: yarn nx affected:test --base=origin/$GITHUB_BASE_REF
+        run: yarn nx affected:test --base=origin/$GITHUB_BASE_REF --head=origin/$GITHUB_BASE_REF
         env:
           CI: true
