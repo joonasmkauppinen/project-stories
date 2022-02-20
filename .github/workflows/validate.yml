@@ -24,6 +24,6 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run unit tests on affected packages 🔄
-        run: yarn nx affected:test --base=origin/$GITHUB_BASE_REF --head=origin/$GITHUB_BASE_REF
+        run: yarn nx affected:test
         env:
           CI: true
