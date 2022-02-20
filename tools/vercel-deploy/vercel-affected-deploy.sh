@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Name of the app to check. Change this to your application name!
 APP=project-stories-demo-nextjs
