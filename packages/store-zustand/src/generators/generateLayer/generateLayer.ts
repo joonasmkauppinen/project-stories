@@ -56,7 +56,7 @@ export const generateLayer: GenerateLayer = ({
     size: {
       // TODO: Get card width from constants.
       width: width || 360 - marginHorizontal * 2,
-      height: height || 40,
+      height: height || NaN,
     },
     sortOrderIndex,
     state: 'idle',
