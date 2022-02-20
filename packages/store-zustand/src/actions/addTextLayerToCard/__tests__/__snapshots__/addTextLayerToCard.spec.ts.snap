@@ -21,7 +21,7 @@ Object {
             "y": NaN,
           },
           "size": Object {
-            "height": 40,
+            "height": NaN,
             "width": 320,
           },
           "sortOrderIndex": 0,

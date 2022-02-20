@@ -1,7 +1,7 @@
 export * from './addNewCard/addNewCard';
 export * from './addTextLayerToCard/addTextLayerToCard';
-export * from './deleteSelectedLayers/deleteSelectedLayers';
 export * from './deleteSelectedCards/deleteSelectedCards';
+export * from './deleteSelectedLayers/deleteSelectedLayers';
 export * from './deselectAll/deselectAll';
 export * from './onDragSelection/onDragSelection';
 export * from './setCardStateToActive/setCardStateToActive';
@@ -9,6 +9,7 @@ export * from './setCardStateToHovered/setCardStateToHovered';
 export * from './setCardStateToIdle/setCardStateToIdle';
 export * from './setIsDraggingToFalse/setIsDraggingToFalse';
 export * from './setIsDraggingToTrue/setIsDraggingToTrue';
+export * from './setLayerHeight/setLayerHeight';
 export * from './setLayerStateToActive/setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';

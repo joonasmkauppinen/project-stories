@@ -1,8 +1,8 @@
 import {
   AddNewCard,
   AddTextLayerToCard,
-  DeleteSelectedLayers,
   DeleteSelectedCards,
+  DeleteSelectedLayers,
   DeselectAll,
   OnDragSelection,
   SetCardStateToActive,
@@ -10,6 +10,7 @@ import {
   SetCardStateToIdle,
   SetIsDraggingToFalse,
   SetIsDraggingToTrue,
+  SetLayerHeight,
   SetLayerStateToActive,
   SetLayerStateToHovered,
   SetLayerStateToIdle,
@@ -30,6 +31,7 @@ export interface LayerActions {
   setCardStateToIdle: SetCardStateToIdle;
   setIsDraggingToFalse: SetIsDraggingToFalse;
   setIsDraggingToTrue: SetIsDraggingToTrue;
+  setLayerHeight: SetLayerHeight;
   setLayerStateToActive: SetLayerStateToActive;
   setLayerStateToHovered: SetLayerStateToHovered;
   setLayerStateToIdle: SetLayerStateToIdle;
