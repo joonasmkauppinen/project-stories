@@ -1,11 +1,12 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "unused-imports"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
+        "unused-imports/no-unused-imports": "error",
         "import/no-default-export": "error",
         "react-hooks/exhaustive-deps": "error",
         "@nrwl/nx/enforce-module-boundaries": [
