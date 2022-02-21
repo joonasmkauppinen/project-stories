@@ -5,6 +5,8 @@ import {
   DeleteSelectedLayers,
   DeselectAll,
   OnDragSelection,
+  ResizeLayerFromSideLeft,
+  ResizeLayerFromSideRight,
   SetCardStateToActive,
   SetCardStateToHovered,
   SetCardStateToIdle,
@@ -26,6 +28,8 @@ export interface LayerActions {
   deleteSelectedCards: DeleteSelectedCards;
   deselectAll: DeselectAll;
   onDragSelection: OnDragSelection;
+  resizeLayerFromSideLeft: ResizeLayerFromSideLeft;
+  resizeLayerFromSideRight: ResizeLayerFromSideRight;
   setCardStateToActive: SetCardStateToActive;
   setCardStateToHovered: SetCardStateToHovered;
   setCardStateToIdle: SetCardStateToIdle;
