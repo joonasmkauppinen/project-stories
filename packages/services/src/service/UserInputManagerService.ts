@@ -2,13 +2,27 @@ import {
   AppState,
   LayerActions,
 } from '@joonasmkauppinen/project-stories/store-zustand';
+import { StoryboardDataValues } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 import { GetState } from 'zustand';
+
+type InteractionType =
+  | null
+  | 'move'
+  | 'resize:corner-bottom-left'
+  | 'resize:corner-bottom-right'
+  | 'resize:corner-top-left'
+  | 'resize:corner-top-right'
+  | 'resize:side-bottom'
+  | 'resize:side-left'
+  | 'resize:side-right'
+  | 'resize:side-top';
 
 export class UserInputManagerService {
   private isMouseDown = false;
   private isDragging = false;
   private lastUpdateCall: number | null = null;
   private previousMousePosition = { x: NaN, y: NaN };
+  private interactionType: InteractionType = null;
   private actions: LayerActions;
   private getState: () => AppState;
 
@@ -82,18 +96,29 @@ export class UserInputManagerService {
   }
 
   private update(clientPosition: { x: number; y: number }) {
-    const movement = {
-      movementX: clientPosition.x - this.previousMousePosition.x,
-      movementY: clientPosition.y - this.previousMousePosition.y,
-    };
+    const movementX = clientPosition.x - this.previousMousePosition.x;
+    const movementY = clientPosition.y - this.previousMousePosition.y;
+    const movement = { movementX, movementY };
 
-    this.actions.onDragSelection(movement);
+    switch (this.interactionType) {
+      case 'move':
+        this.actions.onDragSelection(movement);
+        break;
+
+      case 'resize:side-right':
+        this.actions.resizeLayerFromSideRight({ movementX });
+        break;
+
+      case 'resize:side-left':
+        this.actions.resizeLayerFromSideLeft({ movementX });
+        break;
+    }
 
     this.previousMousePosition = clientPosition;
   }
 
   private handleMouseMove(event: MouseEvent) {
-    if (this.isDragging === false) {
+    if (this.interactionType === 'move' && this.isDragging === false) {
       this.isDragging = true;
       this.actions.setIsDraggingToTrue();
     }
@@ -114,18 +139,38 @@ export class UserInputManagerService {
     document.addEventListener('mousemove', this.handleMouseMove);
     document.addEventListener('mouseup', this.handleMouseUp);
 
+    const eventTarget = event.target as HTMLElement;
+    const { contextArea, elementType } =
+      eventTarget.dataset as unknown as StoryboardDataValues;
+
     this.isMouseDown = true;
 
-    if ((event.target as HTMLElement).dataset['contextArea'] !== 'storyboard') {
+    if (contextArea !== 'storyboard') {
       console.log('Clicked outside of storyboard context.');
       return;
     }
 
     if (
-      (event.target as HTMLElement).dataset['elementType'] === 'layer' ||
-      (event.target as HTMLElement).dataset['elementType'] === 'selection'
+      elementType === 'layer' ||
+      elementType === 'selection' ||
+      elementType === 'selection:handle-side-right' ||
+      elementType === 'selection:handle-side-left'
     ) {
       console.log('Clicked on layer or selection.');
+
+      switch (elementType) {
+        case 'selection:handle-side-left':
+          this.interactionType = 'resize:side-left';
+          break;
+
+        case 'selection:handle-side-right':
+          this.interactionType = 'resize:side-right';
+          break;
+
+        default:
+          this.interactionType = 'move';
+      }
+
       this.previousMousePosition = {
         x: event.clientX,
         y: event.clientY,
@@ -165,6 +210,10 @@ export class UserInputManagerService {
 
   private handleMouseUp() {
     this.isMouseDown = false;
+
+    if (this.interactionType !== null) {
+      this.interactionType = null;
+    }
 
     if (this.isDragging === true) {
       this.isDragging = false;
