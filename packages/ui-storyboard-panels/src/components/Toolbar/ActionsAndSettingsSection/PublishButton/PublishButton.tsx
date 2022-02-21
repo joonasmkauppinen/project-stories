@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { t } from '@internal/i18n';
-import { buttonHoverStyle } from '../../styles/buttonHoverStyle';
 
 const StyledButton = styled.button({
   all: 'unset',

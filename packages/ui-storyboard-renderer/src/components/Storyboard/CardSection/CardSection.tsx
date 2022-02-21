@@ -1,10 +1,12 @@
+import { MouseEventHandler, useCallback } from 'react';
 import styled from '@emotion/styled';
 import {
   Card,
   ID,
   LayerActionsProp,
 } from '@joonasmkauppinen/project-stories/store-zustand';
-import { MouseEventHandler, useCallback } from 'react';
+
+import { StoryboardDataAttributes } from '../../../types';
 
 import { CardItem } from './CardItem/CardItem';
 
@@ -21,7 +23,7 @@ const Container = styled.div({
 });
 
 // TODO: Don't use magical number for the positioning.
-const CardName = styled.p({
+const CardName = styled.p<StoryboardDataAttributes>({
   color: 'white',
   size: 16,
   margin: 0,

@@ -5,4 +5,4 @@ export * from './components';
 export * from './constants';
 
 // TYPES
-// export * from './types';
+export * from './types';
