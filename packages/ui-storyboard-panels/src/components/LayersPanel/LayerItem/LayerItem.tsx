@@ -1,4 +1,4 @@
-import { css, CSSObject } from '@emotion/react';
+import { CSSObject } from '@emotion/react';
 import styled from '@emotion/styled';
 import { LayerState } from '@joonasmkauppinen/project-stories/store-zustand';
 
