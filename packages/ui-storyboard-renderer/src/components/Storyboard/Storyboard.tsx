@@ -78,7 +78,6 @@ export const Storyboard = ({
       </StyledStoryboardItemsContainerSection>
       <Selection
         cards={cards}
-        actions={actions}
         selectedLayers={selectedLayers}
         isDragging={isDragging}
       />

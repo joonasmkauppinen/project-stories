@@ -1,27 +1,23 @@
 import styled from '@emotion/styled';
 import {
   Cards,
-  LayerActionsProp,
   SelectedLayer,
-  Size,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
-interface SelectionProps extends LayerActionsProp {
+import { StoryboardDataAttributes } from '../../types';
+
+import { HorizontalHandles } from './HorizontalHandles/HorizontalHandles';
+
+interface SelectionProps {
   selectedLayers: SelectedLayer[];
   cards: Cards;
   isDragging: boolean;
 }
 
-interface StyledSelectionDivProps {
-  size: Size;
-}
-const StyledSelectionDiv = styled.div<StyledSelectionDivProps>(({ size }) => ({
+const StyledSelectionDiv = styled.div<StoryboardDataAttributes>({
   position: 'absolute',
-  width: size.width,
-  height: size.height,
-  boxShadow: '#1100ff 0px 0px 0px 2px',
-  // pointerEvents: 'none',
-}));
+  outline: '1px solid #004DE3',
+});
 
 export const Selection = ({
   selectedLayers,
@@ -61,8 +57,14 @@ export const Selection = ({
     <StyledSelectionDiv
       data-context-area="storyboard"
       data-element-type="selection"
-      style={{ top: position.y, left: position.x }}
-      size={size}
-    />
+      style={{
+        top: position.y,
+        left: position.x,
+        width: size.width,
+        height: size.height,
+      }}
+    >
+      <HorizontalHandles size={size} />
+    </StyledSelectionDiv>
   );
 };

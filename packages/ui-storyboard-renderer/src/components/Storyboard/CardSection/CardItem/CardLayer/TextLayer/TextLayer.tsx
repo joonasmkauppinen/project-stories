@@ -3,21 +3,17 @@ import {
   ID,
   Layer,
   LayerActionsProp,
-  Size,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 
 interface StyledH1Props {
   hover: boolean;
-  size: Size;
 }
-const StyledH1 = styled.h1<StyledH1Props>(({ hover, size }) => ({
+const StyledH1 = styled.h1<StyledH1Props>(({ hover }) => ({
   margin: 0,
   padding: 0,
   position: 'absolute',
-  height: size.height,
-  width: size.width,
-  boxShadow: hover ? '#00aeff 0px 0px 0px 1px' : 'none',
+  outline: hover ? '2px solid #00aeff' : 'none',
   cursor: 'default',
   userSelect: 'none',
 }));
@@ -80,9 +76,12 @@ export const TextLayer = ({
       data-layer-id={layerId}
       data-element-type="layer"
       data-context-area="storyboard"
-      style={{ top: layer.position.y, left: layer.position.x }}
+      style={{
+        top: layer.position.y,
+        left: layer.position.x,
+        width: layer.size.width,
+      }}
       ref={elementRef}
-      size={layer.size}
       hover={layer.state === 'hovered'}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
