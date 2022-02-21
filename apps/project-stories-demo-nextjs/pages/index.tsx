@@ -61,7 +61,7 @@ export function Index() {
     new UserInputManagerService(actions, useStore.getState);
   }, []);
 
-  // TODO: Refactor hook into library.
+  // TODO: Refactor logic into UserInputManagerService.
   useEffect(() => {
     switch (currentTool) {
       case 'hand':
