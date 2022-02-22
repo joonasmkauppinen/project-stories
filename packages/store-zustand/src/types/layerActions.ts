@@ -18,6 +18,7 @@ import {
   SetLayerStateToActive,
   SetLayerStateToHovered,
   SetLayerStateToIdle,
+  SetTextLayerValue,
   SetToolToMove,
   SetToolToText,
   UpdateCardScreenPosition,
@@ -43,6 +44,7 @@ export interface LayerActions {
   setLayerStateToActive: SetLayerStateToActive;
   setLayerStateToHovered: SetLayerStateToHovered;
   setLayerStateToIdle: SetLayerStateToIdle;
+  setTextLayerValue: SetTextLayerValue;
   setToolToMove: SetToolToMove;
   setToolToText: SetToolToText;
   updateCardScreenPosition: UpdateCardScreenPosition;

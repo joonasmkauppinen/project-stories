@@ -17,6 +17,7 @@ export * from './setLayerHeight/setLayerHeight';
 export * from './setLayerStateToActive/setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';
 export * from './setLayerStateToIdle/setLayerStateToIdle';
+export * from './setTextLayerValue/setTextLayerValue';
 export * from './setToolToMove/setToolToMove';
 export * from './setToolToText/setToolToText';
 export * from './updateCardScreenPosition/updateCardScreenPosition';
