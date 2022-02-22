@@ -4,6 +4,7 @@ import {
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { StoryboardDataValues } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 import { GetState } from 'zustand';
+import { KeyboardShortcutController } from '../controllers';
 
 type InteractionType =
   | null
@@ -18,20 +19,21 @@ type InteractionType =
   | 'resize:side-top';
 
 export class UserInputManagerService {
-  private isMouseDown = false;
-  private isDragging = false;
-  private lastUpdateCall: number | null = null;
-  private previousMousePosition = { x: NaN, y: NaN };
-  private interactionType: InteractionType = null;
   private actions: LayerActions;
   private getState: () => AppState;
+  private interactionType: InteractionType = null;
+  private isDragging = false;
+  private isMouseDown = false;
+  private lastUpdateCall: number | null = null;
+  private previousMousePosition = { x: NaN, y: NaN };
+
+  private keyboardShortcutControllerInstance: KeyboardShortcutController;
 
   constructor(actions: LayerActions, getState: GetState<AppState>) {
     this.actions = actions;
     this.getState = getState;
 
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
-    this.handleKeydown = this.handleKeydown.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
@@ -39,58 +41,11 @@ export class UserInputManagerService {
 
     this.addMouseDownListener();
     this.addDoubleClickListener();
-    this.addKeyDownListener();
-  }
 
-  private addKeyDownListener() {
-    document.addEventListener('keydown', this.handleKeydown);
-  }
-
-  private handleKeydown(event: KeyboardEvent) {
-    if (event.repeat) {
-      return;
-    }
-
-    if (this.getState().userInteraction.isEditingText) {
-      console.log('In text edit mode. Not listening for key strokes.');
-      return;
-    }
-
-    console.log('Keydown: ', event.code);
-
-    switch (event.code) {
-      case 'Backspace': {
-        if (this.getState().selectedCards.length > 0) {
-          console.log('Deleting selected cards...');
-          this.actions.deleteSelectedCards();
-        }
-
-        if (this.getState().selectedLayers.length > 0) {
-          console.log('Deleting selected layers...');
-          this.actions.deleteSelectedLayers();
-        }
-        break;
-      }
-
-      // Move tool shortcut
-      case 'KeyV':
-        this.actions.setToolToMove();
-        break;
-
-      // Text tool shortcut
-      case 'KeyT':
-        this.actions.setToolToText();
-        break;
-
-      // Add new card item shortcut
-      case 'KeyN': {
-        if (event.ctrlKey) {
-          event.preventDefault();
-          this.actions.addNewCard();
-        }
-        break;
-      }
-    }
+    this.keyboardShortcutControllerInstance = new KeyboardShortcutController(
+      actions,
+      getState
+    );
   }
 
   private addMouseDownListener() {
