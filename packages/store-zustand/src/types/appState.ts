@@ -117,10 +117,15 @@ export interface SelectedCard {
 
 export type StoryboardTool = 'move' | 'text' | 'hand';
 
+export interface UserInteraction {
+  isDragging: boolean;
+  isEditingText: boolean;
+}
+
 export interface AppState {
   cards: Cards;
   currentTool: StoryboardTool;
   selectedLayers: SelectedLayer[];
   selectedCards: SelectedCard[];
-  isDragging: boolean;
+  userInteraction: UserInteraction;
 }

@@ -11,6 +11,8 @@ export * from './setCardStateToHovered/setCardStateToHovered';
 export * from './setCardStateToIdle/setCardStateToIdle';
 export * from './setIsDraggingToFalse/setIsDraggingToFalse';
 export * from './setIsDraggingToTrue/setIsDraggingToTrue';
+export * from './setIsEditingTextToFalse/setIsEditingTextToFalse';
+export * from './setIsEditingTextToTrue/setIsEditingTextToTrue';
 export * from './setLayerHeight/setLayerHeight';
 export * from './setLayerStateToActive/setLayerStateToActive';
 export * from './setLayerStateToHovered/setLayerStateToHovered';

@@ -12,6 +12,8 @@ import {
   SetCardStateToIdle,
   SetIsDraggingToFalse,
   SetIsDraggingToTrue,
+  SetIsEditingTextToFalse,
+  SetIsEditingTextToTrue,
   SetLayerHeight,
   SetLayerStateToActive,
   SetLayerStateToHovered,
@@ -35,6 +37,8 @@ export interface LayerActions {
   setCardStateToIdle: SetCardStateToIdle;
   setIsDraggingToFalse: SetIsDraggingToFalse;
   setIsDraggingToTrue: SetIsDraggingToTrue;
+  setIsEditingTextToFalse: SetIsEditingTextToFalse;
+  setIsEditingTextToTrue: SetIsEditingTextToTrue;
   setLayerHeight: SetLayerHeight;
   setLayerStateToActive: SetLayerStateToActive;
   setLayerStateToHovered: SetLayerStateToHovered;
