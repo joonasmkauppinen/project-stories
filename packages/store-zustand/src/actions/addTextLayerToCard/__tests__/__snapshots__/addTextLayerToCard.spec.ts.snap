@@ -27,7 +27,7 @@ Object {
           "sortOrderIndex": 0,
           "state": "idle",
           "type": "text",
-          "value": "Hello World",
+          "value": "Text Layer",
         },
       },
       "name": "Card 1",
@@ -40,8 +40,11 @@ Object {
     },
   },
   "currentTool": "move",
-  "isDragging": false,
   "selectedCards": Array [],
   "selectedLayers": Array [],
+  "userInteraction": Object {
+    "isDragging": false,
+    "isEditingText": false,
+  },
 }
 `;

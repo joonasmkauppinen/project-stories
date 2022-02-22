@@ -18,6 +18,7 @@ import {
   SetLayerStateToActive,
   SetLayerStateToHovered,
   SetLayerStateToIdle,
+  SetTextLayerStateToActiveEditingText,
   SetTextLayerValue,
   SetToolToMove,
   SetToolToText,
@@ -44,6 +45,7 @@ export interface LayerActions {
   setLayerStateToActive: SetLayerStateToActive;
   setLayerStateToHovered: SetLayerStateToHovered;
   setLayerStateToIdle: SetLayerStateToIdle;
+  setTextLayerStateToActiveEditingText: SetTextLayerStateToActiveEditingText;
   setTextLayerValue: SetTextLayerValue;
   setToolToMove: SetToolToMove;
   setToolToText: SetToolToText;
