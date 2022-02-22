@@ -10,6 +10,7 @@ interface CardLayerProps extends LayerActionsProp {
   cardId: ID;
   layer: Layer;
   layerId: ID;
+  isEditingText: boolean;
 }
 
 export const CardLayer = ({
@@ -17,6 +18,7 @@ export const CardLayer = ({
   cardId,
   layer,
   layerId,
+  isEditingText,
 }: CardLayerProps) => {
   switch (layer.type) {
     case 'text':
@@ -26,6 +28,7 @@ export const CardLayer = ({
           cardId={cardId}
           layer={layer}
           layerId={layerId}
+          isEditingText={isEditingText}
         />
       );
 

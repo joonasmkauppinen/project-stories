@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import {
   Cards,
   SelectedLayer,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { StoryboardDataAttributes } from '../../types';
@@ -11,20 +12,25 @@ import { HorizontalHandles } from './HorizontalHandles/HorizontalHandles';
 interface SelectionProps {
   selectedLayers: SelectedLayer[];
   cards: Cards;
-  isDragging: boolean;
+  userInteraction: UserInteraction;
 }
 
 const StyledSelectionDiv = styled.div<StoryboardDataAttributes>({
   position: 'absolute',
   outline: '1px solid #004DE3',
+  pointerEvents: 'none',
 });
 
 export const Selection = ({
   selectedLayers,
   cards,
-  isDragging,
+  userInteraction,
 }: SelectionProps) => {
-  if (isDragging || selectedLayers.length === 0) {
+  if (
+    userInteraction.isDragging ||
+    userInteraction.isEditingText ||
+    selectedLayers.length === 0
+  ) {
     return null;
   }
 

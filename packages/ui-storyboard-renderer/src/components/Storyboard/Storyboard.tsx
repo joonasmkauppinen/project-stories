@@ -69,6 +69,7 @@ export const Storyboard = ({
       >
         {Object.entries(cards).map(([cardId, card]) => (
           <CardSection
+            isEditingText={userInteraction.isEditingText}
             cardId={cardId}
             key={`card-section-${cardId}`}
             card={card}
@@ -80,7 +81,7 @@ export const Storyboard = ({
       <Selection
         cards={cards}
         selectedLayers={selectedLayers}
-        isDragging={userInteraction.isDragging}
+        userInteraction={userInteraction}
       />
     </StyledStoryboard>
   );

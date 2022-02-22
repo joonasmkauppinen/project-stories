@@ -12,7 +12,7 @@ export type DataElementType =
   | 'selection:handle-corner-bottom-right'
   | 'card'
   | 'card-name'
-  | 'layer';
+  | 'layer:text';
 
 export interface StoryboardDataAttributes {
   'data-context-area': DataContextArea;
