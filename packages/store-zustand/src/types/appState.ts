@@ -1,6 +1,4 @@
-export type CardState = 'idle' | 'hovered' | 'active';
-
-export type LayerState = 'idle' | 'hovered' | 'active';
+export type BaseElementState = 'idle' | 'hovered' | 'active';
 
 export interface LayerMetaState {
   parentCardActive: boolean;
@@ -69,15 +67,17 @@ export interface BaseLayer {
   position: Coordinate;
   screenPosition: Coordinate;
   size: Size;
-  state: LayerState;
   metaState: LayerMetaState;
   name: string;
-  type?: LayerType;
+  type: LayerType;
 }
+
+export type TextLayerState = BaseElementState | 'active:editing-text';
 
 export interface TextLayer extends BaseLayer {
   type: 'text';
   value: string;
+  state: TextLayerState;
 }
 
 export type Layer = TextLayer;
@@ -93,7 +93,7 @@ export interface Card {
   duration: number;
   layers: Layers;
   name: string;
-  state: CardState;
+  state: BaseElementState;
 }
 
 export interface Cards {
@@ -117,10 +117,15 @@ export interface SelectedCard {
 
 export type StoryboardTool = 'move' | 'text' | 'hand';
 
+export interface UserInteraction {
+  isDragging: boolean;
+  isEditingText: boolean;
+}
+
 export interface AppState {
   cards: Cards;
   currentTool: StoryboardTool;
   selectedLayers: SelectedLayer[];
   selectedCards: SelectedCard[];
-  isDragging: boolean;
+  userInteraction: UserInteraction;
 }

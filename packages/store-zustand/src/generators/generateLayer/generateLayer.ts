@@ -61,7 +61,7 @@ export const generateLayer: GenerateLayer = ({
     sortOrderIndex,
     state: 'idle',
     type: 'text',
-    value: value || 'Hello World',
+    value: value || 'Text Layer',
     metaState: {
       parentCardActive: false,
     },

@@ -8,13 +8,16 @@ describe('Action - setIsDraggingToFalse()', () => {
   test('Sets isDragging to false correctly', () => {
     const stateWithIsDraggingTrue: AppState = {
       ...defaultInitialState,
-      isDragging: true,
+      userInteraction: {
+        isDragging: true,
+        isEditingText: false,
+      },
     };
 
     useStore.setState(() => stateWithIsDraggingTrue);
 
     setIsDraggingToFalse();
 
-    expect(useStore.getState().isDragging).toBe(false);
+    expect(useStore.getState().userInteraction.isDragging).toBe(false);
   });
 });

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import {
-  CardState,
+  BaseElementState,
   ID,
   LayerActionsProp,
   Layers,
@@ -17,11 +17,12 @@ export interface CardItemProps
   extends LayerActionsProp,
     React.HTMLAttributes<HTMLDivElement> {
   layers: Layers;
-  state: CardState;
+  state: BaseElementState;
   cardId: ID;
+  isEditingText: boolean;
 }
 
-const setBoxShadowByState = (state: CardState) => {
+const setBoxShadowByState = (state: BaseElementState) => {
   if (state === 'active') {
     return 'fuchsia 0px 0px 0px 2px';
   }
@@ -33,7 +34,7 @@ const setBoxShadowByState = (state: CardState) => {
   return '#424342 0px 0px 0px 0px';
 };
 
-const StyledCardItem = styled.div<{ state: CardState }>(({ state }) => ({
+const StyledCardItem = styled.div<{ state: BaseElementState }>(({ state }) => ({
   backgroundColor: 'white',
   width: CARD_ITEM_WIDTH,
   height: CARD_ITEM_HEIGHT,
@@ -49,6 +50,7 @@ export const CardItem = ({
   cardId,
   actions,
   state,
+  isEditingText,
   ...divElementAttrs
 }: CardItemProps) => {
   const cardItemRef = useRef<HTMLDivElement>(null);
@@ -78,6 +80,7 @@ export const CardItem = ({
     >
       {Object.entries(layers).map(([layerId, layer]) => (
         <CardLayer
+          isEditingText={isEditingText}
           actions={actions}
           cardId={cardId}
           key={`layer-${layerId}`}

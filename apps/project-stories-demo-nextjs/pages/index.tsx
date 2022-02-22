@@ -11,7 +11,7 @@ import {
   actions,
   selectCards,
   selectCurrentTool,
-  selectIsDragging,
+  selectUserInteraction,
   selectSelectedLayers,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
@@ -55,7 +55,7 @@ export function Index() {
   const cards = useStore(selectCards);
   const selectedLayers = useStore(selectSelectedLayers);
   const currentTool = useStore(selectCurrentTool);
-  const isDragging = useStore(selectIsDragging);
+  const userInteraction = useStore(selectUserInteraction);
 
   useEffect(() => {
     new UserInputManagerService(actions, useStore.getState);
@@ -87,7 +87,7 @@ export function Index() {
           actions={actions}
           cards={cards}
           selectedLayers={selectedLayers}
-          isDragging={isDragging}
+          userInteraction={userInteraction}
         />
         <Toolbar actions={actions} currentTool={currentTool} />
         <SamplePanel>Options panel coming soon.</SamplePanel>

@@ -3,6 +3,7 @@ import {
   Cards,
   LayerActionsProp,
   SelectedLayer,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import {
@@ -19,7 +20,7 @@ import { useCallback, useMemo } from 'react';
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
   selectedLayers: SelectedLayer[];
-  isDragging: boolean;
+  userInteraction: UserInteraction;
 }
 
 const StyledStoryboard = styled.div({
@@ -41,7 +42,7 @@ export const Storyboard = ({
   cards,
   actions,
   selectedLayers,
-  isDragging,
+  userInteraction,
 }: StoryboardProps) => {
   // Padding needed to bring the first card to the middle of the screen.
   const PADDING_HORIZONTAL = useMemo(() => {
@@ -68,6 +69,7 @@ export const Storyboard = ({
       >
         {Object.entries(cards).map(([cardId, card]) => (
           <CardSection
+            isEditingText={userInteraction.isEditingText}
             cardId={cardId}
             key={`card-section-${cardId}`}
             card={card}
@@ -79,7 +81,7 @@ export const Storyboard = ({
       <Selection
         cards={cards}
         selectedLayers={selectedLayers}
-        isDragging={isDragging}
+        userInteraction={userInteraction}
       />
     </StyledStoryboard>
   );

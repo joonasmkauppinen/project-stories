@@ -13,6 +13,7 @@ import { CardItem } from './CardItem/CardItem';
 export interface CardItemProps extends LayerActionsProp {
   cardId: ID;
   card: Card;
+  isEditingText: boolean;
 }
 
 const Container = styled.div({
@@ -33,7 +34,12 @@ const CardName = styled.p<StoryboardDataAttributes>({
   top: -30,
 });
 
-export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
+export const CardSection = ({
+  card,
+  actions,
+  cardId,
+  isEditingText,
+}: CardItemProps) => {
   const { layers, name, state } = card;
 
   const handleClick: MouseEventHandler = useCallback(
@@ -53,6 +59,7 @@ export const CardSection = ({ card, actions, cardId }: CardItemProps) => {
         {name}
       </CardName>
       <CardItem
+        isEditingText={isEditingText}
         state={state}
         actions={actions}
         cardId={cardId}

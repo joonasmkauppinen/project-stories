@@ -16,10 +16,14 @@ import {
   setCardStateToIdle,
   setIsDraggingToFalse,
   setIsDraggingToTrue,
+  setIsEditingTextToFalse,
+  setIsEditingTextToTrue,
   setLayerHeight,
   setLayerStateToActive,
   setLayerStateToHovered,
   setLayerStateToIdle,
+  setTextLayerStateToActiveEditingText,
+  setTextLayerValue,
   setToolToMove,
   setToolToText,
   updateCardScreenPosition,
@@ -35,14 +39,17 @@ export const initialState: AppState = {
   currentTool: 'move',
   selectedCards: [],
   selectedLayers: [],
-  isDragging: false,
+  userInteraction: {
+    isDragging: false,
+    isEditingText: false,
+  },
 };
 
 export const useStore = create<AppState>(devtools((_) => initialState));
 
 export const selectCards = (state: AppState) => state.cards;
 export const selectCurrentTool = (state: AppState) => state.currentTool;
-export const selectIsDragging = (state: AppState) => state.isDragging;
+export const selectUserInteraction = (state: AppState) => state.userInteraction;
 export const selectSelectedCards = (state: AppState) => state.selectedCards;
 export const selectSelectedLayers = (state: AppState) => state.selectedLayers;
 
@@ -60,10 +67,14 @@ export const actions: LayerActions = {
   setCardStateToIdle,
   setIsDraggingToFalse,
   setIsDraggingToTrue,
+  setIsEditingTextToFalse,
+  setIsEditingTextToTrue,
   setLayerHeight,
   setLayerStateToActive,
   setLayerStateToHovered,
   setLayerStateToIdle,
+  setTextLayerStateToActiveEditingText,
+  setTextLayerValue,
   setToolToMove,
   setToolToText,
   updateCardScreenPosition,

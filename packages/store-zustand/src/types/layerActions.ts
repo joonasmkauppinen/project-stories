@@ -12,10 +12,14 @@ import {
   SetCardStateToIdle,
   SetIsDraggingToFalse,
   SetIsDraggingToTrue,
+  SetIsEditingTextToFalse,
+  SetIsEditingTextToTrue,
   SetLayerHeight,
   SetLayerStateToActive,
   SetLayerStateToHovered,
   SetLayerStateToIdle,
+  SetTextLayerStateToActiveEditingText,
+  SetTextLayerValue,
   SetToolToMove,
   SetToolToText,
   UpdateCardScreenPosition,
@@ -35,10 +39,14 @@ export interface LayerActions {
   setCardStateToIdle: SetCardStateToIdle;
   setIsDraggingToFalse: SetIsDraggingToFalse;
   setIsDraggingToTrue: SetIsDraggingToTrue;
+  setIsEditingTextToFalse: SetIsEditingTextToFalse;
+  setIsEditingTextToTrue: SetIsEditingTextToTrue;
   setLayerHeight: SetLayerHeight;
   setLayerStateToActive: SetLayerStateToActive;
   setLayerStateToHovered: SetLayerStateToHovered;
   setLayerStateToIdle: SetLayerStateToIdle;
+  setTextLayerStateToActiveEditingText: SetTextLayerStateToActiveEditingText;
+  setTextLayerValue: SetTextLayerValue;
   setToolToMove: SetToolToMove;
   setToolToText: SetToolToText;
   updateCardScreenPosition: UpdateCardScreenPosition;

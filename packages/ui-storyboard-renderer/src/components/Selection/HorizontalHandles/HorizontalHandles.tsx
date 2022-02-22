@@ -19,6 +19,7 @@ const Handle = styled.div({
   borderWidth: 1,
   position: 'absolute',
   cursor: 'ew-resize',
+  pointerEvents: 'all',
 });
 
 interface LeftHandleProps extends StoryboardDataAttributes {

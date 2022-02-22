@@ -8,6 +8,6 @@ export type SetIsDraggingToTrue = () => void;
 export const setIsDraggingToTrue: SetIsDraggingToTrue = () =>
   useStore.setState(
     produce<AppState>((draft) => {
-      draft.isDragging = true;
+      draft.userInteraction.isDragging = true;
     })
   );
