@@ -3,16 +3,17 @@ import { ID } from '@joonasmkauppinen/project-stories/store-zustand';
 export type DataContextArea = 'storyboard';
 
 export type DataElementType =
-  | 'selection'
-  | 'selection:handle-side-left'
-  | 'selection:handle-side-right'
-  | 'selection:handle-corner-top-left'
-  | 'selection:handle-corner-top-right'
-  | 'selection:handle-corner-bottom-left'
-  | 'selection:handle-corner-bottom-right'
   | 'card'
   | 'card-name'
-  | 'layer:text';
+  | 'layer:text'
+  | 'selection'
+  | 'selection:handle-corner-bottom-left'
+  | 'selection:handle-corner-bottom-right'
+  | 'selection:handle-corner-top-left'
+  | 'selection:handle-corner-top-right'
+  | 'selection:handle-side-left'
+  | 'selection:handle-side-right'
+  | 'storyboard-background';
 
 export interface StoryboardDataAttributes {
   'data-context-area': DataContextArea;

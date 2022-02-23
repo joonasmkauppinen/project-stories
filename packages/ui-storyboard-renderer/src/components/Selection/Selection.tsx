@@ -61,6 +61,7 @@ export const Selection = ({
 
   return (
     <StyledSelectionDiv
+      id="selection"
       data-context-area="storyboard"
       data-element-type="selection"
       style={{
