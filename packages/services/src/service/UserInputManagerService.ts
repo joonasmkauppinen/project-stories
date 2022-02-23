@@ -7,6 +7,7 @@ import { GetState } from 'zustand';
 import {
   KeyboardShortcutController,
   SelectionEventsController,
+  TextLayerEventsController,
 } from '../controllers';
 import { eventInsideSelectionBounds } from '../helpers/eventInsideSelectionBounds';
 
@@ -16,16 +17,15 @@ export class UserInputManagerService {
 
   private keyboardShortcutControllerInstance: KeyboardShortcutController;
   private selectionEventsControllerInstance: SelectionEventsController;
+  private textLayerEventsControllerInstance: TextLayerEventsController;
 
   constructor(actions: LayerActions, getState: GetState<AppState>) {
     this.actions = actions;
     this.getState = getState;
 
-    this.handleDoubleClick = this.handleDoubleClick.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
 
     this.addMouseDownListener();
-    this.addDoubleClickListener();
 
     this.keyboardShortcutControllerInstance = new KeyboardShortcutController(
       actions,
@@ -36,28 +36,13 @@ export class UserInputManagerService {
       actions,
       getState
     );
+    this.textLayerEventsControllerInstance = new TextLayerEventsController(
+      actions
+    );
   }
 
   private addMouseDownListener() {
     document.addEventListener('mousedown', this.handleMouseDown);
-  }
-
-  private addDoubleClickListener() {
-    document.addEventListener('dblclick', this.handleDoubleClick);
-  }
-
-  private handleDoubleClick(event: MouseEvent) {
-    const eventTarget = event.target as HTMLElement;
-    const { elementType, cardId, layerId } =
-      eventTarget.dataset as unknown as StoryboardDataValues;
-
-    if (elementType === 'layer:text') {
-      console.log('Double click on text layer.');
-      if (cardId && layerId) {
-        this.actions.setTextLayerStateToActiveEditingText({ cardId, layerId });
-      }
-      this.actions.setIsEditingTextToTrue();
-    }
   }
 
   private handleMouseDown(event: MouseEvent) {
