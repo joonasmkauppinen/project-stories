@@ -15,7 +15,7 @@ import {
   selectSelectedLayers,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
-import { UserInputManagerService } from '@joonasmkauppinen/project-stories/services';
+import { UserInputManagerService } from '@joonasmkauppinen/project-stories/user-input-utils';
 import { useEffect } from 'react';
 
 const StyledPage = styled.div({
