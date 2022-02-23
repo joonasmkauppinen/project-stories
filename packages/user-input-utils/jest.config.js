@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'services',
+  displayName: 'user-input-utils',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/packages/services',
+  coverageDirectory: '../../coverage/packages/user-input-utils',
 };

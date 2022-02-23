@@ -1,6 +1,6 @@
 {
-  "root": "packages/services",
-  "sourceRoot": "packages/services/src",
+  "root": "packages/user-input-utils",
+  "sourceRoot": "packages/user-input-utils/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -8,16 +8,16 @@
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/services",
-        "tsConfig": "packages/services/tsconfig.lib.json",
-        "project": "packages/services/package.json",
-        "entryFile": "packages/services/src/index.ts",
+        "outputPath": "dist/packages/user-input-utils",
+        "tsConfig": "packages/user-input-utils/tsconfig.lib.json",
+        "project": "packages/user-input-utils/package.json",
+        "entryFile": "packages/user-input-utils/src/index.ts",
         "external": ["react/jsx-runtime"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/services/README.md",
+            "glob": "packages/user-input-utils/README.md",
             "input": ".",
             "output": "."
           }
@@ -28,14 +28,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/services/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["packages/user-input-utils/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/services"],
+      "outputs": ["coverage/packages/user-input-utils"],
       "options": {
-        "jestConfig": "packages/services/jest.config.js",
+        "jestConfig": "packages/user-input-utils/jest.config.js",
         "passWithNoTests": true
       }
     }

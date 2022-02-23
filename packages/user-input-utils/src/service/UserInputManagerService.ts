@@ -8,7 +8,7 @@ import {
   SelectionEventsController,
   TextLayerEventsController,
   CardElementEventsController,
-} from '../controllers';
+} from './controllers';
 
 export class UserInputManagerService {
   constructor(actions: LayerActions, getState: GetState<AppState>) {
