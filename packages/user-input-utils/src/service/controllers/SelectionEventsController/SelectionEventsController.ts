@@ -5,7 +5,7 @@ import {
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { StoryboardDataValues } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 
-import { eventInsideSelectionBounds } from '../../helpers/eventInsideSelectionBounds';
+import { eventInsideSelectionBounds } from '../../../helpers/eventInsideSelectionBounds';
 
 type InteractionType =
   | null
