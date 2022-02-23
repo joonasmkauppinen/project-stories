@@ -85,6 +85,10 @@ export class SelectionEventsController {
           this.interactionType = 'move';
         } else {
           this.interactionType = null;
+          this.actions.deselectAll();
+          if (this.getState().userInteraction.isEditingText) {
+            this.actions.setIsEditingTextToFalse();
+          }
         }
         break;
     }
