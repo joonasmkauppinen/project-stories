@@ -15,7 +15,7 @@ import {
   selectSelectedLayers,
   useStore,
 } from '@joonasmkauppinen/project-stories/store-zustand';
-import { UserInputManagerService } from '@joonasmkauppinen/project-stories/user-input-utils';
+import { useUserInputManager } from '@joonasmkauppinen/project-stories/user-input-utils';
 import { useEffect } from 'react';
 
 const StyledPage = styled.div({
@@ -57,9 +57,7 @@ export function Index() {
   const currentTool = useStore(selectCurrentTool);
   const userInteraction = useStore(selectUserInteraction);
 
-  useEffect(() => {
-    new UserInputManagerService(actions, useStore.getState);
-  }, []);
+  useUserInputManager(actions, useStore.getState);
 
   // TODO: Refactor logic into UserInputManagerService.
   useEffect(() => {
