@@ -8,6 +8,7 @@ import {
   KeyboardShortcutController,
   SelectionEventsController,
   TextLayerEventsController,
+  CardElementEventsController,
 } from '../controllers';
 import { eventInsideSelectionBounds } from '../helpers/eventInsideSelectionBounds';
 
@@ -15,6 +16,7 @@ export class UserInputManagerService {
   private actions: LayerActions;
   private getState: () => AppState;
 
+  private cardElementEventsControllerInstance: CardElementEventsController;
   private keyboardShortcutControllerInstance: KeyboardShortcutController;
   private selectionEventsControllerInstance: SelectionEventsController;
   private textLayerEventsControllerInstance: TextLayerEventsController;
@@ -27,11 +29,14 @@ export class UserInputManagerService {
 
     this.addMouseDownListener();
 
+    this.cardElementEventsControllerInstance = new CardElementEventsController(
+      actions,
+      getState
+    );
     this.keyboardShortcutControllerInstance = new KeyboardShortcutController(
       actions,
       getState
     );
-
     this.selectionEventsControllerInstance = new SelectionEventsController(
       actions,
       getState
@@ -47,22 +52,13 @@ export class UserInputManagerService {
 
   private handleMouseDown(event: MouseEvent) {
     const eventTarget = event.target as HTMLElement;
-    const { elementType, cardId } =
+    const { elementType } =
       eventTarget.dataset as unknown as StoryboardDataValues;
 
     const eventPosition = {
       x: event.clientX,
       y: event.clientY,
     };
-
-    if (elementType === 'card') {
-      if (this.getState().currentTool === 'text' && cardId) {
-        this.actions.addTextLayerToCard({
-          cardId,
-          top: event.offsetY,
-        });
-      }
-    }
 
     if (
       !eventInsideSelectionBounds(eventPosition) &&
