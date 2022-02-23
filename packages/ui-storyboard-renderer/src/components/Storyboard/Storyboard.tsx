@@ -16,6 +16,7 @@ import { Selection } from '../Selection/Selection';
 import { CardSection } from './CardSection/CardSection';
 import { AddCardButton } from './AddCardButton/AddCardButton';
 import { useCallback, useMemo } from 'react';
+import { StoryboardDataAttributes } from '../..';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
@@ -23,7 +24,7 @@ export interface StoryboardProps extends LayerActionsProp {
   userInteraction: UserInteraction;
 }
 
-const StyledStoryboard = styled.div({
+const StyledStoryboard = styled.div<StoryboardDataAttributes>({
   alignItems: 'center',
   backgroundColor: '#1B1D1C',
   display: 'flex',
@@ -33,10 +34,11 @@ const StyledStoryboard = styled.div({
   position: 'relative',
 });
 
-const StyledStoryboardItemsContainerSection = styled.section({
-  display: 'flex',
-  flexDirection: 'row',
-});
+const StyledStoryboardItemsContainerSection =
+  styled.section<StoryboardDataAttributes>({
+    display: 'flex',
+    flexDirection: 'row',
+  });
 
 export const Storyboard = ({
   cards,
@@ -59,9 +61,13 @@ export const Storyboard = ({
   }, [actions]);
 
   return (
-    <StyledStoryboard data-context-area="storyboard">
+    <StyledStoryboard
+      data-context-area="storyboard"
+      data-element-type="storyboard-background"
+    >
       <StyledStoryboardItemsContainerSection
         data-context-area="storyboard"
+        data-element-type="storyboard-background"
         style={{
           paddingLeft: PADDING_HORIZONTAL,
           paddingRight: PADDING_HORIZONTAL - 175, // TODO: Calculate padding right based on last element size.
