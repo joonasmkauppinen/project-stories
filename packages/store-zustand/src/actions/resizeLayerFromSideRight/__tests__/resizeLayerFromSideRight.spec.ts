@@ -1,10 +1,5 @@
-import {
-  AppState,
-  TestCardId,
-  TestLayerId,
-  useStore,
-} from '@joonasmkauppinen/project-stories/store-zustand';
-
+import { AppState, TestCardId, TestLayerId } from '../../../types';
+import { useStore } from '../../../store/zustandStore';
 import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 
 import { resizeLayerFromSideRight } from '../resizeLayerFromSideRight';
