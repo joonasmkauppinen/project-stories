@@ -3,6 +3,7 @@ import {
   Layer,
   LayerActionsProp,
 } from '@joonasmkauppinen/project-stories/store-zustand';
+import { ImageLayer } from './ImageLayer/ImageLayer';
 
 import { TextLayer } from './TextLayer/TextLayer';
 
@@ -31,6 +32,9 @@ export const CardLayer = ({
           isEditingText={isEditingText}
         />
       );
+
+    case 'image':
+      return <ImageLayer cardId={cardId} layer={layer} layerId={layerId} />;
 
     default:
       return null;

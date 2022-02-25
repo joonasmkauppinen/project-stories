@@ -9,8 +9,8 @@ import {
 import styled from '@emotion/styled';
 import {
   ID,
-  Layer,
   LayerActionsProp,
+  TextLayerType,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { StoryboardDataAttributes } from '../../../../../../types';
@@ -45,7 +45,7 @@ const StyledH1 = styled.h1<StyledH1Props>(({ hover, isEditingText }) => ({
 }));
 
 interface TextLayerProps extends LayerActionsProp {
-  layer: Layer;
+  layer: TextLayerType;
   cardId: ID;
   layerId: ID;
   isEditingText: boolean;
