@@ -28,9 +28,16 @@ import {
   setToolToText,
   updateCardScreenPosition,
 } from '../actions';
-import { generateCard } from '../generators';
+import { generateCard, generateImageLayer } from '../generators';
 
-const [cardId, emptyCard] = generateCard({ sortOrderIndex: 0 }).idWithData;
+const [imageLayerId, imageLayerData] = generateImageLayer({
+  sortOrderIndex: 0,
+}).idWithData;
+
+const [cardId, emptyCard] = generateCard({
+  sortOrderIndex: 0,
+  layers: { [imageLayerId]: imageLayerData },
+}).idWithData;
 
 export const initialState: AppState = {
   cards: {

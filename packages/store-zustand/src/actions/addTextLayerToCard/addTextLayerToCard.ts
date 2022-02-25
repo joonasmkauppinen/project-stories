@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { AppState, ID, TestLayerOverrides } from '../../types';
-import { generateLayer } from '../../generators';
+import { AppState, ID, TestTextLayerOverrides } from '../../types';
+import { generateTextLayer } from '../../generators';
 import { useStore } from '../../store/zustandStore';
 
 export interface AddTextLayerToCardPayload {
@@ -11,7 +11,7 @@ export interface AddTextLayerToCardPayload {
   width?: number;
   height?: number;
   value?: string;
-  testOverrides?: TestLayerOverrides;
+  testOverrides?: TestTextLayerOverrides;
 }
 
 export type AddTextLayerToCard = (payload: AddTextLayerToCardPayload) => void;
@@ -41,9 +41,8 @@ export const addTextLayerToCard: AddTextLayerToCard = ({
       draft.selectedCards = [];
 
       const sortOrderIndex = Object.keys(state.cards[cardId].layers).length;
-      const { layerId, layerData } = generateLayer({
+      const { layerId, layerData } = generateTextLayer({
         sortOrderIndex,
-        type: 'text',
         top,
         left,
         width,

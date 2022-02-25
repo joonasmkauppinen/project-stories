@@ -26,14 +26,17 @@ export type LayerAnimationType =
   | 'zoom-in'
   | 'zoom-out';
 
-export type MimeType =
-  | 'audio/mpeg'
+export type VideoMimeType = 'video/mp4';
+
+export type AudioMimeType = 'audio/mpeg';
+
+export type TextMimeType = 'text/plain';
+
+export type ImageMimeType =
   | 'image/gif'
   | 'image/jpeg'
   | 'image/png'
-  | 'image/svg+xml'
-  | 'text/plain'
-  | 'video/mp4';
+  | 'image/svg+xml';
 
 export type LayerType = 'text' | 'image' | 'video' | 'audio' | 'svg';
 
@@ -47,14 +50,14 @@ export interface Size {
   height: number;
 }
 
-export interface LayerResource {
+export interface ImageResource {
   alt: string;
-  height: number;
   id: ID;
-  mimeType: MimeType;
+  mimeType: ImageMimeType;
+  size: Size;
   src: string;
-  type: LayerType;
-  width: number;
+  type: 'image';
+  // TODO: Add property 'sizes'? Can be used to add 'srcset' attribute to the generated amp-story
 }
 
 export interface BaseLayer {
@@ -69,18 +72,26 @@ export interface BaseLayer {
   size: Size;
   metaState: LayerMetaState;
   name: string;
-  type: LayerType;
+  // type: LayerType;
 }
 
 export type TextLayerState = BaseElementState | 'active:editing-text';
 
-export interface TextLayer extends BaseLayer {
+export interface TextLayerType extends BaseLayer {
   type: 'text';
   value: string;
   state: TextLayerState;
 }
 
-export type Layer = TextLayer;
+export type ImageLayerState = BaseElementState | 'active:cropping';
+
+export interface ImageLayerType extends BaseLayer {
+  type: 'image';
+  resource: ImageResource;
+  state: ImageLayerState;
+}
+
+export type Layer = TextLayerType | ImageLayerType;
 
 export interface Layers {
   [key: string]: Layer;
@@ -98,12 +109,6 @@ export interface Card {
 
 export interface Cards {
   [key: string]: Card;
-}
-
-// TODO: refactor to SelectedLayers and SelectedCards
-export interface SelectionItem {
-  id: ID;
-  parentId?: ID;
 }
 
 export interface SelectedLayer {

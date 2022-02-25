@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { ID, Layer, LayerType, TestLayerOverrides } from '../../types';
+import { TestTextLayerOverrides, TextLayerType } from '../../types';
+import { GenerateLayerReturnType } from '../../types/generateLayer';
 
-interface GenerateLayerProps {
+interface GenerateTextLayerProps {
   name?: string;
   sortOrderIndex: number;
-  type: LayerType;
   top: number;
   left?: number;
   width?: number;
@@ -14,22 +14,16 @@ interface GenerateLayerProps {
   /**
    * ⚠️ Use this only for tests!
    */
-  testOverrides?: TestLayerOverrides;
+  testOverrides?: TestTextLayerOverrides;
 }
 
-type GenerateLayerReturnType = {
-  layerId: ID;
-  layerData: Layer;
-  idWithData: [string, Layer];
-};
+type GenerateTextLayer = (
+  props: GenerateTextLayerProps
+) => GenerateLayerReturnType<TextLayerType>;
 
-type GenerateLayer = (props: GenerateLayerProps) => GenerateLayerReturnType;
-
-// TODO: Hard coded to type 'text' for now. More types coming later.
-export const generateLayer: GenerateLayer = ({
+export const generateTextLayer: GenerateTextLayer = ({
   name,
   sortOrderIndex,
-  type,
   top,
   left,
   width,
@@ -38,12 +32,12 @@ export const generateLayer: GenerateLayer = ({
   testOverrides,
 }) => {
   const id = testOverrides?.id || uuidv4();
-  const defaultName = `${type} ${sortOrderIndex + 1}`;
+  const defaultName = `Text ${sortOrderIndex + 1}`;
 
   // TODO: This value should equal safe zone value in the future.
   const marginHorizontal = 20;
 
-  const data: Layer = {
+  const data: TextLayerType = {
     name: name ? name : defaultName,
     position: {
       x: left || marginHorizontal,

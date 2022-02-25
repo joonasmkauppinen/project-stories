@@ -1,4 +1,4 @@
-import { generateCard, generateLayer } from '../../generators';
+import { generateCard, generateTextLayer } from '../../generators';
 import { Card, Layer, TestCardId, TestLayerId } from '../../types';
 
 interface TestLayer extends Partial<Omit<Layer, 'sortOrderIndex'>> {
@@ -19,7 +19,7 @@ export const generateCardsSlice = (cards: TestCard[]) => {
         Object.fromEntries(
           layers.map((layer, index) => {
             const { id, ...rest } = layer;
-            return generateLayer({
+            return generateTextLayer({
               sortOrderIndex: index,
               top: 50 * index,
               type: 'text',

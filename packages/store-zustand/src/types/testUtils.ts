@@ -1,4 +1,5 @@
-import { Card, Layer } from './appState';
+import { TextLayerType } from '.';
+import { Card } from './appState';
 
 export type TestCardId =
   | 'test_card_id_0'
@@ -17,7 +18,7 @@ export type TestLayerId =
   | 'test_layer_id_2'
   | 'test_layer_id_3';
 
-export interface TestLayerOverrides {
+export interface TestTextLayerOverrides {
   id?: TestLayerId;
-  properties?: Partial<Omit<Layer, 'sortOrderIndex'>>;
+  properties?: Partial<Omit<TextLayerType, 'sortOrderIndex'>>;
 }
