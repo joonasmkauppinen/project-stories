@@ -1,4 +1,5 @@
 export * from './addNewCard/addNewCard';
+export * from './addNewImageLayerViaFileInput/addNewImageLayerViaFileInput';
 export * from './addTextLayerToCard/addTextLayerToCard';
 export * from './deleteSelectedCards/deleteSelectedCards';
 export * from './deleteSelectedLayers/deleteSelectedLayers';

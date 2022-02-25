@@ -4,6 +4,7 @@ import { devtools } from 'zustand/middleware';
 import { AppState, LayerActions } from '../types';
 import {
   addNewCard,
+  addNewImageLayerViaFileInput,
   addTextLayerToCard,
   deleteSelectedCards,
   deleteSelectedLayers,
@@ -28,15 +29,10 @@ import {
   setToolToText,
   updateCardScreenPosition,
 } from '../actions';
-import { generateCard, generateImageLayer } from '../generators';
-
-const [imageLayerId, imageLayerData] = generateImageLayer({
-  sortOrderIndex: 0,
-}).idWithData;
+import { generateCard } from '../generators';
 
 const [cardId, emptyCard] = generateCard({
   sortOrderIndex: 0,
-  layers: { [imageLayerId]: imageLayerData },
 }).idWithData;
 
 export const initialState: AppState = {
@@ -44,6 +40,7 @@ export const initialState: AppState = {
     [cardId]: emptyCard,
   },
   currentTool: 'move',
+  fileResourceQueue: [],
   selectedCards: [],
   selectedLayers: [],
   userInteraction: {
@@ -63,6 +60,7 @@ export const selectSelectedLayers = (state: AppState) => state.selectedLayers;
 export const actions: LayerActions = {
   addNewCard,
   addTextLayerToCard,
+  addNewImageLayerViaFileInput,
   deleteSelectedCards,
   deleteSelectedLayers,
   deselectAll,

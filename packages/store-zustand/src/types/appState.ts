@@ -50,8 +50,19 @@ export interface Size {
   height: number;
 }
 
+/**
+ * Resource payload passed to actions or to fileResourceQueue.
+ */
+export interface ResourcePayload {
+  fileName: string;
+  src: string;
+  mimeType: ImageMimeType;
+  size: Size;
+}
+
 export interface ImageResource {
-  alt: string;
+  alt?: string;
+  fileName: string;
   id: ID;
   mimeType: ImageMimeType;
   size: Size;
@@ -68,10 +79,10 @@ export interface BaseLayer {
   };
   sortOrderIndex: number;
   position: Coordinate;
-  screenPosition: Coordinate;
   size: Size;
   metaState: LayerMetaState;
   name: string;
+  // screenPosition: Coordinate;
   // type: LayerType;
 }
 
@@ -130,7 +141,8 @@ export interface UserInteraction {
 export interface AppState {
   cards: Cards;
   currentTool: StoryboardTool;
-  selectedLayers: SelectedLayer[];
+  fileResourceQueue: ResourcePayload[];
   selectedCards: SelectedCard[];
+  selectedLayers: SelectedLayer[];
   userInteraction: UserInteraction;
 }

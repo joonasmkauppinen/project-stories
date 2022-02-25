@@ -1,11 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { ImageLayerType } from '../../types';
+import { ImageLayerType, ImageMimeType, Size } from '../../types';
 import { GenerateLayerReturnType } from '../../types/generateLayer';
 
 interface GenerateImageLayerProps {
-  name?: string;
   sortOrderIndex: number;
+  resource: {
+    fileName: string;
+    src: string;
+    mimeType: ImageMimeType;
+    size: Size;
+  };
 }
 
 type GenerateImageLayer = (
@@ -13,43 +18,36 @@ type GenerateImageLayer = (
 ) => GenerateLayerReturnType<ImageLayerType>;
 
 export const generateImageLayer: GenerateImageLayer = ({
-  name,
   sortOrderIndex,
+  resource: { fileName, mimeType, size, src },
 }) => {
   const id = uuidv4();
   const resourceId = uuidv4();
 
-  const defaultName = name || 'Image Layer';
+  const defaultName = 'Image Layer';
   const defaultPosition = {
     x: 20,
     y: 20,
   };
 
   const defaultSize = {
-    height: 300,
-    width: 300,
+    height: 320,
+    width: 320,
   };
 
   const data: ImageLayerType = {
     metaState: {
       parentCardActive: false,
     },
-    name: defaultName,
+    name: fileName || defaultName,
     position: defaultPosition,
     resource: {
-      alt: '',
+      fileName,
       id: resourceId,
-      mimeType: 'image/png',
-      size: {
-        width: 300,
-        height: 300,
-      },
-      src: '/sample_image.png',
+      mimeType,
+      size,
+      src,
       type: 'image',
-    },
-    screenPosition: {
-      x: NaN,
-      y: NaN,
     },
     size: defaultSize,
     sortOrderIndex,

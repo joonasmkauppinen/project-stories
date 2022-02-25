@@ -43,10 +43,6 @@ export const generateTextLayer: GenerateTextLayer = ({
       x: left || marginHorizontal,
       y: top,
     },
-    screenPosition: {
-      x: NaN,
-      y: NaN,
-    },
     size: {
       // TODO: Get card width from constants.
       width: width || 360 - marginHorizontal * 2,

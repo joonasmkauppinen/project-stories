@@ -1,6 +1,7 @@
 import {
   AddNewCard,
   AddTextLayerToCard,
+  AddNewImageLayerViaFileInput,
   DeleteSelectedCards,
   DeleteSelectedLayers,
   DeselectAll,
@@ -28,6 +29,7 @@ import {
 export interface LayerActions {
   addNewCard: AddNewCard;
   addTextLayerToCard: AddTextLayerToCard;
+  addNewImageLayerViaFileInput: AddNewImageLayerViaFileInput;
   deleteSelectedLayers: DeleteSelectedLayers;
   deleteSelectedCards: DeleteSelectedCards;
   deselectAll: DeselectAll;
