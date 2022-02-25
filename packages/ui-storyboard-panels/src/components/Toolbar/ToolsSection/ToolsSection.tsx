@@ -6,6 +6,7 @@ import {
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { IconButton } from '../IconButton/IconButton';
+import { AddImageButton } from './AddImageButton/AddImageButton';
 
 const Container = styled.section({
   display: 'flex',
@@ -48,11 +49,7 @@ export const ToolsSection = ({ actions, currentTool }: ToolsSectionProps) => {
         disabled
       />
       <Divider />
-      <IconButton
-        title={t('iconButtonTitleAddImage')}
-        icon="add-image"
-        disabled
-      />
+      <AddImageButton actions={actions} />
     </Container>
   );
 };

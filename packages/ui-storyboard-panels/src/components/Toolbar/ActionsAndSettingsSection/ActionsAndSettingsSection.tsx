@@ -29,12 +29,14 @@ export const ActionsAndSettingsSection = () => {
         title={t('iconButtonTitlePublishHistory')}
         icon="history"
         size="small"
+        disabled
       />
       <Divider />
       <IconButton
         title={t('iconButtonTitleSettings')}
         icon="settings"
         size="small"
+        disabled
       />
     </Container>
   );
