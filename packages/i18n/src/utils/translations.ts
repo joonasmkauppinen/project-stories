@@ -13,7 +13,7 @@ const TRANSLATIONS = {
   iconButtonTitleMove: 'Move',
   iconButtonTitleText: 'Text',
   iconButtonTitleHand: 'Hand',
-  iconButtonTitleAddImage: 'AddImage',
+  iconButtonTitleAddImage: 'Add image',
   iconButtonTitlePublishHistory: 'Publish history',
   iconButtonTitleSettings: 'Settings',
 };
