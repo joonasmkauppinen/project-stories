@@ -6,6 +6,7 @@ export type DataElementType =
   | 'card'
   | 'card-name'
   | 'layer:text'
+  | 'layer:image'
   | 'selection'
   | 'selection:handle-corner-bottom-left'
   | 'selection:handle-corner-bottom-right'

@@ -14,7 +14,7 @@ const StyledButton = styled.div({
   borderStyle: 'solid',
   borderWidth: 1,
   borderRadius: 3,
-  height: 26,
+  height: 28,
   ...buttonHoverStyle,
 });
 

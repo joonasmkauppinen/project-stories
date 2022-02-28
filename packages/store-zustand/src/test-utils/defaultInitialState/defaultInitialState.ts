@@ -5,6 +5,7 @@ export const defaultInitialState: AppState = {
   currentTool: 'move',
   selectedCards: [],
   selectedLayers: [],
+  fileResourceQueue: [],
   userInteraction: {
     isDragging: false,
     isEditingText: false,

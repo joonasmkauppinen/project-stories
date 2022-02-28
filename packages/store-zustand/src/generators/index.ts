@@ -1,2 +1,3 @@
 export * from './generateCard/generateCard';
-export * from './generateLayer/generateLayer';
+export * from './generateTextLayer/generateTextLayer';
+export * from './generateImageLayer/generateImageLayer';

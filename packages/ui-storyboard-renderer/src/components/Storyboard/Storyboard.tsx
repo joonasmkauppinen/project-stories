@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import {
   Cards,
   LayerActionsProp,
+  ResourcePayload,
   SelectedLayer,
   UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
@@ -17,11 +18,13 @@ import { CardSection } from './CardSection/CardSection';
 import { AddCardButton } from './AddCardButton/AddCardButton';
 import { useCallback, useMemo } from 'react';
 import { StoryboardDataAttributes } from '../..';
+import { InfoBox } from './InfoBox/InfoBox';
 
 export interface StoryboardProps extends LayerActionsProp {
   cards: Cards;
   selectedLayers: SelectedLayer[];
   userInteraction: UserInteraction;
+  fileResourceQueue: ResourcePayload[];
 }
 
 const StyledStoryboard = styled.div<StoryboardDataAttributes>({
@@ -45,6 +48,7 @@ export const Storyboard = ({
   actions,
   selectedLayers,
   userInteraction,
+  fileResourceQueue,
 }: StoryboardProps) => {
   // Padding needed to bring the first card to the middle of the screen.
   const PADDING_HORIZONTAL = useMemo(() => {
@@ -89,6 +93,7 @@ export const Storyboard = ({
         selectedLayers={selectedLayers}
         userInteraction={userInteraction}
       />
+      <InfoBox fileResourceQueue={fileResourceQueue} />
     </StyledStoryboard>
   );
 };
