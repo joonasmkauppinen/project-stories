@@ -1,10 +1,10 @@
 import { CSSObject } from '@emotion/react';
 import styled from '@emotion/styled';
-import { TextLayerState } from '@joonasmkauppinen/project-stories/store-zustand';
+import { LayerState } from '@joonasmkauppinen/project-stories/store-zustand';
 
 interface StyledLayerItemLiProps {
   indentLevel: number;
-  state: TextLayerState;
+  state: LayerState;
 }
 
 const INSET_AMOUNT = 40;
@@ -17,7 +17,7 @@ const activeStyle: CSSObject = {
   backgroundColor: '#4b534f',
 };
 
-const getBgStyleByState = (state: TextLayerState) => {
+const getBgStyleByState = (state: LayerState) => {
   switch (state) {
     case 'active':
     case 'active:editing-text':

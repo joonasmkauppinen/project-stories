@@ -108,7 +108,7 @@ export const LayersPanel = ({ actions, cards }: LayersPanelProps) => {
                     indentLevel={1}
                   >
                     <LayerIcon name={layer.type} />
-                    {layer.value}
+                    {layer.name}
                   </StyledLayerItemLi>
                 ))}
               </StyledUnorderedList>
