@@ -34,7 +34,7 @@ export const InfoBox = ({ fileResourceQueue }: InfoBoxProps) => {
 
   return (
     <Container>
-      <InfoText>{t('infoTestSelectCardToPlaceMedia')}</InfoText>
+      <InfoText>{t('infoTextSelectCardToPlaceMedia')}</InfoText>
     </Container>
   );
 };
