@@ -1,12 +1,16 @@
 import produce from 'immer';
 
-import { AppState, ID } from '../../types';
+import { AppState, ID, TestImageLayerOverrides } from '../../types';
 import { useStore } from '../../store/zustandStore';
 import { generateImageLayer } from '../../generators';
 
 export interface SetCardStateToActivePayload {
   cardId: ID;
   isShiftKey: boolean;
+  /**
+   * ⚠️ Use this only for unit tests!
+   */
+  testImageLayerOverrides?: TestImageLayerOverrides;
 }
 
 export type SetCardStateToActive = (
@@ -16,6 +20,7 @@ export type SetCardStateToActive = (
 export const setCardStateToActive: SetCardStateToActive = ({
   cardId,
   isShiftKey,
+  testImageLayerOverrides,
 }) =>
   useStore.setState(
     produce<AppState>((draft) => {
@@ -39,17 +44,18 @@ export const setCardStateToActive: SetCardStateToActive = ({
           });
         });
         draft.selectedCards = [{ cardId }];
+      }
 
-        if (state.fileResourceQueue.length === 1) {
-          const resource = state.fileResourceQueue[0];
-          const sortOrderIndex = Object.keys(state.cards[cardId].layers).length;
-          const { layerId, layerData } = generateImageLayer({
-            resource,
-            sortOrderIndex,
-          });
-          draft.cards[cardId].layers[layerId] = layerData;
-          draft.fileResourceQueue = [];
-        }
+      if (state.fileResourceQueue.length === 1) {
+        const resource = state.fileResourceQueue[0];
+        const sortOrderIndex = Object.keys(state.cards[cardId].layers).length;
+        const { layerId, layerData } = generateImageLayer({
+          resource,
+          sortOrderIndex,
+          testOverrides: testImageLayerOverrides,
+        });
+        draft.cards[cardId].layers[layerId] = layerData;
+        draft.fileResourceQueue = [];
       }
 
       state.selectedLayers.forEach(({ cardId, layerId }) => {

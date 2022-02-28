@@ -1,4 +1,10 @@
-import { AppState, TestCardId, TestLayerId } from '../../../types';
+import {
+  AppState,
+  ImageLayerType,
+  ResourcePayload,
+  TestCardId,
+  TestLayerId,
+} from '../../../types';
 import { useStore } from '../../../store/zustandStore';
 import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 
@@ -276,5 +282,55 @@ describe('Action - setCardStateToActive()', () => {
     setCardStateToActive({ cardId, isShiftKey: true });
 
     expect(useStore.getState()).toEqual(stateWithOneActiveCardWithTwoLayers);
+  });
+
+  test('If "fileResourceQueue" has items, adds new image layer to selected card', () => {
+    const cardId: TestCardId = 'test_card_id_0';
+    const imageLayerId: TestLayerId = 'test_layer_id_0';
+    const imageResource: ResourcePayload = {
+      fileName: 'sample-image.png',
+      mimeType: 'image/png',
+      size: {
+        height: 100,
+        width: 100,
+      },
+      src: 'file://path/to/file.png',
+    };
+
+    const stateWithOneCardAndOneItemInFileResourceQueue: AppState = {
+      ...defaultInitialState,
+      fileResourceQueue: [imageResource],
+      cards: generateCardsSlice([{ id: cardId }]),
+    };
+
+    useStore.setState(() => stateWithOneCardAndOneItemInFileResourceQueue);
+
+    setCardStateToActive({
+      cardId,
+      isShiftKey: false,
+      testImageLayerOverrides: {
+        id: imageLayerId,
+      },
+    });
+
+    expect(useStore.getState().fileResourceQueue.length).toBe(0);
+
+    const imageLayer = () =>
+      useStore.getState().cards[cardId].layers[imageLayerId] as ImageLayerType;
+
+    expect(imageLayer()).not.toBe(undefined);
+    expect(imageLayer().resource).toMatchInlineSnapshot(`
+      Object {
+        "fileName": "sample-image.png",
+        "id": "test_layer_id_0_resource",
+        "mimeType": "image/png",
+        "size": Object {
+          "height": 100,
+          "width": 100,
+        },
+        "src": "file://path/to/file.png",
+        "type": "image",
+      }
+    `);
   });
 });
