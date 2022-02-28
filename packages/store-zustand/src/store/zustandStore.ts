@@ -5,6 +5,7 @@ import { AppState, LayerActions } from '../types';
 import {
   addNewCard,
   addNewImageLayerViaFileInput,
+  addNewImageViaDragAndDrop,
   addTextLayerToCard,
   deleteSelectedCards,
   deleteSelectedLayers,
@@ -63,6 +64,7 @@ export const actions: LayerActions = {
   addNewCard,
   addTextLayerToCard,
   addNewImageLayerViaFileInput,
+  addNewImageViaDragAndDrop,
   deleteSelectedCards,
   deleteSelectedLayers,
   deselectAll,

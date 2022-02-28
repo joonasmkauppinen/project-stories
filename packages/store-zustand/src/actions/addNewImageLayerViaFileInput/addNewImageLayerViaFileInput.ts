@@ -2,15 +2,10 @@ import produce from 'immer';
 
 import { generateImageLayer } from '../../generators';
 import { useStore } from '../../store/zustandStore';
-import { AppState, ImageMimeType, Size } from '../../types';
+import { AppState, ResourcePayload } from '../../types';
 
 export interface AddNewImageLayerViaFileInputPayload {
-  resource: {
-    fileName: string;
-    src: string;
-    mimeType: ImageMimeType;
-    size: Size;
-  };
+  resource: ResourcePayload;
 }
 
 export type AddNewImageLayerViaFileInput = (
