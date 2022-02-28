@@ -2,10 +2,18 @@ import produce from 'immer';
 
 import { generateImageLayer } from '../../generators';
 import { useStore } from '../../store/zustandStore';
-import { AppState, ResourcePayload } from '../../types';
+import {
+  AppState,
+  ResourcePayload,
+  TestImageLayerOverrides,
+} from '../../types';
 
 export interface AddNewImageLayerViaFileInputPayload {
   resource: ResourcePayload;
+  /**
+   * ⚠️ Use this only for tests!
+   */
+  testOverrides?: TestImageLayerOverrides;
 }
 
 export type AddNewImageLayerViaFileInput = (
@@ -14,6 +22,7 @@ export type AddNewImageLayerViaFileInput = (
 
 export const addNewImageLayerViaFileInput: AddNewImageLayerViaFileInput = ({
   resource,
+  testOverrides,
 }) =>
   useStore.setState(
     produce<AppState>((draft) => {
@@ -25,6 +34,7 @@ export const addNewImageLayerViaFileInput: AddNewImageLayerViaFileInput = ({
         const { layerId, layerData } = generateImageLayer({
           sortOrderIndex,
           resource,
+          testOverrides,
         });
         draft.cards[cardId].layers[layerId] = layerData;
         return;
