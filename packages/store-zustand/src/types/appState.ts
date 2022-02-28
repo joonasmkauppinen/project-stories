@@ -96,6 +96,8 @@ export interface TextLayerType extends BaseLayer {
 
 export type ImageLayerState = BaseElementState | 'active:cropping';
 
+export type LayerState = TextLayerState | ImageLayerState;
+
 export interface ImageLayerType extends BaseLayer {
   type: 'image';
   resource: ImageResource;
