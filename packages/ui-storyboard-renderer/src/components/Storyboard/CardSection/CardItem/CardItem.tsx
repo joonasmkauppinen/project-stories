@@ -1,10 +1,19 @@
-import { useEffect, useRef } from 'react';
+import {
+  DragEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import {
   BaseElementState,
   ID,
+  isValidImageMimeType,
   LayerActionsProp,
   Layers,
+  Size,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import {
@@ -22,6 +31,25 @@ export interface CardItemProps
   isEditingText: boolean;
 }
 
+const HIGHLIGHT_WIDTH = 20;
+
+const highlightStyle = css({
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    top: HIGHLIGHT_WIDTH,
+    bottom: HIGHLIGHT_WIDTH,
+    left: HIGHLIGHT_WIDTH,
+    right: HIGHLIGHT_WIDTH,
+    outlineWidth: HIGHLIGHT_WIDTH,
+    outlineColor: '#0500FF73',
+    outlineStyle: 'solid',
+    pointerEvents: 'none',
+    zIndex: 9999,
+  },
+});
+
+// TODO: Use outline instead of box-shadow.
 const setBoxShadowByState = (state: BaseElementState) => {
   if (state === 'active') {
     return 'fuchsia 0px 0px 0px 2px';
@@ -53,7 +81,69 @@ export const CardItem = ({
   isEditingText,
   ...divElementAttrs
 }: CardItemProps) => {
+  const [isDragOver, setIsDragOver] = useState(false);
   const cardItemRef = useRef<HTMLDivElement>(null);
+
+  const handleDragEnter: DragEventHandler = useCallback(() => {
+    if (isDragOver) {
+      return;
+    }
+
+    setIsDragOver(true);
+  }, [isDragOver]);
+
+  const handleDragLeave: DragEventHandler = useCallback(() => {
+    if (!isDragOver) {
+      return;
+    }
+
+    setIsDragOver(false);
+  }, [isDragOver]);
+
+  const handleDragOver: DragEventHandler = useCallback((event) => {
+    event.preventDefault();
+  }, []);
+
+  const handleDrop: DragEventHandler = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setIsDragOver(false);
+
+      const file = event.dataTransfer.files[0];
+
+      if (!isValidImageMimeType(file.type)) {
+        console.error('Invalid file type: ', file.type);
+        return;
+      }
+
+      const src = URL.createObjectURL(file);
+      const imgSize = new Promise<Size>((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => {
+          resolve({ height: img.height, width: img.width });
+        };
+        img.onerror = () => {
+          reject();
+        };
+      });
+
+      try {
+        actions.addNewImageViaDragAndDrop({
+          cardId,
+          resource: {
+            fileName: file.name,
+            mimeType: file.type,
+            size: await imgSize,
+            src,
+          },
+        });
+      } catch (error) {
+        console.error('Failed to resolve selected image size.');
+      }
+    },
+    [actions, cardId]
+  );
 
   useEffect(() => {
     if (cardItemRef.current) {
@@ -71,11 +161,16 @@ export const CardItem = ({
   return (
     <StyledCardItem
       id={cardId}
+      css={[isDragOver && highlightStyle]}
       data-card-id={cardId}
       data-element-type="card"
       data-context-area="storyboard"
       state={state}
       ref={cardItemRef}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
       {...divElementAttrs}
     >
       {Object.entries(layers).map(([layerId, layer]) => (
