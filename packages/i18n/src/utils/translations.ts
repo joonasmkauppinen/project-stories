@@ -16,6 +16,7 @@ const TRANSLATIONS = {
   iconButtonTitleAddImage: 'Add image',
   iconButtonTitlePublishHistory: 'Publish history',
   iconButtonTitleSettings: 'Settings',
+  infoTextSelectCardToPlaceMedia: 'Select a card to place media.',
 };
 
 type TranslationKey = keyof typeof TRANSLATIONS;
