@@ -1,6 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { ImageLayerType, ImageMimeType, Size } from '../../types';
+import {
+  ImageLayerType,
+  ImageMimeType,
+  Size,
+  TestImageLayerOverrides,
+} from '../../types';
 import { GenerateLayerReturnType } from '../../types/generateLayer';
 
 interface GenerateImageLayerProps {
@@ -11,6 +16,10 @@ interface GenerateImageLayerProps {
     mimeType: ImageMimeType;
     size: Size;
   };
+  /**
+   * ⚠️ Use this only for tests!
+   */
+  testOverrides?: TestImageLayerOverrides;
 }
 
 type GenerateImageLayer = (
@@ -20,9 +29,12 @@ type GenerateImageLayer = (
 export const generateImageLayer: GenerateImageLayer = ({
   sortOrderIndex,
   resource: { fileName, mimeType, size, src },
+  testOverrides,
 }) => {
-  const id = uuidv4();
-  const resourceId = uuidv4();
+  const id = testOverrides?.id || uuidv4();
+  const resourceId = testOverrides?.id
+    ? `${testOverrides.id}_resource`
+    : uuidv4();
 
   const defaultName = 'Image Layer';
   const defaultPosition = {
@@ -54,6 +66,7 @@ export const generateImageLayer: GenerateImageLayer = ({
     state: 'idle',
     type: 'image',
     // animation:
+    ...testOverrides,
   };
 
   return {

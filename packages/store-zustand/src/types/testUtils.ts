@@ -1,4 +1,4 @@
-import { TextLayerType } from '.';
+import { ImageLayerType, TextLayerType } from '.';
 import { Card } from './appState';
 
 export type TestCardId =
@@ -21,4 +21,9 @@ export type TestLayerId =
 export interface TestTextLayerOverrides {
   id?: TestLayerId;
   properties?: Partial<Omit<TextLayerType, 'sortOrderIndex'>>;
+}
+
+export interface TestImageLayerOverrides {
+  id?: TestLayerId;
+  properties?: Partial<Omit<ImageLayerType, 'sortOrderIndex'>>;
 }
