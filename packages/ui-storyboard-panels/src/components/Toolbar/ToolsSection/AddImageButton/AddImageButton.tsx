@@ -80,7 +80,7 @@ export const AddImageButton = ({ actions }: AddImageButtonProps) => {
         id="file-input"
         ref={inputRef}
         type="file"
-        accept=".jpg, .jpeg, .png"
+        accept=".jpg, .jpeg, .png, .gif"
         onChange={handleChange}
         style={{ display: 'none' }}
       />
