@@ -14,6 +14,7 @@ import {
   selectUserInteraction,
   selectSelectedLayers,
   useStore,
+  selectFileResourceQueue,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { useUserInputManager } from '@joonasmkauppinen/project-stories/user-input-utils';
 import { useEffect } from 'react';
@@ -56,6 +57,7 @@ export function Index() {
   const selectedLayers = useStore(selectSelectedLayers);
   const currentTool = useStore(selectCurrentTool);
   const userInteraction = useStore(selectUserInteraction);
+  const fileResourceQueue = useStore(selectFileResourceQueue);
 
   useUserInputManager(actions, useStore.getState);
 
@@ -86,6 +88,7 @@ export function Index() {
           cards={cards}
           selectedLayers={selectedLayers}
           userInteraction={userInteraction}
+          fileResourceQueue={fileResourceQueue}
         />
         <Toolbar actions={actions} currentTool={currentTool} />
         <SamplePanel>Options panel coming soon.</SamplePanel>
