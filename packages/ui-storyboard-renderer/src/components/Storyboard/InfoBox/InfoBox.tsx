@@ -7,7 +7,7 @@ interface InfoBoxProps {
 }
 
 const Container = styled.div({
-  position: 'absolute',
+  position: 'fixed',
   top: 170,
   left: '50%',
   display: 'flex',
