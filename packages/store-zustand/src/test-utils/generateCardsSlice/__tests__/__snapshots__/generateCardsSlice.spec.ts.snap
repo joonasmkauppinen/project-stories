@@ -10,14 +10,10 @@ Object {
         "metaState": Object {
           "parentCardActive": false,
         },
-        "name": "text 1",
+        "name": "Text 1",
         "position": Object {
           "x": 20,
           "y": 0,
-        },
-        "screenPosition": Object {
-          "x": NaN,
-          "y": NaN,
         },
         "size": Object {
           "height": NaN,
@@ -67,14 +63,10 @@ Object {
         "metaState": Object {
           "parentCardActive": false,
         },
-        "name": "text 1",
+        "name": "Text 1",
         "position": Object {
           "x": 20,
           "y": 0,
-        },
-        "screenPosition": Object {
-          "x": NaN,
-          "y": NaN,
         },
         "size": Object {
           "height": NaN,
@@ -102,14 +94,10 @@ Object {
         "metaState": Object {
           "parentCardActive": false,
         },
-        "name": "text 1",
+        "name": "Text 1",
         "position": Object {
           "x": 20,
           "y": 0,
-        },
-        "screenPosition": Object {
-          "x": NaN,
-          "y": NaN,
         },
         "size": Object {
           "height": NaN,
@@ -124,14 +112,10 @@ Object {
         "metaState": Object {
           "parentCardActive": false,
         },
-        "name": "text 2",
+        "name": "Text 2",
         "position": Object {
           "x": 20,
           "y": 50,
-        },
-        "screenPosition": Object {
-          "x": NaN,
-          "y": NaN,
         },
         "size": Object {
           "height": NaN,
