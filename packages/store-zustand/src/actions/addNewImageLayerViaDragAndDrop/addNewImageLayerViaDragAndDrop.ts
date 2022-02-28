@@ -4,16 +4,16 @@ import { AppState, ID, ResourcePayload } from '../../types';
 import { useStore } from '../../store/zustandStore';
 import { generateImageLayer } from '../../generators';
 
-export interface AddNewImageViaDragAndDropPayload {
+export interface AddNewImageLayerViaDragAndDropPayload {
   cardId: ID;
   resource: ResourcePayload;
 }
 
-export type AddNewImageViaDragAndDrop = (
-  payload: AddNewImageViaDragAndDropPayload
+export type AddNewImageLayerViaDragAndDrop = (
+  payload: AddNewImageLayerViaDragAndDropPayload
 ) => void;
 
-export const addNewImageViaDragAndDrop: AddNewImageViaDragAndDrop = ({
+export const addNewImageLayerViaDragAndDrop: AddNewImageLayerViaDragAndDrop = ({
   cardId,
   resource,
 }) =>

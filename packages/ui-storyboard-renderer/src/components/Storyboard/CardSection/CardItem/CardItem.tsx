@@ -129,7 +129,7 @@ export const CardItem = ({
       });
 
       try {
-        actions.addNewImageViaDragAndDrop({
+        actions.addNewImageLayerViaDragAndDrop({
           cardId,
           resource: {
             fileName: file.name,
