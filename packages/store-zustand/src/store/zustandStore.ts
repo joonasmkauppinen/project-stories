@@ -56,6 +56,8 @@ export const selectCurrentTool = (state: AppState) => state.currentTool;
 export const selectUserInteraction = (state: AppState) => state.userInteraction;
 export const selectSelectedCards = (state: AppState) => state.selectedCards;
 export const selectSelectedLayers = (state: AppState) => state.selectedLayers;
+export const selectFileResourceQueue = (state: AppState) =>
+  state.fileResourceQueue;
 
 export const actions: LayerActions = {
   addNewCard,
