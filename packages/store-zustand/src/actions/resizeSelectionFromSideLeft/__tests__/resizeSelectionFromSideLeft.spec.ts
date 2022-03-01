@@ -2,7 +2,7 @@ import { AppState, TestCardId, TestLayerId } from '../../../types';
 import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 import { useStore } from '../../../store/zustandStore';
 
-import { resizeLayerFromSideLeft } from '../resizeLayerFromSideLeft';
+import { resizeSelectionFromSideLeft } from '../resizeSelectionFromSideLeft';
 
 describe('Action - resizeLayerFromSideLeft()', () => {
   test('Updates layer width and position correctly', () => {
@@ -29,7 +29,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithOneActiveLayer);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideLeft({ movementX: 10 });
 
     const layer = () => useStore.getState().cards[cardId].layers[layerId];
 
@@ -56,7 +56,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithOneIdleLayer);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideLeft({ movementX: 10 });
 
     expect(useStore.getState()).toStrictEqual(
       stateWithOneIdleCardWithOneIdleLayer
@@ -87,7 +87,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithTwoActiveLayers);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideLeft({ movementX: 10 });
 
     expect(useStore.getState()).toStrictEqual(
       stateWithOneIdleCardWithTwoActiveLayers

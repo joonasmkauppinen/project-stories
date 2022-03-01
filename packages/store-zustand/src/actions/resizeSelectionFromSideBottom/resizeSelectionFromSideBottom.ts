@@ -3,16 +3,16 @@ import produce from 'immer';
 import { AppState } from '../../types';
 import { useStore } from '../../store/zustandStore';
 
-export interface ResizeLayerFromSideRightPayload {
-  movementX: number;
+export interface ResizeSelectionFromSideBottomPayload {
+  movementY: number;
 }
 
-export type ResizeLayerFromSideRight = (
-  payload: ResizeLayerFromSideRightPayload
+export type ResizeSelectionFromSideBottom = (
+  payload: ResizeSelectionFromSideBottomPayload
 ) => void;
 
-export const resizeLayerFromSideRight: ResizeLayerFromSideRight = ({
-  movementX,
+export const resizeSelectionFromSideBottom: ResizeSelectionFromSideBottom = ({
+  movementY,
 }) =>
   useStore.setState(
     produce<AppState>((draft) => {
@@ -27,6 +27,6 @@ export const resizeLayerFromSideRight: ResizeLayerFromSideRight = ({
 
       const { cardId, layerId } = state.selectedLayers[0];
 
-      draft.cards[cardId].layers[layerId].size.width += movementX;
+      draft.cards[cardId].layers[layerId].size.height += movementY;
     })
   );
