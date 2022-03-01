@@ -34,7 +34,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
     const layer = () => useStore.getState().cards[cardId].layers[layerId];
 
     expect(layer().position.x).toBe(10);
-    // expect(layer().size.width).toBe(90);
+    expect(layer().size.width).toBe(90);
   });
 
   test('Does not update state, if called when there are no selectedLayers', () => {
