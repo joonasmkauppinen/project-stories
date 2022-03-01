@@ -27,3 +27,28 @@ jobs:
         run: yarn nx affected:test --base=origin/$GITHUB_BASE_REF
         env:
           CI: true
+
+  lint:
+    name: Lint code 🔍
+    runs-on: ubuntu-latest
+    steps:
+      # If 'fetch-depth' is not set to 0 NX can't compare the changes.
+      # Fix source: https://stackoverflow.com/a/67201604/13266248
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup node 🛠
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+
+      - name: Install dependencies 📦
+        run: yarn install --frozen-lockfile
+
+      - name: Run lint on affected packages 🔄
+        run: yarn nx affected:lint --base=origin/$GITHUB_BASE_REF
+        env:
+          CI: true
