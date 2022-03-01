@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { StoryboardDataAttributes } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
+import { StoryboardDataAttributes } from '../../../types';
 
 const CORNER_HANDLE_SIZE = 7;
 
