@@ -79,7 +79,7 @@ export const Storyboard = ({
       >
         {Object.entries(cards).map(([cardId, card]) => (
           <CardSection
-            isEditingText={userInteraction.isEditingText}
+            userInteraction={userInteraction}
             cardId={cardId}
             key={`card-section-${cardId}`}
             card={card}

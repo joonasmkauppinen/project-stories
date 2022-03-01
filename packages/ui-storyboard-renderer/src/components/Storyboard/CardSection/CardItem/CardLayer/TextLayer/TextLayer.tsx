@@ -9,8 +9,9 @@ import {
 import styled from '@emotion/styled';
 import {
   ID,
-  LayerActionsProp,
+  LayerActions,
   TextLayerType,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { StoryboardDataAttributes } from '../../../../../../types';
@@ -40,15 +41,16 @@ const StyledH1 = styled.h1<StyledH1Props>(({ hover, isEditingText }) => ({
   padding: 0,
   position: 'absolute',
   outline: getOutlineStyle({ hover, isEditingText }),
-  cursor: 'default',
+  cursor: 'auto',
   userSelect: 'none',
 }));
 
-interface TextLayerProps extends LayerActionsProp {
+interface TextLayerProps {
+  actions: LayerActions;
   layer: TextLayerType;
   cardId: ID;
   layerId: ID;
-  isEditingText: boolean;
+  userInteraction: UserInteraction;
 }
 
 /**
@@ -60,7 +62,10 @@ const preventReactUpdate = (
   prevProps: Readonly<TextLayerProps>,
   nextProps: Readonly<TextLayerProps>
 ) => {
-  if (prevProps.isEditingText === true && nextProps.isEditingText === true) {
+  if (
+    prevProps.userInteraction.isEditingText === true &&
+    nextProps.userInteraction.isEditingText === true
+  ) {
     return true;
   } else {
     return false;
@@ -68,17 +73,28 @@ const preventReactUpdate = (
 };
 
 export const TextLayer = memo(
-  ({ cardId, layerId, actions, layer, isEditingText }: TextLayerProps) => {
+  ({ cardId, layerId, actions, layer, userInteraction }: TextLayerProps) => {
     const elementRef = useRef<HTMLHeadingElement>(null);
 
     const contentEditable =
-      isEditingText && layer.state === 'active:editing-text';
+      userInteraction.isEditingText && layer.state === 'active:editing-text';
 
     const handleMouseEnter: MouseEventHandler = useCallback(() => {
+      if (userInteraction.isDragging || userInteraction.isEditingText) {
+        return;
+      }
+
       if (layer.state === 'idle') {
         actions.setLayerStateToHovered({ cardId, layerId });
       }
-    }, [actions, cardId, layer.state, layerId]);
+    }, [
+      actions,
+      cardId,
+      layer.state,
+      layerId,
+      userInteraction.isDragging,
+      userInteraction.isEditingText,
+    ]);
 
     const handleMouseLeave: MouseEventHandler = useCallback(() => {
       if (layer.state === 'hovered') {
@@ -130,10 +146,10 @@ export const TextLayer = memo(
     });
 
     useEffect(() => {
-      if (isEditingText) {
+      if (userInteraction.isEditingText) {
         elementRef.current?.focus();
       }
-    }, [isEditingText]);
+    }, [userInteraction.isEditingText]);
 
     return (
       <StyledH1

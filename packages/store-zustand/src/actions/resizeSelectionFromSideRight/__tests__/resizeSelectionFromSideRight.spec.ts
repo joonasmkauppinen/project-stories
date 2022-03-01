@@ -1,11 +1,11 @@
 import { AppState, TestCardId, TestLayerId } from '../../../types';
-import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 import { useStore } from '../../../store/zustandStore';
+import { defaultInitialState, generateCardsSlice } from '../../../test-utils';
 
-import { resizeLayerFromSideLeft } from '../resizeLayerFromSideLeft';
+import { resizeSelectionFromSideRight } from '../resizeSelectionFromSideRight';
 
-describe('Action - resizeLayerFromSideLeft()', () => {
-  test('Updates layer width and position correctly', () => {
+describe('Action - resizeLayerFromSideRight()', () => {
+  test('Updates layer width correctly', () => {
     const cardId: TestCardId = 'test_card_id_0';
     const layerId: TestLayerId = 'test_layer_id_0';
 
@@ -16,12 +16,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
         {
           id: cardId,
           layers: [
-            {
-              id: layerId,
-              state: 'active',
-              size: { height: 50, width: 100 },
-              position: { x: 0, y: 0 },
-            },
+            { id: layerId, state: 'active', size: { height: 50, width: 100 } },
           ],
         },
       ]),
@@ -29,12 +24,14 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithOneActiveLayer);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideRight({ movementX: -10 });
 
     const layer = () => useStore.getState().cards[cardId].layers[layerId];
+    expect(layer().size.width).toBe(90);
 
-    expect(layer().position.x).toBe(10);
-    // expect(layer().size.width).toBe(90);
+    resizeSelectionFromSideRight({ movementX: 10 });
+
+    expect(layer().size.width).toBe(100);
   });
 
   test('Does not update state, if called when there are no selectedLayers', () => {
@@ -56,7 +53,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithOneIdleLayer);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideRight({ movementX: 10 });
 
     expect(useStore.getState()).toStrictEqual(
       stateWithOneIdleCardWithOneIdleLayer
@@ -87,7 +84,7 @@ describe('Action - resizeLayerFromSideLeft()', () => {
 
     useStore.setState(() => stateWithOneIdleCardWithTwoActiveLayers);
 
-    resizeLayerFromSideLeft({ movementX: 10 });
+    resizeSelectionFromSideRight({ movementX: 10 });
 
     expect(useStore.getState()).toStrictEqual(
       stateWithOneIdleCardWithTwoActiveLayers

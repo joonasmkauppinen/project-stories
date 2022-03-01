@@ -3,15 +3,15 @@ import produce from 'immer';
 import { AppState } from '../../types';
 import { useStore } from '../../store/zustandStore';
 
-export interface ResizeLayerFromSideLeftPayload {
+export interface ResizeSelectionFromSideLeftPayload {
   movementX: number;
 }
 
-export type ResizeLayerFromSideLeft = (
-  payload: ResizeLayerFromSideLeftPayload
+export type ResizeSelectionFromSideLeft = (
+  payload: ResizeSelectionFromSideLeftPayload
 ) => void;
 
-export const resizeLayerFromSideLeft: ResizeLayerFromSideLeft = ({
+export const resizeSelectionFromSideLeft: ResizeSelectionFromSideLeft = ({
   movementX,
 }) =>
   useStore.setState(

@@ -2,6 +2,7 @@ import {
   ID,
   Layer,
   LayerActionsProp,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { ImageLayer } from './ImageLayer/ImageLayer';
 
@@ -11,7 +12,7 @@ interface CardLayerProps extends LayerActionsProp {
   cardId: ID;
   layer: Layer;
   layerId: ID;
-  isEditingText: boolean;
+  userInteraction: UserInteraction;
 }
 
 export const CardLayer = ({
@@ -19,7 +20,7 @@ export const CardLayer = ({
   cardId,
   layer,
   layerId,
-  isEditingText,
+  userInteraction,
 }: CardLayerProps) => {
   switch (layer.type) {
     case 'text':
@@ -29,12 +30,20 @@ export const CardLayer = ({
           cardId={cardId}
           layer={layer}
           layerId={layerId}
-          isEditingText={isEditingText}
+          userInteraction={userInteraction}
         />
       );
 
     case 'image':
-      return <ImageLayer cardId={cardId} layer={layer} layerId={layerId} />;
+      return (
+        <ImageLayer
+          actions={actions}
+          cardId={cardId}
+          layer={layer}
+          layerId={layerId}
+          userInteraction={userInteraction}
+        />
+      );
 
     default:
       return null;

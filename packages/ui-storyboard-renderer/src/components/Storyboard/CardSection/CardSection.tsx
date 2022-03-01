@@ -4,6 +4,7 @@ import {
   Card,
   ID,
   LayerActionsProp,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { StoryboardDataAttributes } from '../../../types';
@@ -13,7 +14,7 @@ import { CardItem } from './CardItem/CardItem';
 export interface CardItemProps extends LayerActionsProp {
   cardId: ID;
   card: Card;
-  isEditingText: boolean;
+  userInteraction: UserInteraction;
 }
 
 const Container = styled.div({
@@ -38,7 +39,7 @@ export const CardSection = ({
   card,
   actions,
   cardId,
-  isEditingText,
+  userInteraction,
 }: CardItemProps) => {
   const { layers, name, state } = card;
 
@@ -59,7 +60,7 @@ export const CardSection = ({
         {name}
       </CardName>
       <CardItem
-        isEditingText={isEditingText}
+        userInteraction={userInteraction}
         state={state}
         actions={actions}
         cardId={cardId}

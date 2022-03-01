@@ -14,6 +14,8 @@ export type DataElementType =
   | 'selection:handle-corner-top-right'
   | 'selection:handle-side-left'
   | 'selection:handle-side-right'
+  | 'selection:handle-side-top'
+  | 'selection:handle-side-bottom'
   | 'storyboard-background';
 
 export interface StoryboardDataAttributes {
