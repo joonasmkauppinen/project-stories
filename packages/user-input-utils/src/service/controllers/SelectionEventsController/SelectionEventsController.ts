@@ -147,11 +147,11 @@ export class SelectionEventsController {
         break;
 
       case 'resize:side-right':
-        this.actions.resizeLayerFromSideRight({ movementX });
+        this.actions.resizeSelectionFromSideRight({ movementX });
         break;
 
       case 'resize:side-left':
-        this.actions.resizeLayerFromSideLeft({ movementX });
+        this.actions.resizeSelectionFromSideLeft({ movementX });
         break;
     }
 
