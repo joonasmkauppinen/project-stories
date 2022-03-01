@@ -50,6 +50,14 @@ export const selectionEventsController = (
     };
 
     switch (elementType) {
+      case 'selection:handle-side-top':
+        interactionType = 'resize:side-top';
+        break;
+
+      case 'selection:handle-side-bottom':
+        interactionType = 'resize:side-bottom';
+        break;
+
       case 'selection:handle-side-left':
         interactionType = 'resize:side-left';
         break;
@@ -58,7 +66,24 @@ export const selectionEventsController = (
         interactionType = 'resize:side-right';
         break;
 
+      case 'selection:handle-corner-bottom-right':
+        interactionType = 'resize:corner-bottom-right';
+        break;
+
+      case 'selection:handle-corner-bottom-left':
+        interactionType = 'resize:corner-bottom-left';
+        break;
+
+      case 'selection:handle-corner-top-right':
+        interactionType = 'resize:corner-top-right';
+        break;
+
+      case 'selection:handle-corner-top-left':
+        interactionType = 'resize:corner-top-left';
+        break;
+
       case 'layer:text':
+      case 'layer:image':
         interactionType = 'move';
         break;
 
@@ -128,12 +153,36 @@ export const selectionEventsController = (
         actions.onDragSelection(movement);
         break;
 
+      case 'resize:side-top':
+        actions.resizeSelectionFromSideTop({ movementY });
+        break;
+
+      case 'resize:side-bottom':
+        actions.resizeSelectionFromSideBottom({ movementY });
+        break;
+
       case 'resize:side-right':
-        actions.resizeLayerFromSideRight({ movementX });
+        actions.resizeSelectionFromSideRight({ movementX });
         break;
 
       case 'resize:side-left':
-        actions.resizeLayerFromSideLeft({ movementX });
+        actions.resizeSelectionFromSideLeft({ movementX });
+        break;
+
+      case 'resize:corner-bottom-right':
+        actions.resizeSelectionFromCornerBottomRight({ movement });
+        break;
+
+      case 'resize:corner-bottom-left':
+        actions.resizeSelectionFromCornerBottomLeft({ movement });
+        break;
+
+      case 'resize:corner-top-right':
+        actions.resizeSelectionFromCornerTopRight({ movement });
+        break;
+
+      case 'resize:corner-top-left':
+        actions.resizeSelectionFromCornerTopLeft({ movement });
         break;
     }
 
