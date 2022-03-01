@@ -6,6 +6,7 @@ import {
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import { StoryboardDataAttributes } from '../../types';
+import { CornerHandles } from './CornerHandles/CornerHandles';
 
 import { HorizontalHandles } from './HorizontalHandles/HorizontalHandles';
 
@@ -59,6 +60,9 @@ export const Selection = ({
       ) - xMin,
   };
 
+  const singleSelection =
+    activeLayers.length === 1 ? activeLayers.pop() : undefined;
+
   return (
     <StyledSelectionDiv
       id="selection"
@@ -71,7 +75,16 @@ export const Selection = ({
         height: size.height,
       }}
     >
-      <HorizontalHandles size={size} />
+      {singleSelection &&
+        (() => {
+          switch (singleSelection.type) {
+            case 'image':
+              return <CornerHandles />;
+
+            case 'text':
+              return <HorizontalHandles size={size} />;
+          }
+        })()}
     </StyledSelectionDiv>
   );
 };

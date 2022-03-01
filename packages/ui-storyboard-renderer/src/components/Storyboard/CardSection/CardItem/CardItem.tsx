@@ -14,6 +14,7 @@ import {
   LayerActionsProp,
   Layers,
   Size,
+  UserInteraction,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 
 import {
@@ -28,7 +29,7 @@ export interface CardItemProps
   layers: Layers;
   state: BaseElementState;
   cardId: ID;
-  isEditingText: boolean;
+  userInteraction: UserInteraction;
 }
 
 const HIGHLIGHT_WIDTH = 20;
@@ -71,6 +72,7 @@ const StyledCardItem = styled.div<{ state: BaseElementState }>(({ state }) => ({
   borderRadius: 2,
   boxShadow: setBoxShadowByState(state),
   transition: 'box-shadow 150ms cubic-bezier(0.18, 0.89, 0.32, 1.28)',
+  overflow: 'hidden',
 }));
 
 export const CardItem = ({
@@ -78,7 +80,7 @@ export const CardItem = ({
   cardId,
   actions,
   state,
-  isEditingText,
+  userInteraction,
   ...divElementAttrs
 }: CardItemProps) => {
   const [isDragOver, setIsDragOver] = useState(false);
@@ -175,7 +177,7 @@ export const CardItem = ({
     >
       {Object.entries(layers).map(([layerId, layer]) => (
         <CardLayer
-          isEditingText={isEditingText}
+          userInteraction={userInteraction}
           actions={actions}
           cardId={cardId}
           key={`layer-${layerId}`}
