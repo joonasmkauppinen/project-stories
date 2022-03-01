@@ -1,0 +1,13 @@
+This is the "lint" target code for demo apps e2e application.
+Add it back in if needed in the future. Removed for now, because it caused the
+`yarn nx affected:lint` command to fail for no good reason.
+
+"lint": {
+  "executor": "@nrwl/linter:eslint",
+  "outputs": ["{options.outputFile}"],
+  "options": {
+    "lintFilePatterns": [
+      "apps/project-stories-demo-nextjs-e2e/**/*.{js,ts}"
+    ]
+  }
+}

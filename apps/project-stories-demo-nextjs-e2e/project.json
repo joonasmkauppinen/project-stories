@@ -14,15 +14,6 @@
           "devServerTarget": "project-stories-demo-nextjs:serve:production"
         }
       }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "apps/project-stories-demo-nextjs-e2e/**/*.{js,ts}"
-        ]
-      }
     }
   },
   "tags": [],
