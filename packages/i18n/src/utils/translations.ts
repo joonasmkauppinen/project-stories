@@ -4,19 +4,20 @@
  */
 
 const TRANSLATIONS = {
-  layers: 'Layers',
   buttonLabelAddCard: 'Add card',
-  buttonLabelPublish: 'Publish',
   buttonLabelPreview: 'Preview',
-  popoverMenuPreviewTogglePreview: 'Toggle preview',
-  popoverMenuPreviewOpenToNewWindow: 'Open to new window',
-  iconButtonTitleMove: 'Move',
-  iconButtonTitleText: 'Text',
-  iconButtonTitleHand: 'Hand',
+  buttonLabelPublish: 'Publish',
   iconButtonTitleAddImage: 'Add image',
+  iconButtonTitleHand: 'Hand',
+  iconButtonTitleMove: 'Move',
   iconButtonTitlePublishHistory: 'Publish history',
   iconButtonTitleSettings: 'Settings',
+  iconButtonTitleText: 'Text',
   infoTextSelectCardToPlaceMedia: 'Select a card to place media.',
+  panelDesignHeaderLabel: 'Design',
+  panelLayerHeaderLabel: 'Layers',
+  popoverMenuPreviewOpenToNewWindow: 'Open to new window',
+  popoverMenuPreviewTogglePreview: 'Toggle preview',
 };
 
 type TranslationKey = keyof typeof TRANSLATIONS;
