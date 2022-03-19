@@ -15,6 +15,7 @@ const TRANSLATIONS = {
   iconButtonTitleText: 'Text',
   infoTextSelectCardToPlaceMedia: 'Select a card to place media.',
   panelDesignHeaderLabel: 'Design',
+  panelDesignLayerPropertiesLabel: 'Layer',
   panelLayerHeaderLabel: 'Layers',
   popoverMenuPreviewOpenToNewWindow: 'Open to new window',
   popoverMenuPreviewTogglePreview: 'Toggle preview',
