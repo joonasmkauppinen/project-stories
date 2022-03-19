@@ -12,5 +12,5 @@ const StyledDiv = styled.div({
 });
 
 export const PanelHeader = () => {
-  return <StyledDiv>{t('layers')}</StyledDiv>;
+  return <StyledDiv>{t('panelLayerHeaderLabel')}</StyledDiv>;
 };

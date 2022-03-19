@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 import {
   LayersPanel,
+  DesignPanel,
   Toolbar,
 } from '@joonasmkauppinen/project-stories/ui-storyboard-panels';
-import {
-  DESIGN_PANEL_WIDTH,
-  Storyboard,
-} from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
+import { Storyboard } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
 import {
   actions,
   selectCards,
@@ -27,21 +25,6 @@ const StyledPage = styled.div({
   position: 'fixed',
   right: 0,
   top: 0,
-});
-
-const SamplePanel = styled.div({
-  alignItems: 'flex-start',
-  backgroundColor: '#2F3331',
-  borderLeft: '1px solid#4B5350',
-  color: '#9d9b9b',
-  display: 'flex',
-  fontSize: 15,
-  fontWeight: 200,
-  gridColumnEnd: 'design-panel',
-  gridColumnStart: 'design-panel',
-  justifyContent: 'center',
-  paddingTop: 60,
-  width: DESIGN_PANEL_WIDTH,
 });
 
 const SafeHydrate = ({ children }) => {
@@ -91,7 +74,7 @@ export function Index() {
           fileResourceQueue={fileResourceQueue}
         />
         <Toolbar actions={actions} currentTool={currentTool} />
-        <SamplePanel>Options panel coming soon.</SamplePanel>
+        <DesignPanel cards={cards} selectedLayers={selectedLayers} />
       </StyledPage>
     </SafeHydrate>
   );
