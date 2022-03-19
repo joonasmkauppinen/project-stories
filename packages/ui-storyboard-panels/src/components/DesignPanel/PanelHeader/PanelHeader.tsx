@@ -13,6 +13,7 @@ const ContainerDiv = styled.div({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  userSelect: 'none',
 });
 
 export const PanelHeader = () => {
