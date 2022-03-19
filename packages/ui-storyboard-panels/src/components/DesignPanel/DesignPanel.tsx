@@ -4,6 +4,7 @@ import {
   SelectedLayer,
 } from '@joonasmkauppinen/project-stories/store-zustand';
 import { DESIGN_PANEL_WIDTH } from '@joonasmkauppinen/project-stories/ui-storyboard-renderer';
+import { CardManagementTools } from './CardManagementTools/CardManagementTools';
 
 import { LayerAlignmentTools } from './LayerAlignmentTools/LayerAlignmentTools';
 import { LayerPropertiesSection } from './LayerPropertiesSection/LayerPropertiesSection';
@@ -30,6 +31,7 @@ export const DesignPanel = ({ cards, selectedLayers }: DesignPanelProps) => {
   return (
     <StyledPanelSection>
       <PanelHeader />
+      <CardManagementTools />
       <LayerAlignmentTools />
       <LayerPropertiesSection activeLayers={activeLayers} />
     </StyledPanelSection>
